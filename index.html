@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noskshade · Philip Nosike, Product Designer</title>
+<meta name="description" content="Philip Nosike (Grey The Nosk), product designer. Case studies across fintech, AI tools and SaaS.">
+<meta name="theme-color" content="#f1f1ef">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -37,26 +40,82 @@
     filter:blur(0.4px); opacity:0; transition:top 0.7s cubic-bezier(0.34,1.35,0.44,1), opacity 0.4s ease 0.2s; }
   [data-water-btn]:hover [data-water]::before { top:-12%; border-radius:52% 48% 0 0 / 6px 8px 0 0; animation:nkSway 2.2s ease-in-out infinite 0.7s; }
   [data-water-btn]:hover [data-water]::after { top:-2%; opacity:1; }
-  [data-water-btn]:hover { box-shadow:0 -3px 12px rgba(56,189,248,0.35), 0 8px 26px rgba(14,165,233,0.32) !important; }
+  [data-water-btn]:hover { box-shadow:0 8px 22px color-mix(in srgb, currentColor 22%, transparent) !important; }
   @keyframes nkSway { 0%,100% { border-radius:52% 48% 0 0 / 6px 8px 0 0; transform:translateX(0); } 50% { border-radius:46% 54% 0 0 / 9px 5px 0 0; transform:translateX(2px); } }
   [data-water-btn]:active [data-water]::before, [data-water-btn]:active [data-water]::after { top:8%; transition:top 0.16s ease-out; }
   [data-water-idle] [data-water]::before { top:62%; }
   [data-water-idle] [data-water]::after { top:62%; opacity:0.8; }
-  [data-water-idle]:hover [data-water]::before, [data-water-idle]:hover [data-water]::after { top:26%; }
+  [data-water-idle]:hover [data-water]::before { top:-12%; }
+  [data-water-idle]:hover [data-water]::after { top:-2%; opacity:1; }
+  [data-water="grey"]::before { background:linear-gradient(180deg, rgba(203,213,225,0.4) 0%, rgba(148,163,184,0.5) 45%, rgba(71,85,105,0.55) 100%); }
   [data-water-btn] { -webkit-tap-highlight-color:transparent; }
   [data-water-btn]:active { transform:translateY(1px) scale(0.98) !important; transition:transform 0.08s ease !important; }
   [data-water="light"]::before { background:linear-gradient(180deg, rgba(224,242,254,0.3) 0%, rgba(240,249,255,0.42) 100%); box-shadow:0 -1px 0 rgba(255,255,255,0.9) inset; }
   [data-water="purple"]::before { background:linear-gradient(180deg, rgba(221,214,254,0.4) 0%, rgba(167,139,250,0.5) 45%, rgba(124,58,237,0.55) 100%); }
   @keyframes nkBuildBar { 0% { transform:scaleY(0); opacity:0; } 10% { transform:scaleY(1.15); opacity:1; } 16% { transform:scaleY(1); } 78% { transform:scaleY(1); opacity:1; } 88%, 100% { transform:scaleY(0); opacity:0; } }
   @keyframes nkChatFloat { 0%, 100% { transform:translateY(0); opacity:0.45; } 50% { transform:translateY(-5px); opacity:0.95; } }
-  @keyframes nkGlowIn { 0% { box-shadow:0 0 0 rgba(56,189,248,0); } 45% { box-shadow:0 6px 26px rgba(56,189,248,0.14); } 100% { box-shadow:0 0 0 rgba(56,189,248,0); } }
+  @keyframes nkGlowIn { 0% { box-shadow:0 0 0 transparent; } 45% { box-shadow:0 5px 22px color-mix(in srgb, currentColor 10%, transparent); } 100% { box-shadow:0 0 0 transparent; } }
   image-slot { cursor:zoom-in; }
   [data-shipgrid] > div { transition:transform 0.3s ease, box-shadow 0.3s ease; }
   [data-shipgrid] > div:nth-child(odd) { transform:rotate(-1.1deg); }
   [data-shipgrid] > div:nth-child(even) { transform:rotate(1.1deg); }
-  [data-shipgrid] > div:hover { transform:rotate(0deg) translateY(-6px); box-shadow:0 18px 44px rgba(14,165,233,0.22) !important; }
+  [data-shipgrid] > div:hover { transform:rotate(0deg) translateY(-6px); box-shadow:0 14px 34px color-mix(in srgb, currentColor 14%, transparent) !important; }
   [data-ribbondash] { stroke-dasharray:10 24; animation:nkDash 1.5s linear infinite; }
+  [data-dust] { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.5;
+    background-image:
+      radial-gradient(circle 1px at 12% 20%, rgba(100,116,139,0.5) 50%, transparent 60%),
+      radial-gradient(circle 1.4px at 68% 8%, rgba(14,165,233,0.4) 50%, transparent 60%),
+      radial-gradient(circle 1px at 34% 58%, rgba(100,116,139,0.4) 50%, transparent 60%),
+      radial-gradient(circle 1.2px at 88% 42%, rgba(139,92,246,0.35) 50%, transparent 60%),
+      radial-gradient(circle 1px at 52% 84%, rgba(100,116,139,0.45) 50%, transparent 60%),
+      radial-gradient(circle 1.4px at 8% 76%, rgba(14,165,233,0.35) 50%, transparent 60%),
+      radial-gradient(circle 1px at 78% 68%, rgba(100,116,139,0.4) 50%, transparent 60%),
+      radial-gradient(circle 1.2px at 26% 36%, rgba(0,201,177,0.3) 50%, transparent 60%);
+    background-size:140% 140%;
+    animation:nkDustDrift 60s linear infinite alternate; }
+  @keyframes nkDustDrift { from { background-position:0% 0%; } to { background-position:100% 100%; } }
+  [data-statgrid] > div, [data-tcard] > div, [data-cardpad] { box-sizing:border-box; }
+  [data-tcard] h3 { line-height:1.45 !important; }
+  [data-tcard] p { line-height:1.75 !important; }
+  [data-cardpad] h1 { line-height:1.3 !important; }
+  [data-cardpad] p { line-height:1.75 !important; }
+  @media (max-width:640px) {
+    [data-pagebody] [data-hero] h1 { font-size:44px !important; line-height:1.1 !important; margin-top:20px !important; }
+    [data-pagebody] [data-hero] [data-water-btn] { flex:1 1 0 !important; min-width:0 !important; height:48px !important; padding:0 12px !important; font-size:13px !important; gap:6px !important; }
+    [data-pagebody] [data-hero] [data-water-btn] svg { flex-shrink:0; }
+    [data-pagebody] [data-hero] p { text-align:left !important; text-align-last:left !important; font-size:14.5px !important; line-height:1.85 !important; }
+    [data-hero] + div { height:380px !important; margin-top:20px !important; }
+    [data-hero] + div > div:first-child { height:380px !important; width:90vw !important; }
+    [data-pagebody] section h2 { text-wrap:balance; }
+  }
+  @keyframes nkTagWave { 0%,100% { transform:translateX(-6%) rotate(0deg); } 50% { transform:translateX(6%) translateY(-8%) rotate(4deg); } }
+  @keyframes nkTagDrop { 0% { transform:translateY(0) scale(0.6); opacity:0; } 12% { opacity:1; transform:translateY(2px) scale(1); } 70% { opacity:1; } 100% { transform:translateY(52px) scale(0.8, 1.2); opacity:0; } }
+  @media (max-width:640px) { [data-pagebody] section h2 { line-height:1.34 !important; } }
+  @keyframes nkLiquid { 0%,100% { background-position:0% 10%, 100% 90%, 50% 0%, 0% 50%; } 25% { background-position:35% 90%, 70% 10%, 85% 70%, 35% 50%; } 50% { background-position:80% 30%, 20% 60%, 15% 100%, 70% 50%; } 75% { background-position:55% 100%, 0% 0%, 60% 20%, 100% 50%; } }
+  @keyframes nkSlideProg { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @media (max-width:640px) { [data-casepad] { padding:104px 18px 64px !important; } [data-casecard] { padding:24px 20px !important; } }
+  @keyframes nkGradFlow { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+  @keyframes nkFlow { 0%,100% { transform:translate(0,0) scale(1); } 25% { transform:translate(120px,40px) scale(1.12); } 50% { transform:translate(40px,110px) scale(0.92); } 75% { transform:translate(-90px,30px) scale(1.06); } }
+  @keyframes nkCloudDrift { from { transform:translateX(-50px); } to { transform:translateX(60px); } }
+  @keyframes nkCloudPass { from { transform:translateX(-40vw); } to { transform:translateX(110vw); } }
+  @media (max-width:860px) { [data-skycarve] { padding:120px 18px 60px !important; } } @media (max-width:1100px) { [data-skycard] { display:none !important; } } [data-hero] [data-typeline] { justify-content:center !important; } [data-hero] [data-typeline] > div > span:first-child { flex:0 1 auto !important; }
   @keyframes nkDash { to { stroke-dashoffset:-68; } }
+  @media (max-width:640px) {
+    [data-pagebody] [data-hero] h1 { font-size:44px !important; line-height:1.1 !important; margin-top:20px !important; }
+    [data-pagebody] [data-hero] [data-water-btn] { flex:1 1 0 !important; min-width:0 !important; height:48px !important; padding:0 12px !important; font-size:13px !important; gap:6px !important; }
+    [data-pagebody] [data-hero] [data-water-btn] svg { flex-shrink:0; }
+    [data-pagebody] [data-hero] p { text-align:left !important; text-align-last:left !important; font-size:14.5px !important; line-height:1.85 !important; }
+    [data-hero] + div { height:380px !important; margin-top:20px !important; }
+    [data-hero] + div > div:first-child { height:380px !important; width:90vw !important; }
+    [data-pagebody] section h2 { text-wrap:balance; }
+  }
+  @keyframes nkTagWave { 0%,100% { transform:translateX(-6%) rotate(0deg); } 50% { transform:translateX(6%) translateY(-8%) rotate(4deg); } }
+  @keyframes nkTagDrop { 0% { transform:translateY(0) scale(0.6); opacity:0; } 12% { opacity:1; transform:translateY(2px) scale(1); } 70% { opacity:1; } 100% { transform:translateY(52px) scale(0.8, 1.2); opacity:0; } }
+  @media (max-width:640px) { [data-pagebody] section h2 { line-height:1.34 !important; } }
+  @keyframes nkLiquid { 0%,100% { background-position:0% 10%, 100% 90%, 50% 0%, 0% 50%; } 25% { background-position:35% 90%, 70% 10%, 85% 70%, 35% 50%; } 50% { background-position:80% 30%, 20% 60%, 15% 100%, 70% 50%; } 75% { background-position:55% 100%, 0% 0%, 60% 20%, 100% 50%; } }
+  @keyframes nkSlideProg { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @media (max-width:640px) { [data-casepad] { padding:104px 18px 64px !important; } [data-casecard] { padding:24px 20px !important; } }
+  @keyframes nkGradFlow { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
   @keyframes nkFlowDown { from { background-position-y:0; } to { background-position-y:44px; } }
   @keyframes nkShoot { 0% { transform:translate(0,0); opacity:0; } 4% { opacity:1; } 14% { transform:translate(-260px,140px); opacity:0; } 100% { transform:translate(-260px,140px); opacity:0; } }
   @media (max-width:860px) {
@@ -68,28 +127,60 @@
   }
   @media (max-width:960px) {
     [data-navlinks] { display:none !important; }
-    [data-pagebody] { padding-bottom:110px !important; }
+    [data-topnav] { padding:0 20px !important; }
+    [data-pagebody] { padding-bottom:110px !important; overflow-x:hidden !important; }
     [data-pagebody] section { padding-left:20px !important; padding-right:20px !important; }
     [data-pagebody] [data-screen-label]:not([data-home]):not([data-nopad]) { padding-left:20px !important; padding-right:20px !important; }
     [data-casetop] { padding-left:20px !important; padding-right:20px !important; }
     [data-hero] { gap:28px !important; }
-    [data-tabbar] { background:rgba(255,255,255,0.8) !important; }
+    [data-tabbar] { background:rgba(255,255,255,0.8) !important; gap:8px !important; }
+    [data-cardmedia] { flex:1 1 100% !important; width:100% !important; padding:10px !important; box-sizing:border-box !important; background:#e8e8e5 !important; border-radius:20px 20px 0 0; }
+    [data-cardmedia] > div:first-child { border-radius:12px 12px 0 0; overflow:hidden; }
+    [data-cardmedia] > div:last-child { border-radius:0 0 12px 12px; overflow:hidden; }
+    [data-tabbar] > div { flex:1 1 0 !important; min-width:66px; padding:8px 10px !important; }
+    [data-cardpad] { padding:30px 24px !important; }
+    [data-cardpad], [data-tcard], [data-pagebody] div[style*="min-width:300px"], [data-pagebody] div[style*="min-width:280px"], [data-pagebody] div[style*="min-width:290px"], [data-pagebody] div[style*="min-width:320px"] { min-width:0 !important; }
+    [data-herovid] { margin:0 auto !important; }
+    [data-cardpad] div[style*="minmax(120px"] { grid-template-columns:1fr 1fr !important; }
+    [data-cardpad] > div, [data-tcard] h3, [data-tcard] p { text-align:left; }
+    [data-tcard] > div:last-child { padding:22px 18px !important; }
+    [data-typeline] { align-items:center !important; gap:4px !important; max-width:100% !important; }
+    [data-typeline] > div > span:first-child { font-size:13px !important; }
+    [data-hero] h1 { line-height:1.45 !important; }
+    [data-hero] [data-water-btn] { height:58px !important; }
   }
   @media (max-width:640px) {
-    [data-topnav] { padding:0 14px !important; }
-    [data-typeline] { font-size:12px !important; white-space:normal !important; flex-wrap:wrap; max-width:100%; }
-    [data-typeline] > span:nth-child(2) { font-size:12px !important; min-width:0; overflow-wrap:anywhere; }
+    [data-topnav] { padding:0 14px !important; top:10px !important; }
+    [data-topnav] > div { gap:14px !important; padding:8px 8px 8px 18px !important; }
+    [data-topnav] > div > div:first-child { font-size:15px !important; }
+    [data-navcta] { height:40px !important; padding:0 14px !important; font-size:11px !important; gap:6px !important; }
     [data-cardpad] { padding:26px 20px !important; }
-    [data-pagebody] div[style*="grid-template-columns"]:not([data-tnode]) { grid-template-columns:1fr !important; }
-    [data-pagebody] [data-statgrid] { grid-template-columns:1fr 1fr !important; }
+    [data-pagebody] div[style*="grid-template-columns"]:not([data-tnode]):not([data-statgrid]):not([data-impactgrid]) { grid-template-columns:1fr !important; }
+    [data-pagebody] div[data-statgrid] { grid-template-columns:1fr 1fr !important; }
+    [data-pagebody] div[data-impactgrid] { grid-template-columns:1fr 1fr !important; gap:12px !important; }
+    [data-impactgrid] > div { padding:20px 14px !important; }
+    [data-impactgrid] > div > div:first-child { font-size:26px !important; }
+    [data-impactgrid] p { font-size:11px !important; }
+    [data-pagebody] div[data-statgrid] { grid-template-columns:1fr 1fr !important; }
+    [data-statgrid] > div { border-right:none !important; border-bottom:1px solid rgba(0,0,0,0.05); justify-content:flex-start !important; padding:14px 12px !important; }
+    [data-typeline] > div > span:first-child { font-size:12px !important; }
+    [data-pagebody] h1 { font-size:26px !important; line-height:1.55 !important; }
+    [data-hero] h1 { margin-top:30px !important; line-height:1.55 !important; }
+    [data-hero] p { line-height:2.15 !important; }
+    [data-hero] [data-water-btn] { height:52px !important; flex:1 1 100% !important; max-width:100% !important; padding:0 18px !important; }
+    [data-herovid] { margin:0 auto !important; padding:26px 0 !important; flex-basis:100% !important; }
     [data-pagebody] [data-tnode] { grid-template-columns:28px 1fr !important; }
     [data-pagebody] [data-tdot] { grid-column:1 / 2 !important; }
     [data-pagebody] [data-tcard] { grid-column:2 / 3 !important; }
     [data-pagebody] h1 { font-size:24px !important; }
     [data-chip] { display:none !important; }
-    [data-pagebody] h1 { font-size:26px !important; line-height:1.15 !important; }
+    [data-pagebody] h1 { font-size:26px !important; line-height:1.5 !important; }
     [data-pagebody] section { padding-top:44px; padding-bottom:44px; }
     [data-pagebody] p { font-size:14px !important; line-height:1.65 !important; }
+    [data-pagebody] { overflow-x:hidden !important; }
+    [data-cardpad], [data-tcard], [data-pagebody] div[style*="min-width:300px"], [data-pagebody] div[style*="min-width:280px"], [data-pagebody] div[style*="min-width:290px"], [data-pagebody] div[style*="min-width:320px"] { min-width:0 !important; }
+    [data-tcard] { padding:0 4px 0 10px !important; }
+    [data-trailwrap] { margin-left:-6px !important; }
     [data-tnode] { padding-bottom:28px !important; }
     [data-tcard] { padding:0 0 0 8px !important; }
     [data-navcta] { height:38px !important; padding:0 13px !important; font-size:10.5px !important; gap:5px !important; }
@@ -107,6 +198,8 @@
 
 <div data-pagebody="1" style="min-height:100vh; overflow-x:hidden; background:#f1f1ef; color:#111111; font-family:'Plus Jakarta Sans', sans-serif;">
 
+  <div data-dust="1"></div>
+
   <!-- Scroll progress -->
   <div style="position:fixed; top:0; left:0; right:0; height:3px; z-index:120; background:transparent;">
     <div style="height:100%; background:linear-gradient(90deg,#0ea5e9,#6366f1); width: {{ progress }}%;"></div>
@@ -117,9 +210,9 @@
     <div style="pointer-events:auto; box-sizing:border-box; width:100%; max-width:1160px; display:flex; align-items:center; justify-content:space-between; gap:40px; padding:10px 12px 10px 26px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
       <div onClick="{{ navHome }}" style="cursor:pointer; font-weight:800; font-size:17px; color:#111111; letter-spacing:-0.01em;">Noskshade.</div>
       <div data-navlinks="1" style="display:flex; align-items:center; gap:48px;">
-        <div onClick="{{ navWork }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lWorkBg }}; font-size:13px; font-weight:700; color: {{ lWorkC }}; transition:all 0.2s ease;" style-hover="color:#0284c7; background:rgba(14,165,233,0.08);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"></stop><stop offset="1" stop-color="#7c3aed"></stop></linearGradient></defs><rect x="2" y="5" width="14" height="10.5" rx="2" fill="url(#gNavW)"></rect><path d="M6.5 5 V4 a2 2 0 0 1 2 -2 h1 a2 2 0 0 1 2 2 v1 h-1.6 V4.2 a0.6 0.6 0 0 0 -0.6 -0.6 h-1.6 a0.6 0.6 0 0 0 -0.6 0.6 V5 Z" fill="url(#gNavW)"></path></svg>Work</div>
-        <div onClick="{{ navAbout }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lAboutBg }}; font-size:13px; font-weight:700; color: {{ lAboutC }}; transition:all 0.2s ease;" style-hover="color:#0284c7; background:rgba(14,165,233,0.08);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#0d9488"></stop></linearGradient></defs><circle cx="9" cy="6" r="3.4" fill="url(#gNavA)"></circle><path d="M2.6 16 a6.4 6.4 0 0 1 12.8 0 Z" fill="url(#gNavA)"></path></svg>About</div>
-        <div onClick="{{ navContact }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lContactBg }}; font-size:13px; font-weight:700; color: {{ lContactC }}; transition:all 0.2s ease;" style-hover="color:#0284c7; background:rgba(14,165,233,0.08);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f472b6"></stop><stop offset="1" stop-color="#db2777"></stop></linearGradient></defs><rect x="1.5" y="4" width="15" height="10.5" rx="2" fill="url(#gNavC)"></rect><path d="M2.2 5 L9 10.2 L15.8 5" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round"></path></svg>Contact</div>
+        <div onClick="{{ navWork }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lWorkBg }}; font-size:13px; font-weight:700; color: {{ lWorkC }}; transition:all 0.2s ease;" style-hover="color:#7c3aed; background:rgba(139,92,246,0.1); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"></stop><stop offset="1" stop-color="#7c3aed"></stop></linearGradient></defs><rect x="2" y="5" width="14" height="10.5" rx="2" fill="url(#gNavW)"></rect><path d="M6.5 5 V4 a2 2 0 0 1 2 -2 h1 a2 2 0 0 1 2 2 v1 h-1.6 V4.2 a0.6 0.6 0 0 0 -0.6 -0.6 h-1.6 a0.6 0.6 0 0 0 -0.6 0.6 V5 Z" fill="url(#gNavW)"></path></svg>Work</div>
+        <div onClick="{{ navAbout }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lAboutBg }}; font-size:13px; font-weight:700; color: {{ lAboutC }}; transition:all 0.2s ease;" style-hover="color:#0d9488; background:rgba(45,212,191,0.12); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#0d9488"></stop></linearGradient></defs><circle cx="9" cy="6" r="3.4" fill="url(#gNavA)"></circle><path d="M2.6 16 a6.4 6.4 0 0 1 12.8 0 Z" fill="url(#gNavA)"></path></svg>About</div>
+        <div onClick="{{ navContact }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lContactBg }}; font-size:13px; font-weight:700; color: {{ lContactC }}; transition:all 0.2s ease;" style-hover="color:#db2777; background:rgba(244,114,182,0.12); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f472b6"></stop><stop offset="1" stop-color="#db2777"></stop></linearGradient></defs><rect x="1.5" y="4" width="15" height="10.5" rx="2" fill="url(#gNavC)"></rect><path d="M2.2 5 L9 10.2 L15.8 5" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round"></path></svg>Contact</div>
       </div>
       <div data-water-btn="1" data-navcta="1" onClick="{{ navContact }}" style="position:relative; overflow:hidden; cursor:pointer; height:50px; display:flex; align-items:center; gap:10px; padding:0 22px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700; box-shadow:0 6px 18px rgba(14,165,233,0.35);" style-hover="transform:translateY(-2px); box-shadow:0 10px 26px rgba(14,165,233,0.45);">
         <span data-water="light"></span>
@@ -149,31 +242,40 @@
   <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
   <div data-screen-label="Home" data-home="1">
 
-    <!-- Hero -->
-    <section style="position:relative; overflow:hidden; padding:150px 52px 72px;">
-      <div style="position:absolute; top:-80px; left:-120px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.14), transparent 70%); filter:blur(30px); animation:nkDrift 14s ease-in-out infinite;"></div>
-      <div style="position:absolute; bottom:-120px; right:-100px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%); filter:blur(30px); animation:nkDrift 14s ease-in-out infinite 4s;"></div>
-      <div data-hero="1" style="position:relative; max-width:1160px; margin:0 auto; display:flex; flex-wrap:wrap; gap:48px; align-items:center;">
-        <div style="flex:1 1 480px; min-width:320px;">
-          <div style="position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
-            <span style="width:7px; height:7px; border-radius:50%; background:#22c55e;"></span>
-            <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#1a1a1a;">Philip Nosike · Product Designer</span>
-            <span style="position:absolute; top:0; bottom:0; width:40%; background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.9) 50%, transparent 70%); animation:nkShimmer 3.5s linear infinite; pointer-events:none;"></span>
+    <!-- Sky hero -->
+    <section style="position:relative; padding:12px 12px 0;">
+      <div data-skycarve="1" style="position:relative; overflow:hidden; padding:140px 40px 90px;">
+        <div style="position:absolute; top:-80px; left:-120px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.14), transparent 70%); filter:blur(30px); animation:nkDrift 14s ease-in-out infinite; pointer-events:none;"></div>
+        <div style="position:absolute; bottom:-120px; right:-100px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%); filter:blur(30px); animation:nkDrift 14s ease-in-out infinite 4s; pointer-events:none;"></div>
+        <div style="position:absolute; top:38%; right:12%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(236,72,153,0.08), transparent 70%); filter:blur(30px); animation:nkDrift 16s ease-in-out infinite 2s; pointer-events:none;"></div>
+        <div style="position:absolute; top:52%; left:10%; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle, rgba(0,201,177,0.09), transparent 70%); filter:blur(30px); animation:nkDrift 15s ease-in-out infinite 6s; pointer-events:none;"></div>
+        <div data-hero="1" style="position:relative; z-index:2; max-width:760px; margin:0 auto; text-align:center;">
+          <div data-nametag="1" style="position:relative; display:inline-flex; filter:drop-shadow(0 6px 18px rgba(14,165,233,0.18));">
+            <div style="position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:10px; height:42px; padding:0 26px; clip-path:polygon(16.5px 0, calc(100% - 16.5px) 0, calc(100% - 14px) 1.4px, calc(100% - 1px) calc(50% - 2.2px), 100% 50%, calc(100% - 1px) calc(50% + 2.2px), calc(100% - 14px) calc(100% - 1.4px), calc(100% - 16.5px) 100%, 16.5px 100%, 14px calc(100% - 1.4px), 1px calc(50% + 2.2px), 0 50%, 1px calc(50% - 2.2px), 14px 1.4px); background:linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0.14)); backdrop-filter:blur(14px) saturate(1.9); -webkit-backdrop-filter:blur(14px) saturate(1.9); box-shadow:inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -1px 0 rgba(14,165,233,0.25);">
+              <span style="position:absolute; inset:0; clip-path:inherit; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,0.55) 0%, transparent 46%);"></span>
+              <span style="position:absolute; left:-30%; right:-30%; bottom:-140%; height:200%; border-radius:45%; background:radial-gradient(ellipse at 50% 0%, rgba(125,211,252,0.35), rgba(14,165,233,0.12) 60%, transparent 75%); animation:nkTagWave 6s ease-in-out infinite; pointer-events:none;"></span>
+              <span style="position:absolute; top:-6px; left:34%; width:5px; height:7px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(56,189,248,0.7)); animation:nkTagDrop 4.2s cubic-bezier(0.5,0,0.8,0.6) infinite; pointer-events:none;"></span>
+              <span style="position:absolute; top:-6px; left:72%; width:4px; height:6px; border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(139,92,246,0.6)); animation:nkTagDrop 5.4s cubic-bezier(0.5,0,0.8,0.6) infinite 2s; pointer-events:none;"></span>
+              <svg width="15" height="15" viewBox="0 0 16 16" style="position:relative; flex-shrink:0; animation:nkStationRing 6s linear infinite;"><defs><linearGradient id="gTagSpin" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"></stop><stop offset="0.5" stop-color="#6366f1"></stop><stop offset="1" stop-color="#db2777"></stop></linearGradient></defs><path d="M8 0.8 L10 6 L15.2 8 L10 10 L8 15.2 L6 10 L0.8 8 L6 6 Z" fill="url(#gTagSpin)"></path><circle cx="8" cy="8" r="1.6" fill="#ffffff"></circle></svg>
+              <span style="position:relative; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#1a1a1a;">Product Designer</span>
+              <span style="position:absolute; top:0; bottom:0; width:40%; background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%); animation:nkShimmer 4s linear infinite; pointer-events:none;"></span>
+            </div>
           </div>
-          <h1 style="margin:22px 0 0; font-size:clamp(30px, 3.8vw, 56px); font-weight:800; line-height:1.06; letter-spacing:-0.02em; color:#111111;">Grey The Nosk.</h1>
-          <p style="margin:18px 0 0; max-width:520px; font-size:16px; line-height:1.9; color:#6b7280; text-wrap:pretty;"><strong style="color:#111111;">5+ years</strong> building interfaces that don't just look good — they <strong style="color:#111111;">earn attention, drive action, and actually ship</strong>. From <span style="padding:3px 10px; border-radius:50px; background:rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.07); font-size:13px; font-weight:700; color:#374151; white-space:nowrap;">SaaS products</span> to <span style="padding:3px 10px; border-radius:50px; background:rgba(0,201,177,0.1); border:1px solid rgba(0,201,177,0.3); font-size:13px; font-weight:700; color:#009e8d; white-space:nowrap;">AI tools</span> to <span style="padding:3px 10px; border-radius:50px; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.28); font-size:13px; font-weight:700; color:#6366f1; white-space:nowrap;">creative software</span>, I design systems that give teams an unfair advantage.</p>
-          <div data-typeline="1" style="margin:16px 0 0; display:flex; align-items:baseline; gap:8px; white-space:nowrap; overflow:hidden;">
-            <span style="font-size:14px; font-weight:600; color:#9ca3af;">→ Right now:</span>
-            <span style="font-size:16px; font-weight:600; color:#0284c7;">{{ typed }}</span>
-            <span style="width:2px; height:18px; background:#0284c7; animation:nkBlink 1s step-end infinite;"></span>
+          <h1 style="margin:22px 0 0; font-size:clamp(36px, 5vw, 68px); font-weight:800; line-height:1.04; letter-spacing:-0.03em; color:#111111; background-image:radial-gradient(circle, rgba(56,189,248,0.95) 0%, rgba(56,189,248,0) 62%), radial-gradient(circle, rgba(236,72,153,0.85) 0%, rgba(236,72,153,0) 60%), radial-gradient(circle, rgba(20,184,166,0.85) 0%, rgba(20,184,166,0) 60%), linear-gradient(90deg, #0284c7, #6366f1, #7c3aed, #db2777, #009e8d, #0284c7); background-size:46% 180%, 40% 170%, 38% 190%, 300% 100%; background-repeat:no-repeat, no-repeat, no-repeat, repeat; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; animation:nkLiquid 16s ease-in-out infinite; padding-bottom:0.08em;">Philip Nosike</h1>
+          <p style="margin:18px auto 0; max-width:620px; font-size:16px; line-height:1.9; color:#6b7280; text-align:justify; text-align-last:center; hyphens:none;"><strong style="color:#111111;">5+ years</strong> building interfaces that don't just look good. They <strong style="color:#111111;">earn attention, drive action, and actually ship</strong>. From <span style="padding:3px 10px; border-radius:50px; background:rgba(0,0,0,0.05); border:1px solid rgba(0,0,0,0.07); font-size:13px; font-weight:700; color:#374151; white-space:nowrap;">SaaS products</span> to <span style="padding:3px 10px; border-radius:50px; background:rgba(0,201,177,0.1); border:1px solid rgba(0,201,177,0.3); font-size:13px; font-weight:700; color:#009e8d; white-space:nowrap;">AI tools</span> to <span style="padding:3px 10px; border-radius:50px; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.28); font-size:13px; font-weight:700; color:#6366f1; white-space:nowrap;">creative software</span>, I design systems that give teams an unfair advantage.</p>
+          <div data-typeline="1" style="margin:14px 0 0; display:flex; flex-direction:column; align-items:center; gap:6px;">
+            <div style="display:flex; justify-content:center; align-items:center; gap:4px; min-height:26px; max-width:100%; white-space:nowrap; overflow:hidden;">
+              <span style="font-size:16px; font-weight:600; color:#0284c7;">{{ typed }}</span>
+              <span style="width:2px; height:18px; background:#0284c7; animation:nkBlink 1s step-end infinite;"></span>
+            </div>
           </div>
-          <div style="margin:28px 0 0; display:flex; flex-wrap:wrap; gap:14px; max-width:520px;">
-            <div data-water-btn="1" data-water-idle="1" onClick="{{ navWork }}" style="box-sizing:border-box; position:relative; overflow:hidden; cursor:pointer; height:54px; flex:1 1 160px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0 28px; border-radius:50px; background:rgba(255,255,255,0.55); border:1.5px solid #c4b5fd; color:#7c3aed; font-size:14px; font-weight:700; backdrop-filter:blur(20px) saturate(1.8); box-shadow:0 4px 18px rgba(124,58,237,0.16), 0 1px 0 rgba(255,255,255,0.9) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 8px 26px rgba(124,58,237,0.28);">
-              <span data-water="purple"></span>
-              <svg width="16" height="16" viewBox="0 0 16 16" style="position:relative;"><ellipse cx="8" cy="8" rx="7" ry="4.5" fill="none" stroke="#7c3aed" stroke-width="1.6"></ellipse><circle cx="8" cy="8" r="2.2" fill="#7c3aed"></circle></svg>
+          <div style="margin:30px auto 0; display:flex; flex-wrap:nowrap; justify-content:center; gap:24px; max-width:470px;">
+            <div data-water-btn="1" data-water-idle="1" onClick="{{ navWork }}" style="box-sizing:border-box; position:relative; overflow:hidden; cursor:pointer; height:54px; flex:1 1 160px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:0 28px; border-radius:50px; background:rgba(255,255,255,0.55); border:1.5px solid #94a3b8; color:#374151; font-size:14px; font-weight:700; backdrop-filter:blur(20px) saturate(1.8); box-shadow:0 4px 18px rgba(71,85,105,0.16), 0 1px 0 rgba(255,255,255,0.9) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 8px 26px rgba(71,85,105,0.28);">
+              <span data-water="grey"></span>
+              <svg width="16" height="16" viewBox="0 0 16 16" style="position:relative;"><ellipse cx="8" cy="8" rx="7" ry="4.5" fill="none" stroke="#374151" stroke-width="1.6"></ellipse><circle cx="8" cy="8" r="2.2" fill="#374151"></circle></svg>
               <span style="position:relative;">View My Work</span>
             </div>
-            <div data-water-btn="1" onClick="{{ navContact }}" style="box-sizing:border-box; position:relative; overflow:hidden; cursor:pointer; height:54px; flex:1 1 160px; display:inline-flex; align-items:center; justify-content:center; padding:0 28px; border-radius:50px; background:linear-gradient(135deg,#22c55e,#16a34a); color:#ffffff; font-size:14px; font-weight:700; box-shadow:0 6px 20px rgba(34,197,94,0.4); transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 10px 28px rgba(34,197,94,0.5);">
+            <div data-water-btn="1" onClick="{{ navContact }}" style="box-sizing:border-box; position:relative; overflow:hidden; cursor:pointer; height:54px; flex:1 1 160px; display:inline-flex; align-items:center; justify-content:center; padding:0 28px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:14px; font-weight:700; box-shadow:0 6px 20px rgba(14,165,233,0.4); transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 10px 28px rgba(14,165,233,0.5);">
               <span data-water="light"></span>
               <span style="position:absolute; left:14%; top:26%; width:11px; height:8px; border-radius:3px 3px 3px 0; background:rgba(186,230,253,0.55); animation:nkChatFloat 3.4s ease-in-out infinite;"></span>
               <span style="position:absolute; left:22%; top:58%; width:8px; height:6px; border-radius:3px 3px 0 3px; background:rgba(199,210,254,0.6); animation:nkChatFloat 4.2s ease-in-out infinite 1.1s;"></span>
@@ -183,43 +285,86 @@
               <span style="position:relative; margin-left:8px;">Let's Talk</span>
             </div>
           </div>
+
         </div>
-        <div style="flex:0 1 440px; min-width:300px; position:relative; padding:26px 10px;">
-          <div style="width:100%; aspect-ratio:4/3.4; position:relative;">
-            <video src="uploads/hero-animation.mp4" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" style="width:100%; height:100%; object-fit:cover; display:block; -webkit-mask-image:radial-gradient(ellipse 60% 58% at 48% 46%, black 38%, rgba(0,0,0,0.55) 60%, transparent 84%); mask-image:radial-gradient(ellipse 60% 58% at 48% 46%, black 38%, rgba(0,0,0,0.55) 60%, transparent 84%);"></video>
-            <div style="position:absolute; inset:-4px; pointer-events:none; background:radial-gradient(ellipse 56% 54% at 48% 46%, transparent 42%, rgba(241,241,239,0.65) 68%, #f1f1ef 90%);"></div>
-            <div style="position:absolute; left:-4px; right:-4px; bottom:-4px; height:44%; pointer-events:none; background:linear-gradient(to top, #f1f1ef 22%, rgba(241,241,239,0.7) 58%, transparent 100%);"></div>
-            <div style="position:absolute; top:-4px; bottom:-4px; right:-4px; width:36%; pointer-events:none; background:linear-gradient(to left, #f1f1ef 18%, rgba(241,241,239,0.65) 52%, transparent 100%);"></div>
-            <div style="position:absolute; right:-4px; bottom:-4px; width:88%; height:88%; pointer-events:none; background:radial-gradient(ellipse 100% 100% at 100% 100%, #f1f1ef 34%, rgba(241,241,239,0.85) 60%, transparent 84%);"></div>
-            <div style="position:absolute; right:-8px; bottom:-8px; width:80%; height:80%; pointer-events:none; backdrop-filter:blur(14px); -webkit-mask-image:radial-gradient(ellipse 100% 100% at 100% 100%, black 40%, rgba(0,0,0,0.5) 62%, transparent 82%); mask-image:radial-gradient(ellipse 100% 100% at 100% 100%, black 40%, rgba(0,0,0,0.5) 62%, transparent 82%);"></div>
-            <div style="position:absolute; right:-8px; bottom:-8px; width:52%; height:52%; pointer-events:none; background:radial-gradient(ellipse 100% 100% at 100% 100%, #f1f1ef 40%, rgba(241,241,239,0.7) 66%, transparent 88%);"></div>
+        <div style="position:relative; z-index:2; max-width:1000px; height:520px; margin:36px auto 0;">
+          <div style="position:absolute; left:50%; top:0; transform:translateX(-50%); width:min(440px, 82vw); height:520px; -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 46%, black 55%, transparent 100%); mask-image:radial-gradient(ellipse 50% 50% at 50% 46%, black 55%, transparent 100%);">
+            <image-slot id="sky-portrait" shape="rect" placeholder="Your portrait (transparent PNG works best)"></image-slot>
           </div>
-          <div data-chip="1" style="position:absolute; top:6px; left:-6px; display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.88); backdrop-filter:blur(14px) saturate(1.8); box-shadow:0 4px 18px rgba(0,0,0,0.08); font-size:11px; font-weight:700; color:#1a1a1a; animation:nkChip 5s ease-in-out infinite;"><span style="width:7px; height:7px; border-radius:50%; background:#0ea5e9;"></span>UI Design</div>
-          <div data-chip="1" style="position:absolute; top:34%; right:-10px; display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.88); backdrop-filter:blur(14px) saturate(1.8); box-shadow:0 4px 18px rgba(0,0,0,0.08); font-size:11px; font-weight:700; color:#1a1a1a; animation:nkChip 6s ease-in-out infinite 1s;"><span style="width:7px; height:7px; border-radius:50%; background:#6366f1;"></span>Figma Pro</div>
-          <div data-chip="1" style="position:absolute; bottom:14%; left:-14px; display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.88); backdrop-filter:blur(14px) saturate(1.8); box-shadow:0 4px 18px rgba(0,0,0,0.08); font-size:11px; font-weight:700; color:#1a1a1a; animation:nkChip 5.5s ease-in-out infinite 2s;"><span style="width:7px; height:7px; border-radius:50%; background:#00C9B1;"></span>Systems</div>
-          <div data-chip="1" style="position:absolute; bottom:-2px; right:12%; display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.88); backdrop-filter:blur(14px) saturate(1.8); box-shadow:0 4px 18px rgba(0,0,0,0.08); font-size:11px; font-weight:700; color:#1a1a1a; animation:nkChip 6.5s ease-in-out infinite 0.5s;"><span style="width:7px; height:7px; border-radius:50%; background:#22c55e;"></span>Shipped ✓</div>
-          <div data-chip="1" style="position:absolute; top:56%; left:-18px; display:inline-flex; align-items:center; gap:7px; padding:9px 16px; border-radius:50px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.88); backdrop-filter:blur(14px) saturate(1.8); box-shadow:0 4px 18px rgba(0,0,0,0.08); font-size:11px; font-weight:700; color:#1a1a1a; animation:nkChip 7s ease-in-out infinite 3s;"><span style="width:7px; height:7px; border-radius:50%; background:#ec4899;"></span>AI Tools</div>
+          <div data-skycard="1" style="position:absolute; left:0; top:150px; z-index:3; animation:nkChip 6s ease-in-out infinite 0s; transition:transform 0.3s ease;" style-hover="transform:translateY(-10px);"><div style="transform:perspective(700px) rotateY(22deg); background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset; border-radius:18px;"><div style="width:130px; padding:14px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b;">Shipped</div><div style="margin-top:4px; font-size:20px; font-weight:800; color:#16a34a;">15+</div><div style="margin-top:10px; display:flex; align-items:flex-end; gap:5px; height:46px;"><span style="flex:1; height:30%; border-radius:4px; background:#bbf7d0;"></span><span style="flex:1; height:50%; border-radius:4px; background:#86efac;"></span><span style="flex:1; height:42%; border-radius:4px; background:#86efac;"></span><span style="flex:1; height:72%; border-radius:4px; background:#4ade80;"></span><span style="flex:1; height:100%; border-radius:4px; background:#16a34a;"></span></div></div></div></div>
+          <div data-skycard="1" style="position:absolute; left:16%; top:60px; z-index:3; animation:nkChip 7s ease-in-out infinite 1s; transition:transform 0.3s ease;" style-hover="transform:translateY(-10px);"><div style="transform:perspective(700px) rotateY(14deg); background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset; border-radius:18px;"><div style="width:150px; padding:14px; display:flex; flex-direction:column; gap:8px;"><span style="width:32px; height:32px; border-radius:10px; background:rgba(14,165,233,0.14); display:inline-flex; align-items:center; justify-content:center;"><svg width="17" height="17" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="none" stroke="#0284c7" stroke-width="2"></circle><path d="M9 5 v4 l3 2" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round"></path></svg></span><div style="font-size:20px; font-weight:800; color:#0284c7;">5+ yrs</div><div style="font-size:10px; font-weight:600; color:#64748b; line-height:1.4;">Designing products that ship</div></div></div></div>
+          <div data-skycard="1" style="position:absolute; right:15%; top:40px; z-index:3; animation:nkChip 6.5s ease-in-out infinite 0.5s; transition:transform 0.3s ease;" style-hover="transform:translateY(-10px);"><div style="transform:perspective(700px) rotateY(-14deg); background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset; border-radius:18px;"><div style="width:140px; padding:14px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b;">Clients</div><div style="margin-top:4px; font-size:20px; font-weight:800; color:#db2777;">20+</div><svg width="112" height="40" viewBox="0 0 112 40" style="margin-top:8px; display:block;"><path d="M2 34 C 18 32, 26 26, 40 24 S 64 22, 74 14 S 98 8, 110 4 L110 40 L2 40 Z" fill="rgba(236,72,153,0.12)"></path><path d="M2 34 C 18 32, 26 26, 40 24 S 64 22, 74 14 S 98 8, 110 4" fill="none" stroke="#db2777" stroke-width="2.4" stroke-linecap="round"></path><circle cx="110" cy="4" r="3" fill="#db2777"></circle></svg></div></div></div>
+          <div data-skycard="1" style="position:absolute; right:0; top:190px; z-index:3; animation:nkChip 7.5s ease-in-out infinite 2s; transition:transform 0.3s ease;" style-hover="transform:translateY(-10px);"><div style="transform:perspective(700px) rotateY(-22deg); background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset; border-radius:18px;"><div style="width:130px; padding:14px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#64748b;">Systems</div><div style="margin-top:4px; font-size:20px; font-weight:800; color:#7c3aed;">6+</div><div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:5px;"><span style="height:18px; border-radius:5px; background:#c4b5fd;"></span><span style="height:18px; border-radius:5px; background:#ddd6fe;"></span><span style="height:18px; border-radius:5px; background:#ddd6fe;"></span><span style="height:18px; border-radius:5px; background:#7c3aed;"></span></div></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case studies intro -->
+    <section style="position:relative; overflow:hidden; padding:90px 52px 0; text-align:center;">
+      <svg data-chip="1" viewBox="0 0 1200 520" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:520px; pointer-events:none;">
+        <path data-ribbondash="1" d="M110 120 L420 230" stroke="rgba(14,165,233,0.25)" stroke-width="1.2" fill="none"></path>
+        <path data-ribbondash="1" d="M70 330 L400 290" stroke="rgba(139,92,246,0.22)" stroke-width="1.2" fill="none"></path>
+        <path data-ribbondash="1" d="M200 450 L430 340" stroke="rgba(0,201,177,0.22)" stroke-width="1.2" fill="none"></path>
+        <path data-ribbondash="1" d="M1090 110 L780 230" stroke="rgba(245,158,11,0.25)" stroke-width="1.2" fill="none"></path>
+        <path data-ribbondash="1" d="M1130 320 L800 290" stroke="rgba(236,72,153,0.22)" stroke-width="1.2" fill="none"></path>
+        <path data-ribbondash="1" d="M1000 450 L770 340" stroke="rgba(14,165,233,0.22)" stroke-width="1.2" fill="none"></path>
+      </svg>
+      <div data-chip="1" style="position:absolute; left:9%; top:110px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 5s ease-in-out infinite 0s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(14,165,233,0.12); border:2px solid #0284c7;"></span></div>
+      <div data-chip="1" style="position:absolute; left:6%; top:310px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 6s ease-in-out infinite 1s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(139,92,246,0.12); border:2px solid #7c3aed;"></span></div>
+      <div data-chip="1" style="position:absolute; left:16%; top:430px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 7s ease-in-out infinite 2s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(0,201,177,0.12); border:2px solid #009e8d;"></span></div>
+      <div data-chip="1" style="position:absolute; left:90%; top:100px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 6s ease-in-out infinite 0.5s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(245,158,11,0.14); border:2px solid #d97706;"></span></div>
+      <div data-chip="1" style="position:absolute; left:93%; top:300px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 5.5s ease-in-out infinite 1.5s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(236,72,153,0.12); border:2px solid #db2777;"></span></div>
+      <div data-chip="1" style="position:absolute; left:83%; top:430px; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.58); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(16px) saturate(1.7); -webkit-backdrop-filter:blur(16px) saturate(1.7); box-shadow:0 18px 40px rgba(20,70,140,0.18), 0 1px 0 rgba(255,255,255,0.9) inset;  display:flex; align-items:center; justify-content:center; animation:nkChip 6.5s ease-in-out infinite 2.5s;"><span style="width:18px; height:18px; border-radius:6px; background:rgba(14,165,233,0.12); border:2px solid #0284c7;"></span></div>
+      <div style="position:relative; max-width:860px; margin:0 auto;">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Case studies</div>
+        <h2 style="margin:14px 0 0; font-size:clamp(30px, 4.6vw, 60px); font-weight:800; line-height:1.32; letter-spacing:-0.03em; color:#1e293b; text-wrap:balance;">Complicated <span style="display:inline-block; vertical-align:middle; width:1.5em; height:0.82em; border-radius:50px; background:#dbeafe url('assets/koynx-cover.png') center top / cover; box-shadow:0 4px 14px rgba(14,165,233,0.25);"></span> products, made <span style="color:#0ea5e9;">clear</span> <span style="display:inline-block; vertical-align:middle; width:1.5em; height:0.82em; border-radius:50px; background:#ede9fe url('assets/koynx-admin-overview.png') center top / cover; box-shadow:0 4px 14px rgba(139,92,246,0.25);"></span> for the people using them</h2>
+        <p style="margin:18px auto 0; max-width:520px; font-size:15px; line-height:1.75; color:#6b7280; text-wrap:pretty;">From savings platforms to AI tools: the research, decisions and systems behind each product.</p>
+      </div>
+      <div style="position:relative; margin:46px auto 0; width:280px; height:430px; -webkit-mask-image:linear-gradient(to bottom, black 55%, transparent 100%); mask-image:linear-gradient(to bottom, black 55%, transparent 100%);">
+        <div style="position:absolute; inset:0 0 -140px; padding:10px; border-radius:46px; background:#0f172a; box-shadow:0 30px 60px rgba(15,23,42,0.25), inset 0 0 0 2px #334155;">
+          <div style="position:absolute; top:18px; left:50%; transform:translateX(-50%); width:84px; height:22px; border-radius:20px; background:#0f172a; z-index:2;"></div>
+          <div style="position:relative; width:100%; height:100%; border-radius:36px; overflow:hidden; background:#e2e8f0;">
+            <image-slot id="intro-phone" shape="rect" placeholder="KOYNX mobile app screen"></image-slot>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Stats strip -->
-    <section data-reveal="1" style="background:#f1f1ef; border-top:1px solid rgba(0,0,0,0.06); border-bottom:1px solid rgba(0,0,0,0.06);">
-      <div data-statgrid="1" style="max-width:1160px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));">
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px; border-right:1px solid rgba(0,0,0,0.06);"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(14,165,233,0.12); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#0284c7;">◷</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#0284c7;">{{ s1 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Years Experience</div></div></div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px; border-right:1px solid rgba(0,0,0,0.06);"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(34,197,94,0.12); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#16a34a;">▣</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#16a34a;">{{ s2 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Products Shipped</div></div></div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px; border-right:1px solid rgba(0,0,0,0.06);"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(99,102,241,0.12); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#6366f1;">▦</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#6366f1;">{{ s3 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Design Systems</div></div></div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px; border-right:1px solid rgba(0,0,0,0.06);"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(245,158,11,0.14); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#d97706;">✦</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#d97706;">{{ s4 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Brands Created</div></div></div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px; border-right:1px solid rgba(0,0,0,0.06);"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(236,72,153,0.12); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#db2777;">◔</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#db2777;">{{ s5 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Clients Served</div></div></div>
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; padding:20px 14px;"><span style="flex-shrink:0; width:32px; height:32px; border-radius:50%; background:rgba(0,201,177,0.12); display:inline-flex; align-items:center; justify-content:center; font-size:14px; color:#009e8d;">↗</span><div style="text-align:left;"><div style="font-size:18px; font-weight:800; color:#009e8d;">{{ s6 }}</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Industries Spanned</div></div></div>
+    <section data-reveal="1" style="background:#f1f1ef; padding:28px 52px;">
+      <div data-statgrid="1" style="max-width:1160px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:14px;">
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#0284c7;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(14,165,233,0.16);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(14,165,233,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"></stop><stop offset="1" stop-color="#0284c7"></stop></linearGradient></defs><circle cx="9" cy="9" r="7" fill="none" stroke="url(#gS1)" stroke-width="2"></circle><path d="M9 5 v4 l3 2" fill="none" stroke="url(#gS1)" stroke-width="2" stroke-linecap="round"></path></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#0284c7;">{{ s1 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Years Experience</div></div>
+        </div>
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#16a34a;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(34,197,94,0.16);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(34,197,94,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4ade80"></stop><stop offset="1" stop-color="#16a34a"></stop></linearGradient></defs><path d="M9 1.5 L15.5 5.25 v7.5 L9 16.5 L2.5 12.75 v-7.5 Z" fill="none" stroke="url(#gS2)" stroke-width="1.8" stroke-linejoin="round"></path><path d="M6 9 l2.2 2.2 L12.5 6.8" fill="none" stroke="url(#gS2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#16a34a;">{{ s2 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Products Shipped</div></div>
+        </div>
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#6366f1;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(99,102,241,0.16);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(99,102,241,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a5b4fc"></stop><stop offset="1" stop-color="#6366f1"></stop></linearGradient></defs><rect x="2" y="2" width="6" height="6" rx="1.6" fill="url(#gS3)"></rect><rect x="10" y="2" width="6" height="6" rx="1.6" fill="url(#gS3)" opacity="0.55"></rect><rect x="2" y="10" width="6" height="6" rx="1.6" fill="url(#gS3)" opacity="0.55"></rect><rect x="10" y="10" width="6" height="6" rx="1.6" fill="url(#gS3)"></rect></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#6366f1;">{{ s3 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Design Systems</div></div>
+        </div>
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#d97706;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(245,158,11,0.18);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(245,158,11,0.12); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#d97706"></stop></linearGradient></defs><path d="M9 1.5 c1 3.2 2.3 4.5 5.5 5.5 c-3.2 1 -4.5 2.3 -5.5 5.5 c-1 -3.2 -2.3 -4.5 -5.5 -5.5 c3.2 -1 4.5 -2.3 5.5 -5.5 Z" fill="url(#gS4)"></path><circle cx="14" cy="14" r="2.4" fill="url(#gS4)" opacity="0.65"></circle></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#d97706;">{{ s4 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Brands Created</div></div>
+        </div>
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#db2777;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(236,72,153,0.16);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(236,72,153,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS5" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f472b6"></stop><stop offset="1" stop-color="#db2777"></stop></linearGradient></defs><circle cx="6.4" cy="6" r="2.8" fill="url(#gS5)"></circle><path d="M1.6 14.5 a4.8 4.8 0 0 1 9.6 0 Z" fill="url(#gS5)"></path><circle cx="12.8" cy="6.6" r="2.2" fill="url(#gS5)" opacity="0.6"></circle><path d="M10.9 14.5 a4 4 0 0 1 6 -3.4 a4.9 4.9 0 0 1 0.9 3.4 Z" fill="url(#gS5)" opacity="0.6"></path></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#db2777;">{{ s5 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Clients Served</div></div>
+        </div>
+        <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#009e8d;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,201,177,0.16);">
+          <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(0,201,177,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS6" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#009e8d"></stop></linearGradient></defs><path d="M2 14 L6.5 9.5 L9.5 12 L15 5.5" fill="none" stroke="url(#gS6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M11 5 h4.5 v4.5" fill="none" stroke="url(#gS6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#009e8d;">{{ s6 }}</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Industries Spanned</div></div>
+        </div>
       </div>
     </section>
 
     <!-- Skills marquee -->
-    <div style="overflow:hidden; padding:20px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
-      <div style="display:flex; gap:14px; width:max-content; animation:nkMarquee 26s linear infinite;">
+    <div style="overflow:hidden; padding:26px 0; border-bottom:1px solid rgba(0,0,0,0.06);">
+      <div style="display:flex; gap:22px; width:max-content; animation:nkMarquee 26s linear infinite;">
         <sc-for list="{{ marquee }}" as="sk" hint-placeholder-count="8">
-          <span style="display:inline-flex; align-items:center; gap:18px; white-space:nowrap;"><span style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.32em; color:#9ca3af; font-family:'SF Mono', 'Cascadia Code', monospace;">{{ sk.label }}</span><span style="font-size:9px; color:#c4c8cd;">◇</span></span>
+          <span style="display:inline-flex; align-items:center; gap:18px; white-space:nowrap;"><span style="font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:0.26em; color:#4b5563; font-family:'SF Mono', 'Cascadia Code', monospace;">{{ sk.label }}</span><span style="font-size:11px; color:#0ea5e9;">◇</span></span>
         </sc-for>
       </div>
     </div>
@@ -230,14 +375,14 @@
         <div data-reveal="1" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:36px;">
           <div>
             <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Selected work</div>
-            <h2 style="margin:8px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Case Studies</h2>
+            <h2 style="margin:8px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Featured projects</h2>
           </div>
           <div onClick="{{ navWork }}" style="cursor:pointer; font-size:13px; font-weight:700; color:#0284c7;" style-hover="color:#0ea5e9;">View all →</div>
         </div>
         <div style="display:flex; flex-direction:column; gap:20px;">
           <sc-for list="{{ cards }}" as="card" hint-placeholder-count="3">
             <div data-reveal="1" style="display:flex; flex-wrap:wrap; border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.7); border:1.5px solid rgba(255,255,255,0.8); backdrop-filter:blur(12px); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 18px 44px rgba(0,0,0,0.12);">
-              <div style="flex:0 0 380px; min-width:280px; max-width:100%; display:flex; flex-direction:column; background:#e8e8e5;">
+              <div data-cardmedia="1" style="flex:0 0 380px; min-width:280px; max-width:100%; display:flex; flex-direction:column; background:#e8e8e5;">
                 <div style="display:flex; align-items:center; gap:6px; padding:9px 14px; background:rgba(255,255,255,0.8); border-bottom:1px solid rgba(0,0,0,0.05);">
                   <span style="width:8px; height:8px; border-radius:50%; background:#f87171;"></span>
                   <span style="width:8px; height:8px; border-radius:50%; background:#fbbf24;"></span>
@@ -245,7 +390,7 @@
                   <span style="flex:1; margin-left:8px; padding:3px 12px; border-radius:50px; background:rgba(0,0,0,0.05); font-size:9px; font-weight:600; color:#9ca3af;">{{ card.url }}</span>
                 </div>
                 <div style="flex:1; min-height:220px; position:relative;">
-                  <image-slot id="{{ card.slotId }}" shape="rect" src="{{ card.img }}" placeholder="{{ card.slotPh }}"></image-slot>
+                  <sc-if value="{{ card.hasVideo }}" hint-placeholder-val="{{ false }}"><video data-autovid="1" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" src="{{ card.video }}" poster="{{ card.img }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video></sc-if><sc-if value="{{ card.noVideo }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ card.slotId }}" shape="rect" src="{{ card.img }}" placeholder="{{ card.slotPh }}"></image-slot></sc-if>
                 </div>
               </div>
               <div style="flex:1 1 380px; min-width:280px; padding:30px 32px; display:flex; flex-direction:column; gap:12px;">
@@ -270,28 +415,30 @@
     <!-- About teaser -->
     <section style="padding:24px 52px 88px;">
       <div data-reveal="1" style="position:relative; max-width:1160px; margin:0 auto;">
-        <div style="position:absolute; top:-52px; right:-40px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.5), transparent 65%); filter:blur(36px); animation:nkDrift 11s ease-in-out infinite; pointer-events:none;"></div>
-        <div style="position:absolute; bottom:-64px; left:-48px; width:290px; height:290px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.45), transparent 65%); filter:blur(38px); animation:nkDrift 13s ease-in-out infinite 3s; pointer-events:none;"></div>
-        <div style="position:absolute; top:-44px; left:34%; width:190px; height:190px; border-radius:50%; background:radial-gradient(circle, rgba(236,72,153,0.35), transparent 65%); filter:blur(30px); animation:nkDrift 15s ease-in-out infinite 6s; pointer-events:none;"></div>
-        <div style="position:absolute; bottom:-40px; left:58%; width:170px; height:170px; border-radius:50%; background:radial-gradient(circle, rgba(0,201,177,0.4), transparent 65%); filter:blur(28px); animation:nkDrift 12s ease-in-out infinite 1.5s; pointer-events:none;"></div>
-        <div style="position:relative; display:flex; flex-wrap:wrap; gap:36px; align-items:center; padding:40px 44px; border-radius:26px; background:rgba(255,255,255,0.5); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(36px) saturate(1.7); box-shadow:0 8px 32px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.9) inset;">
-        <div style="position:relative; flex:0 0 190px;">
-          <div style="width:190px; height:190px; position:relative;">
-            <image-slot id="home-portrait" shape="rounded" radius="22" placeholder="Portrait"></image-slot>
+        <div style="position:absolute; top:-52px; right:-40px; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.5), transparent 65%); filter:blur(36px); animation:nkFlow 22s ease-in-out infinite; pointer-events:none;"></div>
+        <div style="position:absolute; bottom:-64px; left:-48px; width:290px; height:290px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.45), transparent 65%); filter:blur(38px); animation:nkFlow 26s ease-in-out infinite 3s; pointer-events:none;"></div>
+        <div data-cardpad="1" style="position:relative; overflow:hidden; display:flex; flex-wrap:wrap; gap:36px; align-items:center; padding:40px 44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25);">
+          <div style="position:absolute; top:-60px; right:-40px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,0.35), transparent 65%); filter:blur(30px); animation:nkFlow 24s ease-in-out infinite; pointer-events:none;"></div>
+          <div style="position:absolute; bottom:-80px; left:30%; width:260px; height:260px; border-radius:50%; background:radial-gradient(circle, rgba(139,92,246,0.25), transparent 65%); filter:blur(34px); animation:nkFlow 28s ease-in-out infinite 3s; pointer-events:none;"></div>
+          <div style="position:absolute; top:10%; left:45%; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(236,72,153,0.22), transparent 65%); filter:blur(34px); animation:nkFlow 30s ease-in-out infinite 6s; pointer-events:none;"></div>
+          <div style="position:absolute; bottom:-40px; right:20%; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(0,201,177,0.2), transparent 65%); filter:blur(34px); animation:nkFlow 34s ease-in-out infinite 10s; pointer-events:none;"></div>
+          <div style="position:relative; flex:0 0 190px;">
+            <div style="width:190px; height:190px; position:relative; border-radius:22px; background:linear-gradient(160deg, rgba(255,255,255,0.92), rgba(226,232,240,0.85)); border:1.5px solid rgba(255,255,255,0.25); box-shadow:0 10px 30px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,0.2) inset; color:#e2e8f0;">
+              <image-slot id="home-portrait" shape="rounded" radius="22" placeholder="Portrait"></image-slot>
+            </div>
           </div>
-        </div>
-        <div style="position:relative; flex:1 1 380px; min-width:280px;">
-          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">About me</div>
-          <h2 style="margin:8px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; letter-spacing:-0.02em; color:#111111;">The designer behind the work</h2>
-          <p style="margin:12px 0 0; max-width:560px; font-size:15px; line-height:1.65; color:#6b7280; text-wrap:pretty;">Philip Nosike — Grey The Nosk. 5+ years across fintech, AI tools and SaaS. I design the full stack: research, UX, interface craft, systems and brand.</p>
-          <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:8px;">
-            <span style="padding:6px 14px; border-radius:50px; background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); font-size:11px; font-weight:700; color:#0284c7;">UI Design</span>
-            <span style="padding:6px 14px; border-radius:50px; background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); font-size:11px; font-weight:700; color:#0284c7;">Design Systems</span>
-            <span style="padding:6px 14px; border-radius:50px; background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); font-size:11px; font-weight:700; color:#0284c7;">UX Research</span>
-            <span style="padding:6px 14px; border-radius:50px; background:rgba(14,165,233,0.08); border:1px solid rgba(14,165,233,0.25); font-size:11px; font-weight:700; color:#0284c7;">Branding</span>
+          <div style="position:relative; flex:1 1 380px; min-width:280px;">
+            <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#93c5fd;">About me</div>
+            <h2 style="margin:10px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; letter-spacing:-0.02em; color:#ffffff;">The designer behind the work</h2>
+            <p style="margin:12px 0 0; max-width:460px; font-size:15px; line-height:1.75; color:#cbd5e1; text-wrap:pretty;">Philip Nosike, Grey The Nosk. 5+ years across fintech, AI tools and SaaS. I design the full stack: research, UX, interface craft, systems and brand.</p>
+            <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="padding:6px 14px; border-radius:50px; background:rgba(14,165,233,0.14); border:1px solid rgba(56,189,248,0.4); font-size:11px; font-weight:700; color:#7dd3fc;">UI Design</span>
+              <span style="padding:6px 14px; border-radius:50px; background:rgba(139,92,246,0.14); border:1px solid rgba(167,139,250,0.4); font-size:11px; font-weight:700; color:#c4b5fd;">Design Systems</span>
+              <span style="padding:6px 14px; border-radius:50px; background:rgba(0,201,177,0.14); border:1px solid rgba(45,212,191,0.4); font-size:11px; font-weight:700; color:#5eead4;">UX Research</span>
+              <span style="padding:6px 14px; border-radius:50px; background:rgba(245,158,11,0.14); border:1px solid rgba(251,191,36,0.4); font-size:11px; font-weight:700; color:#fcd34d;">Branding</span>
+            </div>
+            <div data-water-btn="1" onClick="{{ navAbout }}" style="margin-top:22px; position:relative; overflow:hidden; cursor:pointer; display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 24px; border-radius:50px; background:#ffffff; border:1.5px solid #ffffff; color:#111111; box-shadow:0 8px 24px rgba(0,0,0,0.25); font-size:13px; font-weight:700; backdrop-filter:blur(16px); transition:all 0.25s ease;" style-hover="transform:translateY(-2px);"><span data-water="grey"></span><span style="position:relative; font-size:14px;">◔</span><span style="position:relative;">More about me</span> <span style="position:relative;">→</span></div>
           </div>
-          <div data-water-btn="1" onClick="{{ navAbout }}" style="margin-top:22px; position:relative; overflow:hidden; cursor:pointer; display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 24px; border-radius:50px; background:rgba(255,255,255,0.55); border:2px solid #0ea5e9; color:#0284c7; font-size:13px; font-weight:700; backdrop-filter:blur(16px); transition:all 0.25s ease;" style-hover="transform:translateY(-2px);"><span data-water="1"></span><span style="position:relative; font-size:14px;">◔</span><span style="position:relative;">More about me</span> <span style="position:relative;">→</span></div>
-        </div>
         </div>
       </div>
     </section>
@@ -379,7 +526,7 @@
       <div style="display:flex; flex-direction:column; gap:20px;">
         <sc-for list="{{ cards }}" as="card" hint-placeholder-count="3">
           <div data-reveal="1" style="display:flex; flex-wrap:wrap; border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.7); border:1.5px solid rgba(255,255,255,0.8); backdrop-filter:blur(12px); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-6px); box-shadow:0 18px 44px rgba(0,0,0,0.12);">
-            <div style="flex:0 0 380px; min-width:280px; max-width:100%; display:flex; flex-direction:column; background:#e8e8e5;">
+            <div data-cardmedia="1" style="flex:0 0 380px; min-width:280px; max-width:100%; display:flex; flex-direction:column; background:#e8e8e5;">
               <div style="display:flex; align-items:center; gap:6px; padding:9px 14px; background:rgba(255,255,255,0.8); border-bottom:1px solid rgba(0,0,0,0.05);">
                 <span style="width:8px; height:8px; border-radius:50%; background:#f87171;"></span>
                 <span style="width:8px; height:8px; border-radius:50%; background:#fbbf24;"></span>
@@ -387,7 +534,7 @@
                 <span style="flex:1; margin-left:8px; padding:3px 12px; border-radius:50px; background:rgba(0,0,0,0.05); font-size:9px; font-weight:600; color:#9ca3af;">{{ card.url }}</span>
               </div>
               <div style="flex:1; min-height:220px; position:relative;">
-                <image-slot id="{{ card.slotId }}" shape="rect" src="{{ card.img }}" placeholder="{{ card.slotPh }}"></image-slot>
+                <sc-if value="{{ card.hasVideo }}" hint-placeholder-val="{{ false }}"><video data-autovid="1" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" src="{{ card.video }}" poster="{{ card.img }}" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video></sc-if><sc-if value="{{ card.noVideo }}" hint-placeholder-val="{{ true }}"><image-slot id="{{ card.slotId }}" shape="rect" src="{{ card.img }}" placeholder="{{ card.slotPh }}"></image-slot></sc-if>
               </div>
             </div>
             <div style="flex:1 1 380px; min-width:280px; padding:30px 32px; display:flex; flex-direction:column; gap:12px;">
@@ -435,11 +582,11 @@
               <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Role</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Lead Designer</div></div>
               <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Timeline</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">2025</div></div>
               <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Platform</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Mobile · Web · Admin</div></div>
-              <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Status</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#22c55e;">Shipped ✓</div></div>
+              <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Status</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#d97706;">In testing · Bank partnerships</div></div>
             </div>
           </div>
           <div style="flex:1 1 420px; min-width:300px; min-height:380px; position:relative; background:linear-gradient(160deg, rgba(14,165,233,0.10), rgba(99,102,241,0.08));">
-            <image-slot id="koynx-cover" shape="rect" src="uploads/Frame 1171275256.png" fit="cover" placeholder="KOYNX landing page hero cover"></image-slot>
+            <image-slot id="koynx-cover" shape="rect" src="assets/koynx-cover.png" fit="cover" placeholder="KOYNX landing page hero cover"></image-slot>
           </div>
         </div>
       </div>
@@ -452,7 +599,7 @@
       <div style="max-width:1160px; margin:0 auto; text-align:center;">
         <div data-reveal="1" style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">The story</div>
         <h2 data-reveal="1" style="margin:12px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">From notebooks to a product people trust</h2>
-        <p data-reveal="1" style="margin:12px auto 0; max-width:560px; font-size:16px; line-height:1.65; color:#6b7280; text-wrap:pretty;">Follow the trail — research, decisions and turning points, in the order they actually happened.</p>
+        <p data-reveal="1" style="margin:12px auto 0; max-width:560px; font-size:16px; line-height:1.65; color:#6b7280; text-wrap:pretty;">Follow the trail: research, decisions and turning points, in the order they actually happened.</p>
       </div>
       <div data-trailwrap="1" style="position:relative; max-width:1020px; margin:56px auto 0;">
         <svg data-ribbon="1" viewBox="0 0 120 1200" preserveAspectRatio="none" style="position:absolute; top:0; bottom:0; left:50%; transform:translateX(-50%); width:120px; height:100%; overflow:visible; pointer-events:none;">
@@ -499,7 +646,7 @@
         </sc-for>
         <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:10px; padding-bottom:8px;">
           <span style="width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,#00C9B1,#0ea5e9); border:3px solid #f1f1ef; box-shadow:0 0 0 2px rgba(0,201,177,0.5), 0 0 20px rgba(0,201,177,0.6); animation:nkPulse 2.4s ease-in-out infinite;"></span>
-          <span style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:#0284c7;">What shipped ↓</span>
+          <span style="font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:#0284c7;">The final design ↓</span>
         </div>
       </div>
     </section>
@@ -514,8 +661,8 @@
           <span style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#00C9B1,#0ea5e9); color:#ffffff; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center;">5</span>
           <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Final Design</span>
         </div>
-        <h2 data-reveal="1" style="margin:14px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">What shipped</h2>
-        <p data-reveal="1" style="margin:12px 0 0; font-size:16px; line-height:1.65; color:#6b7280; max-width:600px;">Three surfaces, one system. The finished product with the thinking behind each key interaction.</p>
+        <h2 data-reveal="1" style="margin:14px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">The final design</h2>
+        <p data-reveal="1" style="margin:12px 0 0; font-size:16px; line-height:1.65; color:#6b7280; max-width:600px;">Three surfaces, one system, now in testing with pilot users while bank partnerships are finalised. The product with the thinking behind each key interaction.</p>
 
         <div style="margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:18px;">
           <div data-reveal="1" style="border-radius:20px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
@@ -534,7 +681,7 @@
             <span style="width:9px; height:9px; border-radius:50%; background:#f87171;"></span><span style="width:9px; height:9px; border-radius:50%; background:#fbbf24;"></span><span style="width:9px; height:9px; border-radius:50%; background:#22c55e;"></span>
             <span style="flex:1; margin-left:10px; padding:4px 14px; border-radius:50px; background:rgba(0,0,0,0.05); font-size:10px; font-weight:600; color:#9ca3af;">app.koynx.com/dashboard</span>
           </div>
-          <div style="height:420px; position:relative;"><image-slot id="koynx-dashboard" shape="rect" src="uploads/Desktop - 4.png" fit="cover" placeholder="KOYNX web dashboard, full layout"></image-slot></div>
+          <div style="height:420px; position:relative;"><image-slot id="koynx-dashboard" shape="rect" src="assets/koynx-dashboard.png" fit="cover" placeholder="KOYNX web dashboard, full layout"></image-slot></div>
         </div>
         <div style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:14px;">
           <div data-reveal="1" style="display:flex; gap:12px; padding:18px 20px; border-radius:14px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85);"><span style="flex-shrink:0; width:24px; height:24px; border-radius:50%; background:#0ea5e9; color:#ffffff; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center;">1</span><p style="margin:0; font-size:14px; line-height:1.55; color:#6b7280;">Group progress sits above personal balance. The group is the motivator, so it gets the hierarchy.</p></div>
@@ -551,8 +698,8 @@
 
         <h3 data-reveal="1" style="margin:48px 0 0; display:flex; align-items:center; gap:10px; font-size:18px; font-weight:800; color:#111111;"><span style="display:inline-flex; width:30px; height:30px; border-radius:9px; background:rgba(99,102,241,0.12); align-items:center; justify-content:center; font-size:14px; color:#6366f1;">🛡</span>Admin portal</h3>
         <div data-shipgrid="1" style="margin-top:16px; display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:16px;">
-          <div data-reveal="1" style="border-radius:20px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="height:300px; position:relative; background:rgba(255,255,255,0.65);"><image-slot id="koynx-admin-login" shape="rect" src="uploads/LOgin 4.png" fit="cover" placeholder="Admin Login"></image-slot></div><div style="padding:12px 16px; background:rgba(255,255,255,0.8); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#9ca3af;">Admin Login</div></div>
-          <div data-reveal="1" style="border-radius:20px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="height:300px; position:relative; background:rgba(255,255,255,0.65);"><image-slot id="koynx-admin-overview" shape="rect" src="uploads/overview 1 showing recent activities (general).png" fit="cover" placeholder="Admin Overview"></image-slot></div><div style="padding:12px 16px; background:rgba(255,255,255,0.8); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#9ca3af;">Admin Overview</div></div>
+          <div data-reveal="1" style="border-radius:20px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="height:300px; position:relative; background:rgba(255,255,255,0.65);"><image-slot id="koynx-admin-login" shape="rect" src="assets/koynx-admin-login.png" fit="cover" placeholder="Admin Login"></image-slot></div><div style="padding:12px 16px; background:rgba(255,255,255,0.8); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#9ca3af;">Admin Login</div></div>
+          <div data-reveal="1" style="border-radius:20px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="height:300px; position:relative; background:rgba(255,255,255,0.65);"><image-slot id="koynx-admin-overview" shape="rect" src="assets/koynx-admin-overview.png" fit="cover" placeholder="Admin Overview"></image-slot></div><div style="padding:12px 16px; background:rgba(255,255,255,0.8); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#9ca3af;">Admin Overview</div></div>
         </div>
       </div>
     </section>
@@ -564,19 +711,19 @@
           <span style="width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#0ea5e9,#6366f1); color:#ffffff; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center;">6</span>
           <span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Impact &amp; Results</span>
         </div>
-        <h2 data-reveal="1" style="margin:14px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">What changed after launch</h2>
-        <p data-reveal="1" style="margin:12px 0 0; font-size:16px; line-height:1.65; color:#6b7280; max-width:600px;">Design without outcomes is decoration. Here is the measurable difference this work made.</p>
-        <div style="margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px;">
+        <h2 data-reveal="1" style="margin:14px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Where it stands now</h2>
+        <p data-reveal="1" style="margin:12px 0 0; font-size:16px; line-height:1.65; color:#6b7280; max-width:600px;">KOYNX is in its testing phase, with bank partnership agreements underway. Here is what the design work has already delivered ahead of launch.</p>
+        <div data-impactgrid="1" style="margin-top:36px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px;">
           <sc-for list="{{ impacts }}" as="im" hint-placeholder-count="4">
             <div data-reveal="1" style="padding:30px 24px; border-radius:20px; text-align:center; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(16px); box-shadow:0 4px 24px rgba(0,0,0,0.06); transition:all 0.25s ease;" style-hover="transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.1);">
-              <div style="font-size:40px; font-weight:800; background:linear-gradient(135deg,#0ea5e9,#6366f1); -webkit-background-clip:text; background-clip:text; color:transparent;">{{ im.n }}</div>
+              <div style="font-size:40px; font-weight:800; background: {{ im.grad }}; -webkit-background-clip:text; background-clip:text; color:transparent;">{{ im.n }}</div>
               <p style="margin:8px 0 0; font-size:11px; color:#6b7280; line-height:1.5;">{{ im.label }}</p>
             </div>
           </sc-for>
         </div>
         <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px;">
           <div data-reveal="1" style="padding:28px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(16px); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><span style="display:inline-flex; width:38px; height:38px; border-radius:10px; background:rgba(14,165,233,0.12); align-items:center; justify-content:center; font-size:18px;">💡</span><h4 style="margin:12px 0 0; font-size:15px; font-weight:800; color:#111111;">What I would do differently</h4><p style="margin:8px 0 0; font-size:15px; line-height:1.6; color:#6b7280;">I would test the withdrawal cooling step earlier. It carried the biggest trust risk and we validated it late.</p></div>
-          <div data-reveal="1" style="padding:28px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(16px); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><span style="display:inline-flex; width:38px; height:38px; border-radius:10px; background:rgba(99,102,241,0.12); align-items:center; justify-content:center; font-size:18px;">🚀</span><h4 style="margin:12px 0 0; font-size:15px; font-weight:800; color:#111111;">What this unlocked</h4><p style="margin:8px 0 0; font-size:15px; line-height:1.6; color:#6b7280;">The design system built for KOYNX now covers three surfaces and cut the design time for new screens in half.</p></div>
+          <div data-reveal="1" style="padding:28px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(16px); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><span style="display:inline-flex; width:38px; height:38px; border-radius:10px; background:rgba(99,102,241,0.12); align-items:center; justify-content:center; font-size:18px;">🚀</span><h4 style="margin:12px 0 0; font-size:15px; font-weight:800; color:#111111;">What's next</h4><p style="margin:8px 0 0; font-size:15px; line-height:1.6; color:#6b7280;">Pilot feedback is feeding directly into the system, and once bank agreements close, the same three surfaces go live without a redesign.</p></div>
         </div>
         <div data-reveal="1" onClick="{{ navCase2 }}" style="margin-top:32px; cursor:pointer; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:28px 32px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(16px); box-shadow:0 4px 24px rgba(0,0,0,0.06); transition:all 0.25s ease;" style-hover="transform:translateY(-3px); box-shadow:0 12px 32px rgba(0,0,0,0.1);">
           <div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Next Case Study</div><div style="margin-top:6px; font-size:20px; font-weight:800; color:#111111;">Your Project Name</div></div>
@@ -584,6 +731,113 @@
         </div>
       </div>
     </section>
+  </div>
+  </sc-if>
+
+  <!-- ============ CASE: HillCross ============ -->
+  <sc-if value="{{ isCaseHC }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Case Study HillCross" data-casepad="1" style="padding:130px 52px 88px;">
+    <div style="max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:28px;">
+      <div><div onClick="{{ navWork }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; font-size:13px; font-weight:700; color:#1a1a1a; transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 8px 26px rgba(14,165,233,0.3);"><span>←</span> Back to work</div></div>
+
+      <div data-reveal="1" style="text-align:center; max-width:820px; margin:8px auto 0;">
+        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Case Study · Higher Education · 2026</div>
+        <h1 style="margin:14px 0 0; font-size:clamp(36px, 5vw, 64px); font-weight:800; line-height:1.12; letter-spacing:-0.03em; color:#111111;">HillCross College</h1>
+        <p style="margin:18px auto 0; max-width:640px; font-size:16px; line-height:1.85; color:#6b7280; text-wrap:pretty;">A homepage hero revamp for the <strong style="color:#111111;">January 2027/2028 admissions intake</strong>, designed to tell prospective students that applications are open and move them straight into an application.</p>
+      </div>
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:16px; overflow:hidden;">
+        <div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Role</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Product Designer</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Scope</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Hero, announcement bar, nav</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Platform</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Web, responsive</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Goal</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#0284c7;">Applications for the new intake</div></div>
+      </div>
+
+      <div data-reveal="1" style="border-radius:24px; overflow:hidden; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
+        <div style="display:flex; align-items:center; gap:6px; padding:11px 16px; background:rgba(255,255,255,0.8); border-bottom:1px solid rgba(0,0,0,0.05);">
+          <span style="width:9px; height:9px; border-radius:50%; background:#f87171;"></span><span style="width:9px; height:9px; border-radius:50%; background:#fbbf24;"></span><span style="width:9px; height:9px; border-radius:50%; background:#22c55e;"></span>
+          <span style="flex:1; margin-left:10px; padding:4px 14px; border-radius:50px; background:rgba(0,0,0,0.05); font-size:10px; font-weight:600; color:#9ca3af;">hillcross.ac.za</span>
+        </div>
+        <div style="position:relative; aspect-ratio:1.75; background:#2a0d0d;">
+          <video data-autovid="1" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" src="assets/hillcross-hero.mp4" poster="assets/hillcross-after.png" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></video>
+        </div>
+      </div>
+
+      <div data-reveal="1" data-casecard="1" style="padding:40px 44px; border-radius:24px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:32px;">
+        <div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">01 · The brief</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">An intake campaign needed a front door</h2></div>
+        <div><p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">Each year HillCross opens applications for a new intake. The homepage hero was the first thing prospective students saw, but it was written as a general welcome: a long institutional paragraph, one apply button and a cut-out stock photo. Nothing on the page said that admissions were open, or for which year.</p><p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">The brief was to rebuild the hero around the January 2027/2028 intake and keep the credibility markers the college already had.</p></div>
+      </div>
+
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">02 · Before and after</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">From a welcome to an invitation</h2></div>
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px;">
+          <div style="border-radius:22px; overflow:hidden; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
+            <div style="position:relative; background:#ffffff;"><img src="assets/hillcross-before.jpg" alt="Previous HillCross hero" style="display:block; width:100%; height:auto;"><span style="position:absolute; top:14px; left:14px; padding:6px 14px; border-radius:50px; background:rgba(17,17,17,0.75); color:#ffffff; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">Before</span></div>
+            <p style="margin:0; padding:18px 22px; font-size:13px; line-height:1.7; color:#4b5563;">General welcome headline, a 63-word institutional paragraph, one CTA and the stats tucked bottom right.</p>
+          </div>
+          <div style="border-radius:22px; overflow:hidden; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
+            <div style="position:relative; background:#2a0d0d;"><img src="assets/hillcross-after.png" alt="Revamped HillCross hero" style="display:block; width:100%; height:auto;"><span style="position:absolute; top:14px; left:14px; padding:6px 14px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">After</span></div>
+            <p style="margin:0; padding:18px 22px; font-size:13px; line-height:1.7; color:#4b5563;">Intake announcement bar, intake-led headline, two calls to action, campus photography and slider controls.</p>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">03 · What changed</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">Five decisions behind the new hero</h2></div>
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(14,165,233,0.12); color:#0284c7; font-size:13px; font-weight:800;">01</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">An announcement bar for the intake</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">A full-width red bar states the intake in plain words and carries its own Apply Now button. It sits above the navigation on every page, so a student who lands deep in the site still sees that admissions are open.</p></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(139,92,246,0.12); color:#7c3aed; font-size:13px; font-weight:800;">02</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">A headline about the student</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">"Welcome to Hillcross College" became "Your Next Chapter Starts this Intake." The orange highlight on Intake ties the headline to the campaign, and the 63-word institutional paragraph became one line naming the academic year.</p></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(245,158,11,0.14); color:#d97706; font-size:13px; font-weight:800;">03</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">Two clear next steps</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">"Start your application" is the primary action. "Entry requirements" sits beside it as the secondary path for students who want to check eligibility before committing.</p></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(34,197,94,0.12); color:#16a34a; font-size:13px; font-weight:800;">04</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">Proof at the moment of decision</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">The 3000+ graduates, 90% employment rate and 24+ departments moved from the bottom right into a glass panel under the calls to action, where they support the decision to apply.</p></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(236,72,153,0.12); color:#db2777; font-size:13px; font-weight:800;">05</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">Real campus photography</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">The cut-out stock group was replaced with students photographed on campus. A dark scrim on the left keeps the white headline readable over the photo.</p></div>
+        </div>
+      </div>
+
+      <div data-reveal="1" data-casecard="1" style="position:relative; overflow:hidden; padding:44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25); display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:36px; align-items:center;">
+        <div style="position:absolute; top:-80px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,0.3), transparent 65%); filter:blur(34px); animation:nkFlow 26s ease-in-out infinite; pointer-events:none;"></div>
+        <div style="position:absolute; bottom:-100px; left:20%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(236,72,153,0.22), transparent 65%); filter:blur(34px); animation:nkFlow 30s ease-in-out infinite 5s; pointer-events:none;"></div>
+        <div style="position:relative;">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#93c5fd;">04 · Why a slider</div>
+          <h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#ffffff;">Why the hero became a slider</h2>
+          <div style="margin-top:22px; display:flex; flex-direction:column; gap:18px;">
+            <div style="display:flex; gap:14px;"><span style="flex-shrink:0; margin-top:6px; width:8px; height:8px; transform:rotate(45deg); background:#38bdf8; border-radius:2px;"></span><div><div style="font-size:15px; font-weight:700; color:#ffffff;">One campaign, more than one story</div><div style="margin-top:4px; font-size:14px; line-height:1.7; color:#cbd5e1;">The intake message leads on the first slide. Later slides can carry faculties, campus life or open days without crowding a single frame.</div></div></div>
+            <div style="display:flex; gap:14px;"><span style="flex-shrink:0; margin-top:6px; width:8px; height:8px; transform:rotate(45deg); background:#38bdf8; border-radius:2px;"></span><div><div style="font-size:15px; font-weight:700; color:#ffffff;">Swappable each season</div><div style="margin-top:4px; font-size:14px; line-height:1.7; color:#cbd5e1;">When the intake closes, only the campaign slide changes. The rest of the hero stays, so there is no redesign every January.</div></div></div>
+            <div style="display:flex; gap:14px;"><span style="flex-shrink:0; margin-top:6px; width:8px; height:8px; transform:rotate(45deg); background:#38bdf8; border-radius:2px;"></span><div><div style="font-size:15px; font-weight:700; color:#ffffff;">The visitor stays in control</div><div style="margin-top:4px; font-size:14px; line-height:1.7; color:#cbd5e1;">Previous and next buttons, a 02 / 02 counter, a progress bar and a pause button mean the slider never moves content away from someone who is still reading.</div></div></div>
+            <div style="display:flex; gap:14px;"><span style="flex-shrink:0; margin-top:6px; width:8px; height:8px; transform:rotate(45deg); background:#38bdf8; border-radius:2px;"></span><div><div style="font-size:15px; font-weight:700; color:#ffffff;">Part of the campaign palette</div><div style="margin-top:4px; font-size:14px; line-height:1.7; color:#cbd5e1;">The yellow progress bar and white controls pick up the announcement bar colours, so the slider reads as part of the admissions campaign.</div></div></div>
+          </div>
+        </div>
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center; gap:18px;">
+          <div style="width:100%; max-width:440px; aspect-ratio:1.75; border-radius:18px; overflow:hidden; background:#2a0d0d url('assets/hillcross-after.png') right center / cover; box-shadow:0 20px 40px rgba(0,0,0,0.35);"></div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.25); display:inline-flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M9 2 L4 7 L9 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+            <div style="display:flex; align-items:center; gap:12px; height:46px; padding:0 18px; border-radius:50px; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.22);">
+              <span style="font-size:12px; font-weight:700; letter-spacing:0.08em; color:#ffffff;">02 / 02</span>
+              <span style="width:24px; height:4px; border-radius:4px; background:rgba(255,255,255,0.35);"></span>
+              <span style="position:relative; overflow:hidden; width:30px; height:4px; border-radius:4px; background:rgba(250,204,21,0.25);"><span style="position:absolute; inset:0; background:#facc15; transform-origin:left; animation:nkSlideProg 4s linear infinite;"></span></span>
+              <svg width="12" height="14" viewBox="0 0 12 14"><rect x="1" y="1" width="3" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1.6"></rect><rect x="8" y="1" width="3" height="12" rx="1" fill="none" stroke="#ffffff" stroke-width="1.6"></rect></svg>
+            </div>
+            <span style="width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.25); display:inline-flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 2 L10 7 L5 12" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">05 · Metrics</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">What the redesign changed, in numbers</h2></div>
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#0284c7;">2 → 4</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Admissions entry points above the fold</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">Apply Now, Get started, Start your application, Entry requirements</div></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#7c3aed;">63 → 8</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Words of hero body copy</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">One line naming the 2027/2028 academic year</div></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#d97706;">1 → 2+</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Hero stories</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">A slider with counter, progress and pause</div></div>
+          <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#16a34a;">No → Yes</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Intake year visible on load</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">January 2027/2028 in the bar and the subhead</div></div>
+        </div>
+        <div style="margin-top:16px; padding:22px 26px; border-radius:20px; border:2px dashed rgba(14,165,233,0.35); background:rgba(255,255,255,0.45); display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; align-items:center;">
+          <div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#0284c7;">Live performance</div><div style="margin-top:4px; font-size:13px; line-height:1.6; color:#6b7280;">Tracking from intake launch</div></div>
+          <div><div style="font-size:20px; font-weight:800; color:#64748b;">Pending</div><div style="margin-top:2px; font-size:12px; font-weight:600; color:#4b5563;">Application starts</div></div>
+          <div><div style="font-size:20px; font-weight:800; color:#64748b;">Pending</div><div style="margin-top:2px; font-size:12px; font-weight:600; color:#4b5563;">Hero CTA click-through</div></div>
+          <div><div style="font-size:20px; font-weight:800; color:#64748b;">Pending</div><div style="margin-top:2px; font-size:12px; font-weight:600; color:#4b5563;">Homepage bounce rate</div></div>
+        </div>
+      </div>
+
+      <div data-reveal="1" onClick="{{ navCase1 }}" style="cursor:pointer; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:28px 32px; border-radius:22px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-3px); box-shadow:0 12px 32px rgba(14,165,233,0.2);">
+        <div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">Next Case Study</div><div style="margin-top:6px; font-size:20px; font-weight:800; color:#111111;">KOYNX · Save Smart, Withdraw Wise</div></div>
+        <div style="display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 24px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700; box-shadow:0 6px 18px rgba(14,165,233,0.35);">Read case study <span>→</span></div>
+      </div>
+    </div>
   </div>
   </sc-if>
 
@@ -653,7 +907,7 @@
         <div style="flex:1 1 480px; min-width:300px;">
           <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#9ca3af;">About</div>
           <h1 style="margin:8px 0 0; font-size:clamp(30px, 3.4vw, 46px); font-weight:800; letter-spacing:-0.02em; color:#111111; line-height:1.1;">Design that earns attention, then earns trust.</h1>
-          <p style="margin:20px 0 0; font-size:16px; line-height:1.7; color:#6b7280; text-wrap:pretty;">Senior Product Designer with 5+ years turning startup ambition into interfaces that actually ship. I work at the intersection of strategy, craft, and code — from MVP sketches to full design systems.</p>
+          <p style="margin:20px 0 0; font-size:16px; line-height:1.7; color:#6b7280; text-wrap:pretty;">Senior Product Designer with 5+ years turning startup ambition into interfaces that actually ship. I work at the intersection of strategy, craft, and code, from MVP sketches to full design systems.</p>
           <p style="margin:14px 0 0; font-size:16px; line-height:1.7; color:#6b7280; text-wrap:pretty;">My sweet spot is early-stage products where complexity lives beneath the surface and the job is making it feel effortless for the people who use it. I work with early-stage founders, brand builders, and product teams who need a designer that moves fast, thinks in systems, and ships work that actually changes the numbers.</p>
 
           <h3 style="margin:36px 0 0; font-size:16px; font-weight:800; color:#111111;">What I do</h3>
@@ -676,7 +930,7 @@
           <h3 style="margin:36px 0 0; font-size:16px; font-weight:800; color:#111111;">Beyond the screen</h3>
           <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:8px;">
             <sc-for list="{{ hobbies }}" as="hb" hint-placeholder-count="5">
-              <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:50px; background:rgba(99,102,241,0.07); border:1px solid rgba(99,102,241,0.2); font-size:12px; font-weight:700; color:#4f46e5;">{{ hb.icon }} {{ hb.name }}</span>
+              <span style="display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:50px; background: {{ hb.bg }}; border:1px solid {{ hb.bc }}; font-size:12px; font-weight:700; color: {{ hb.tc }};">{{ hb.icon }} {{ hb.name }}</span>
             </sc-for>
           </div>
         </div>
@@ -751,13 +1005,29 @@ class Component extends DCLogic {
     lightbox: null
   };
 
+  _vids() {
+    setTimeout(() => document.querySelectorAll('video[data-autovid]').forEach(v => {
+      v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', '');
+      v.autoplay = true;
+      const tryPlay = () => { if (v.paused) v.play().catch(() => {}); };
+      if (!v._nkBound) { v._nkBound = true; v.addEventListener('canplay', tryPlay); v.addEventListener('loadeddata', tryPlay); }
+      tryPlay();
+    }), 60);
+    clearTimeout(this._vidRetry);
+    this._vidRetry = setTimeout(() => document.querySelectorAll('video[data-autovid]').forEach(v => { if (v.paused) { v.muted = true; v.play().catch(() => {}); } }), 900);
+  }
+
+  componentDidUpdate() { this._vids(); }
+
   componentDidMount() {
+    this._vids();
     // Hash routing
     this._onHash = () => {
       const p = location.hash.replace('#', '') || 'home';
       this.setState({ page: p }, () => {
         window.scrollTo(0, 0);
         this._initReveals();
+        this._vids();
       });
     };
     window.addEventListener('hashchange', this._onHash);
@@ -806,6 +1076,25 @@ class Component extends DCLogic {
     this._raf = requestAnimationFrame(step);
 
     this._initReveals();
+    // Load the hero video as a blob once (the file server streams without
+    // range support, which some browsers reject mid-decode), then keep it playing.
+    this._vidBlobUrl = null;
+    this._vidFetching = false;
+    this._vidTimer = setInterval(() => {
+      const v = document.querySelector('video');
+      if (!v) return;
+      if (this._vidBlobUrl) {
+        if (v.src !== this._vidBlobUrl) { v.src = this._vidBlobUrl; v.muted = true; v.load(); }
+        if (v.paused) { v.muted = true; v.play().catch(() => {}); }
+        return;
+      }
+      if (!this._vidFetching) {
+        this._vidFetching = true;
+        fetch(v.getAttribute('src')).then(r => r.blob()).then(b => {
+          this._vidBlobUrl = URL.createObjectURL(b.type ? b : new Blob([b], { type: 'video/mp4' }));
+        }).catch(() => { this._vidFetching = false; });
+      }
+    }, 1000);
 
     // Tap any filled image / video on case pages -> full-view lightbox
     this._onDocClick = (e) => {
@@ -832,6 +1121,7 @@ class Component extends DCLogic {
   }
 
   componentWillUnmount() {
+    clearInterval(this._vidTimer);
     document.removeEventListener('click', this._onDocClick, true);
     window.removeEventListener('hashchange', this._onHash);
     window.removeEventListener('scroll', this._onScroll);
@@ -895,17 +1185,17 @@ class Component extends DCLogic {
     const cards = [
       {
         title: 'KOYNX', eyebrow: 'Fintech', year: '2025', url: 'koynx.com',
-        desc: 'Save Smart, Withdraw Wise. A savings platform for South African stokvels — mobile app, web dashboard and admin portal built on one design system.',
+        desc: 'Save Smart, Withdraw Wise. A savings platform for South African stokvels: mobile app, web dashboard and admin portal built on one design system.',
         tags: [tagBlue, tagTeal, tagIndigo].map((t, i) => ({ ...t, label: ['Product Design', 'Design System', 'Mobile + Web'][i] })),
-        slotId: 'card-koynx', slotPh: 'KOYNX cover', img: 'uploads/Frame 1171275256.png',
+        slotId: 'card-koynx', slotPh: 'KOYNX cover', img: 'assets/koynx-cover.png',
         open: go('case-koynx')
       },
       {
-        title: 'Project Two', eyebrow: 'Coming soon', year: '2026', url: 'yourproject.com',
-        desc: 'Placeholder for your second case study. Swap in the real name, description and cover when ready.',
-        tags: [tagIndigo, tagPink].map((t, i) => ({ ...t, label: ['UX Design', 'Branding'][i] })),
-        slotId: 'card-two', slotPh: 'Project two cover', img: '',
-        open: go('case-two')
+        title: 'HillCross College', eyebrow: 'Higher Education', year: '2026', url: 'hillcross.ac.za',
+        desc: 'A homepage hero revamp for the January 2027/2028 admissions intake: announcement bar, intake-led headline and a controllable hero slider.',
+        tags: [tagPink, tagBlue, tagIndigo].map((t, i) => ({ ...t, label: ['Web Design', 'Conversion', 'Hero Slider'][i] })),
+        slotId: 'card-hillcross', slotPh: 'HillCross cover', img: 'assets/hillcross-after.png', video: 'assets/hillcross-hero.mp4',
+        open: go('case-hillcross')
       },
       {
         title: 'Project Three', eyebrow: 'Coming soon', year: '2026', url: 'yourproject.com',
@@ -916,22 +1206,23 @@ class Component extends DCLogic {
       }
     ];
 
+    cards.forEach(c => { c.hasVideo = !!c.video; c.noVideo = !c.video; });
     const decisions = [
       {
         n: '1', title: 'The group leads, the individual follows',
-        body: 'In every interview, motivation came from the group. So the information hierarchy puts group progress above personal balance on every core screen — the opposite of every banking app the users already had.',
+        body: 'In every interview, motivation came from the group. So the information hierarchy puts group progress above personal balance on every core screen, the opposite of every banking app the users already had.',
         rejected: 'A standard personal-wallet-first dashboard. Familiar, but it frames saving as a solo act and kills the social pressure that makes stokvels work.',
         chosen: 'Group progress as the hero element, with the personal balance one level down. Members see the pot grow before they see their own slice.'
       },
       {
         n: '2', title: 'Withdrawals are deliberate, not punished',
-        body: 'Trust dies the moment an app feels like it is holding money hostage. But friction protects the group. The answer was a calm, transparent withdrawal flow — clear steps, visible rules, no dark patterns.',
+        body: 'Trust dies the moment an app feels like it is holding money hostage. But friction protects the group. The answer was a calm, transparent withdrawal flow: clear steps, visible rules, no dark patterns.',
         rejected: 'Hard lock-ins and penalty warnings. Tested badly: users read them as "the app decides when I get my money."',
         chosen: 'A stepped confirmation that restates the group rules the member already agreed to, then executes without delay. Deliberate, never adversarial.'
       },
       {
         n: '3', title: 'One design system across three surfaces',
-        body: 'Mobile app, web dashboard and admin portal shipped in the same year with one designer. That is only possible when the system does the heavy lifting — shared tokens, shared components, three layouts.',
+        body: 'Mobile app, web dashboard and admin portal designed in the same year with one designer. That is only possible when the system does the heavy lifting: shared tokens, shared components, three layouts.',
         rejected: 'Designing each surface as its own project. Faster to start, but every change would triple the maintenance cost.',
         chosen: 'A token-based system built mobile-first, extended to web and admin. New screens now start at 70% done.'
       }
@@ -950,60 +1241,60 @@ class Component extends DCLogic {
     const decorate = (arr) => arr.map((t, i) => ({ ...t, dir: t.col === L ? 'left' : 'right', tilt: t.col === L ? '-0.9deg' : '0.9deg', ...palette[i % palette.length] }));
     const trail = decorate([
       {
-        col: L, phase: 'Phase 01 — Context', date: 'Early 2025',
+        col: L, phase: 'Phase 01 · Context', date: 'Early 2025',
         title: 'The problem worth solving',
-        body: 'Millions of South Africans save through stokvels. The system runs on trust, cash and paper — contributions tracked by hand, disputes settled over weeks because no one holds a single source of truth. KOYNX set out to bring it online without breaking what makes it work.',
+        body: 'Millions of South Africans save through stokvels. The system runs on trust, cash and paper: contributions tracked by hand, disputes settled over weeks because no one holds a single source of truth. KOYNX set out to bring it online without breaking what makes it work.',
         hasImg: false, hasQuote: true,
         quote: '"I trust my group. I do not trust an app I cannot see inside."',
-        quoteBy: 'User research — 2025'
+        quoteBy: 'User research · 2025'
       },
       {
-        col: R, phase: 'Phase 01 — Context', date: 'Early 2025',
+        col: R, phase: 'Phase 01 · Context', date: 'Early 2025',
         title: 'Who it had to win over',
-        body: 'Savers between 25 and 45 with a monthly stokvel contribution. They know exactly where their money is when it sits in a notebook. An app has to beat that clarity, not just match it — and trust was the growth engine for the whole business.',
+        body: 'Savers between 25 and 45 with a monthly stokvel contribution. They know exactly where their money is when it sits in a notebook. An app has to beat that clarity, not just match it, and trust was the growth engine for the whole business.',
         hasImg: true, hasQuote: false,
-        slotId: 'trail-users', img: '', slotPh: 'Photo: stokvel group / notebook tracking', caption: 'The old process — cash, paper, WhatsApp'
+        slotId: 'trail-users', img: '', slotPh: 'Photo: stokvel group / notebook tracking', caption: 'The old process: cash, paper, WhatsApp'
       },
       {
-        col: L, phase: 'Phase 02 — Discovery', date: 'Q1 2025',
+        col: L, phase: 'Phase 02 · Discovery', date: 'Q1 2025',
         title: 'What the research revealed',
-        body: 'Interviews with members and treasurers, audits of real WhatsApp contribution threads, and a teardown of the banking apps they already used. The key insight: people do not save alone — they save in public, in front of their group. Visibility is the feature. Everything else is plumbing.',
+        body: 'Interviews with members and treasurers, audits of real WhatsApp contribution threads, and a teardown of the banking apps they already used. The key insight: people do not save alone. They save in public, in front of their group. Visibility is the feature. Everything else is plumbing.',
         hasImg: true, hasQuote: false,
-        slotId: 'trail-research', img: '', slotPh: 'Research artifacts: notes, affinity map', caption: 'Discovery — interviews & thread audits'
+        slotId: 'trail-research', img: '', slotPh: 'Research artifacts: notes, affinity map', caption: 'Discovery: interviews & thread audits'
       },
       {
-        col: R, phase: 'Phase 03 — Design Brief', date: 'Q1 2025',
+        col: R, phase: 'Phase 03 · Design Brief', date: 'Q1 2025',
         title: 'The rules we designed by',
         body: 'Visible by default: every rand in the group is seen by the group. Deliberate withdrawals: taking money out feels considered, never punishing. One language across mobile, web and admin. All of it running on low-end Android, built by one designer with a lean crew, with compliance review on every money flow.',
         hasImg: false, hasQuote: false
       },
       {
-        col: L, phase: 'Phase 04 — Design', date: 'Mid 2025',
+        col: L, phase: 'Phase 04 · Design', date: 'Mid 2025',
         title: 'The group leads, the individual follows',
-        body: 'Every banking app puts your balance first. KOYNX puts the group pot first — the opposite hierarchy, because the group is the motivator. We rejected the familiar wallet-first dashboard: it frames saving as a solo act and kills the social pressure that makes stokvels work.',
+        body: 'Every banking app puts your balance first. KOYNX puts the group pot first, the opposite hierarchy, because the group is the motivator. We rejected the familiar wallet-first dashboard: it frames saving as a solo act and kills the social pressure that makes stokvels work.',
         hasImg: true, hasQuote: false,
-        slotId: 'trail-decision1', img: '', slotPh: 'Savings Hub screen: group-first hierarchy', caption: 'Chosen — group progress as the hero'
+        slotId: 'trail-decision1', img: '', slotPh: 'Savings Hub screen: group-first hierarchy', caption: 'Chosen: group progress as the hero'
       },
       {
-        col: R, phase: 'Phase 04 — Design', date: 'Mid 2025',
+        col: R, phase: 'Phase 04 · Design', date: 'Mid 2025',
         title: 'Withdrawals are deliberate, not punished',
-        body: 'Hard lock-ins and penalty warnings tested badly — users read them as "the app decides when I get my money." The shipped flow is a stepped confirmation that restates the group rules the member already agreed to, then executes without delay. Deliberate, never adversarial.',
+        body: 'Hard lock-ins and penalty warnings tested badly. Users read them as "the app decides when I get my money." The shipped flow is a stepped confirmation that restates the group rules the member already agreed to, then executes without delay. Deliberate, never adversarial.',
         hasImg: true, hasQuote: false,
-        slotId: 'trail-decision2', img: '', slotPh: 'Withdrawal flow screens', caption: 'The withdrawal flow — calm, transparent'
+        slotId: 'trail-decision2', img: '', slotPh: 'Withdrawal flow screens', caption: 'The withdrawal flow: calm, transparent'
       },
       {
-        col: L, phase: 'Phase 04 — Systems', date: 'Late 2025',
+        col: L, phase: 'Phase 04 · Systems', date: 'Late 2025',
         title: 'One design system, three surfaces',
-        body: 'Mobile app, web dashboard and admin portal shipped in the same year with one designer. Only possible when the system does the heavy lifting: shared tokens, shared components, three layouts. New screens now start at 70% done.',
+        body: 'Mobile app, web dashboard and admin portal designed in the same year with one designer. Only possible when the system does the heavy lifting: shared tokens, shared components, three layouts. New screens now start at 70% done.',
         hasImg: true, hasQuote: false,
-        slotId: 'trail-decision3', img: 'uploads/Desktop - 4.png', slotPh: 'Design system components', caption: 'The system at work — web dashboard'
+        slotId: 'trail-decision3', img: 'assets/koynx-dashboard.png', slotPh: 'Design system components', caption: 'The system at work: web dashboard'
       }
     ]);
     const impacts = [
-      { n: 'X%', label: 'Faster contribution flow vs. the manual process. Replace with real number.' },
-      { n: 'X', label: 'Screens shipped across mobile, web and admin. Replace with real count.' },
-      { n: 'Xk', label: 'Members onboarded since launch. Replace with real number.' },
-      { n: '3', label: 'Surfaces running on one design system.' }
+      { n: '3', label: 'Surfaces designed end to end across mobile, web and admin on one design system.', grad: 'linear-gradient(135deg,#0ea5e9,#0284c7)' },
+      { n: '100%', label: 'Of money-moving flows through compliance review, zero redesign cycles.', grad: 'linear-gradient(135deg,#4ade80,#16a34a)' },
+      { n: 'Pilot', label: 'Now in testing with real stokvel groups ahead of public launch.', grad: 'linear-gradient(135deg,#fbbf24,#ea580c)' },
+      { n: 'Banks', label: 'Partnership agreements in progress with South African banks.', grad: 'linear-gradient(135deg,#a78bfa,#7c3aed)' }
     ];
 
     const pcaseData = {
@@ -1023,6 +1314,7 @@ class Component extends DCLogic {
       isHome: page === 'home',
       isWork: page === 'work',
       isCase1: page === 'case-koynx',
+      isCaseHC: page === 'case-hillcross',
       isCasePH: page === 'case-two' || page === 'case-three',
       isAbout: page === 'about',
       isContact: page === 'contact',
@@ -1031,7 +1323,7 @@ class Component extends DCLogic {
       closeLightbox: () => this.setState({ lightbox: null }),
       pcase: pcaseData[page] || pcaseData['case-two'],
       navHome: go('home'), navWork: go('work'), navAbout: go('about'), navContact: go('contact'),
-      navCase1: go('case-koynx'), navCase2: go('case-two'),
+      navCase1: go('case-koynx'), navCase2: go('case-hillcross'), navCaseHC: go('case-hillcross'),
       lWorkC: navColor('work'), lAboutC: navColor('about'), lContactC: navColor('contact'),
       lWorkBg: page === 'work' ? 'rgba(14,165,233,0.12)' : 'transparent',
       lAboutBg: page === 'about' ? 'rgba(14,165,233,0.12)' : 'transparent',
@@ -1056,12 +1348,12 @@ class Component extends DCLogic {
       ],
       tools: ['Figma', 'Framer', 'Photoshop', 'Illustrator', 'After Effects', 'Webflow', 'Notion', 'Miro'],
       hobbies: [
-        { icon: '🎮', name: 'Gaming' },
-        { icon: '🎬', name: 'Film & animation' },
-        { icon: '🎧', name: 'Music' },
-        { icon: '🏀', name: 'Basketball' },
-        { icon: '📷', name: 'Photography' },
-        { icon: '🚀', name: 'Sci-fi & space' }
+        { icon: '🎮', name: 'Gaming', bg: 'rgba(14,165,233,0.07)', bc: 'rgba(14,165,233,0.25)', tc: '#0284c7' },
+        { icon: '🎬', name: 'Film & animation', bg: 'rgba(245,158,11,0.08)', bc: 'rgba(245,158,11,0.28)', tc: '#d97706' },
+        { icon: '🎧', name: 'Music', bg: 'rgba(34,197,94,0.08)', bc: 'rgba(34,197,94,0.28)', tc: '#16a34a' },
+        { icon: '🏀', name: 'Basketball', bg: 'rgba(249,115,22,0.08)', bc: 'rgba(249,115,22,0.28)', tc: '#ea580c' },
+        { icon: '📷', name: 'Photography', bg: 'rgba(100,116,139,0.08)', bc: 'rgba(100,116,139,0.28)', tc: '#475569' },
+        { icon: '🚀', name: 'Sci-fi & space', bg: 'rgba(99,102,241,0.07)', bc: 'rgba(99,102,241,0.25)', tc: '#6366f1' }
       ]
     };
   }
