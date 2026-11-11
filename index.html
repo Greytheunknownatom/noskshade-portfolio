@@ -33,6 +33,13 @@
   [data-pagebody] img { user-select:none; -webkit-user-select:none; }
   @media print { body { display:none !important; } html::after { content:"Printing is disabled for this site."; display:block; padding:40px; font:600 16px sans-serif; } }
   @keyframes nkJam { 0%,100% { transform:rotate(0deg); } 18% { transform:rotate(38deg); } 22% { transform:rotate(30deg); } 26% { transform:rotate(36deg); } 30%,62% { transform:rotate(33deg); } 66% { transform:rotate(26deg); } 70% { transform:rotate(31deg); } 85% { transform:rotate(4deg); } }
+  div[style*="display:grid"] > *, div[style*="display: grid"] > * { min-width:0; }
+  @media (max-width:700px) {
+    [data-casecard] { max-width:100%; box-sizing:border-box; overflow-wrap:anywhere; }
+    [data-casecard] span[style*="nowrap"] { white-space:normal !important; }
+    [data-casecard] div[style*="flex:1 1"], [data-casecard] div[style*="flex:0 1"] { min-width:0 !important; }
+    img, video { max-width:100%; }
+  }
   @keyframes nkSpin { to { transform:rotate(360deg); } }
   @keyframes nkDraw { 0% { stroke-dashoffset:16; } 40%,80% { stroke-dashoffset:0; } 100% { stroke-dashoffset:-16; } }
   @keyframes nkChip { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-9px); } }
@@ -207,6 +214,39 @@
     [data-statgrid] { grid-template-columns:1fr 1fr !important; }
   }
   @media (min-width:961px) { [data-tabbar] { display:none !important; } }
+  /* ===== Blog ===== */
+  [data-blogcard] { transition:transform 0.25s ease, box-shadow 0.25s ease; }
+  [data-blogcard]:hover { transform:translateY(-6px); box-shadow:0 18px 44px rgba(0,0,0,0.12) !important; }
+  [data-blogcard] img { transition:transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  [data-blogcard]:hover img { transform:scale(1.04); }
+  [data-blogcard]:focus-visible, [data-blogbtn]:focus-visible, [data-blogsearch]:focus-visible { outline:3px solid #0ea5e9; outline-offset:3px; }
+  [data-blogsearch]:focus { border-color:#0ea5e9 !important; box-shadow:0 0 0 4px rgba(14,165,233,0.15); }
+  [data-blogsearch]::placeholder { color:#6b7280; }
+  [data-blogbtn] { font-family:'Plus Jakarta Sans', sans-serif; }
+  [data-article] a { color:#0369a1; text-decoration:underline; text-underline-offset:3px; }
+  [data-pagebody] [data-article] p, [data-pagebody] [data-article] li { font-size:17px !important; line-height:1.85 !important; }
+  @media (max-width:640px) {
+    [data-pagebody] [data-article] p, [data-pagebody] [data-article] li { font-size:16px !important; line-height:1.8 !important; }
+    [data-pagebody] [data-article] h2 { font-size:22px !important; }
+    [data-pagebody] [data-article] blockquote { font-size:19px !important; padding-left:18px !important; }
+    [data-pagebody] [data-posthead] h1 { font-size:30px !important; line-height:1.2 !important; }
+    [data-blogfeat] > div:first-child { min-height:220px !important; }
+    [data-blogfeat] > div:last-child { padding:24px 22px !important; }
+    [data-blogfilters] { flex-wrap:nowrap !important; overflow-x:auto; width:calc(100% + 40px); margin:0 -20px; padding:4px 20px; box-sizing:border-box; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+    [data-blogfilters]::-webkit-scrollbar { display:none; }
+    [data-blogfilters] > button { flex:0 0 auto; }
+    [data-blogsearchwrap] { flex:1 1 100% !important; min-width:0 !important; }
+    [data-blogstats] { width:100%; box-sizing:border-box; justify-content:space-between; }
+    [data-blogshare] > div:first-child { flex:1 1 100%; }
+    [data-blogshare] > div:last-child { width:100%; }
+    [data-blogshare] > div:last-child > * { flex:1 1 0; justify-content:center; }
+    [data-pagebody] [data-posthead] > p { font-size:16.5px !important; line-height:1.65 !important; }
+    [data-pagebody] [data-hbtitle] { font-size:60px !important; line-height:1 !important; margin-top:12px !important; }
+    [data-hbphones] > div > div { border-radius:20px !important; padding:4px !important; }
+    [data-hbphones] img { border-radius:16px !important; }
+    [data-hbphones] { padding-bottom:0 !important; }
+  }
+  @media (max-width:960px) { [data-tabbar] > div, [data-tabbar] > a { padding:8px 6px !important; min-width:56px !important; } }
 </style>
 </helmet>
 
@@ -224,8 +264,9 @@
   <nav data-topnav="1" style="position:fixed; top:14px; left:0; right:0; z-index:110; display:flex; justify-content:center; padding:0 52px; pointer-events:none;">
     <div style="pointer-events:auto; box-sizing:border-box; width:100%; max-width:1160px; display:flex; align-items:center; justify-content:space-between; gap:40px; padding:10px 12px 10px 26px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
       <div onClick="{{ navHome }}" style="cursor:pointer; font-weight:800; font-size:17px; color:#111111; letter-spacing:-0.01em;">Noskshade.</div>
-      <div data-navlinks="1" style="display:flex; align-items:center; gap:48px;">
+      <div data-navlinks="1" style="display:flex; align-items:center; gap:28px;">
         <div onClick="{{ navWork }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lWorkBg }}; font-size:13px; font-weight:700; color: {{ lWorkC }}; transition:all 0.2s ease;" style-hover="color:#7c3aed; background:rgba(139,92,246,0.1); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"></stop><stop offset="1" stop-color="#7c3aed"></stop></linearGradient></defs><rect x="2" y="5" width="14" height="10.5" rx="2" fill="url(#gNavW)"></rect><path d="M6.5 5 V4 a2 2 0 0 1 2 -2 h1 a2 2 0 0 1 2 2 v1 h-1.6 V4.2 a0.6 0.6 0 0 0 -0.6 -0.6 h-1.6 a0.6 0.6 0 0 0 -0.6 0.6 V5 Z" fill="url(#gNavW)"></path></svg>Work</div>
+        <a href="#blog" onClick="{{ goBlog }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lBlogBg }}; font-size:13px; font-weight:700; color: {{ lBlogC }}; text-decoration:none; transition:all 0.2s ease;" style-hover="color:#c2410c; background:rgba(251,146,60,0.12); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true"><defs><linearGradient id="gNavB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#ea580c"></stop></linearGradient></defs><rect x="2.5" y="1.5" width="12" height="15" rx="2.2" fill="url(#gNavB)"></rect><path d="M5.5 6h6M5.5 9h6M5.5 12h3.6" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round"></path></svg>Blog</a>
         <div onClick="{{ navAbout }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lAboutBg }}; font-size:13px; font-weight:700; color: {{ lAboutC }}; transition:all 0.2s ease;" style-hover="color:#0d9488; background:rgba(45,212,191,0.12); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#0d9488"></stop></linearGradient></defs><circle cx="9" cy="6" r="3.4" fill="url(#gNavA)"></circle><path d="M2.6 16 a6.4 6.4 0 0 1 12.8 0 Z" fill="url(#gNavA)"></path></svg>About</div>
         <div onClick="{{ navContact }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; background: {{ lContactBg }}; font-size:13px; font-weight:700; color: {{ lContactC }}; transition:all 0.2s ease;" style-hover="color:#db2777; background:rgba(244,114,182,0.12); transform:translateY(-1px);"><svg width="14" height="14" viewBox="0 0 18 18"><defs><linearGradient id="gNavC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f472b6"></stop><stop offset="1" stop-color="#db2777"></stop></linearGradient></defs><rect x="1.5" y="4" width="15" height="10.5" rx="2" fill="url(#gNavC)"></rect><path d="M2.2 5 L9 10.2 L15.8 5" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.4" stroke-linecap="round"></path></svg>Contact</div>
       </div>
@@ -245,6 +286,9 @@
     <div onClick="{{ navWork }}" style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 16px; border-radius:40px; color: {{ tWorkC }}; background: {{ tWorkBg }};">
       <svg width="18" height="18" viewBox="0 0 18 18"><defs><linearGradient id="gWork" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"></stop><stop offset="1" stop-color="#7c3aed"></stop></linearGradient></defs><rect x="2" y="5" width="14" height="10.5" rx="2" fill="url(#gWork)"></rect><path d="M6.5 5 V4 a2 2 0 0 1 2 -2 h1 a2 2 0 0 1 2 2 v1 h-1.6 V4.2 a0.6 0.6 0 0 0 -0.6 -0.6 h-1.6 a0.6 0.6 0 0 0 -0.6 0.6 V5 Z" fill="url(#gWork)"></path><rect x="2" y="5" width="14" height="3.2" rx="2" fill="rgba(255,255,255,0.35)"></rect></svg><span style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Work</span>
     </div>
+    <a href="#blog" onClick="{{ goBlog }}" style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 16px; border-radius:40px; color: {{ tBlogC }}; background: {{ tBlogBg }}; text-decoration:none;">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><defs><linearGradient id="gBlog" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#ea580c"></stop></linearGradient></defs><rect x="2.5" y="1.5" width="13" height="15" rx="2.2" fill="url(#gBlog)"></rect><path d="M5.5 6h7M5.5 9h7M5.5 12h4" stroke="rgba(255,255,255,0.9)" stroke-width="1.4" stroke-linecap="round"></path><rect x="2.5" y="1.5" width="13" height="3.4" rx="2.2" fill="rgba(255,255,255,0.3)"></rect></svg><span style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Blog</span>
+    </a>
     <div onClick="{{ navAbout }}" style="cursor:pointer; display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 16px; border-radius:40px; color: {{ tAboutC }}; background: {{ tAboutBg }};">
       <svg width="18" height="18" viewBox="0 0 18 18"><defs><linearGradient id="gAbout" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"></stop><stop offset="1" stop-color="#0d9488"></stop></linearGradient></defs><circle cx="9" cy="6" r="3.4" fill="url(#gAbout)"></circle><path d="M2.6 16 a6.4 6.4 0 0 1 12.8 0 Z" fill="url(#gAbout)"></path><circle cx="7.8" cy="5" r="1.1" fill="rgba(255,255,255,0.5)"></circle></svg><span style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">About</span>
     </div>
@@ -318,7 +362,7 @@
 
     <!-- Stats strip -->
     <section data-statsrow="1" data-reveal="1" style="background:#f1f1ef; padding:28px 52px;">
-      <div data-statgrid="1" style="max-width:1160px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:14px;">
+      <div data-statgrid="1" style="max-width:1160px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap:14px;">
         <div data-statcard="1" style="display:flex; align-items:center; gap:12px; padding:10px; border-radius:18px; background:rgba(255,255,255,0.6); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.7); box-shadow:0 4px 20px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.25s ease, box-shadow 0.25s ease; color:#0284c7;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(14,165,233,0.16);">
           <span style="flex-shrink:0; width:38px; height:38px; border-radius:12px; background:rgba(14,165,233,0.1); display:inline-flex; align-items:center; justify-content:center;"><svg width="19" height="19" viewBox="0 0 18 18"><defs><linearGradient id="gS1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"></stop><stop offset="1" stop-color="#0284c7"></stop></linearGradient></defs><circle cx="9" cy="9" r="7" fill="none" stroke="url(#gS1)" stroke-width="2"></circle><path d="M9 5 v4 l3 2" fill="none" stroke="url(#gS1)" stroke-width="2" stroke-linecap="round"></path></svg></span>
           <div style="flex:1; min-width:0;"><div style="font-size:18px; font-weight:800; color:#0284c7;">{{ s1 }}+</div><div style="margin-top:1px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af; line-height:1.5;">Years Experience</div></div>
@@ -427,6 +471,36 @@
                 </div>
               </div>
             </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journal preview -->
+    <section style="position:relative; padding:0 52px 88px;">
+      <div style="max-width:1160px; margin:0 auto;">
+        <div data-reveal="1" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+          <div>
+            <div style="display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#6b7280;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#fbbf24,#ea580c); box-shadow:0 0 0 3px rgba(251,146,60,0.18);"></span>From the journal</div>
+            <h2 style="margin:8px 0 0; font-size:clamp(26px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Notes on design</h2>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.65; color:#4b5563;">What I learn shipping products, brands and systems, written down while it’s still fresh.</p>
+          </div>
+          <a href="#blog" onClick="{{ goBlog }}" style="font-size:13px; font-weight:700; color:#0369a1; text-decoration:none;" style-hover="color:#0ea5e9;">Read the blog →</a>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:20px;">
+          <sc-for list="{{ homePosts }}" as="p" hint-placeholder-count="3">
+            <a data-blogcard="1" href="#{{ p.route }}" onClick="{{ p.open }}" style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(12px); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; color:#111111; text-decoration:none;">
+              <div style="position:relative; aspect-ratio:16 / 10; overflow:hidden; background:#e8e8e5;">
+                <img src="{{ p.cover }}" alt="" draggable="false" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                <span style="position:absolute; top:14px; left:14px; padding:6px 12px; border-radius:50px; background:rgba(255,255,255,0.9); backdrop-filter:blur(10px); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:{{ p.catC }};">{{ p.cat }}</span>
+              </div>
+              <div style="flex:1; display:flex; flex-direction:column; gap:10px; padding:22px 24px 24px;">
+                <div style="font-size:11px; font-weight:700; color:#6b7280;">{{ p.date }} · {{ p.read }} min read</div>
+                <h3 style="margin:0; font-size:19px; font-weight:800; line-height:1.35; letter-spacing:-0.01em; color:#111111; text-wrap:balance;">{{ p.title }}</h3>
+                <p style="margin:0; font-size:14px; line-height:1.65; color:#4b5563; text-wrap:pretty;">{{ p.excerpt }}</p>
+                <div style="margin-top:auto; padding-top:8px; font-size:13px; font-weight:700; color:#0369a1;">Read post →</div>
+              </div>
+            </a>
           </sc-for>
         </div>
       </div>
@@ -793,7 +867,7 @@
                 </div>
               </sc-if>
               <sc-if value="{{ ch.isRules }}" hint-placeholder-val="{{ false }}">
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:14px;">
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:14px;">
                   <sc-for list="{{ ch.rules }}" as="r" hint-placeholder-count="4">
                     <div style="padding:24px; border-radius:20px; background:rgba(255,255,255,0.68); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-5px);">
                       <span style="display:inline-flex; width:12px; height:12px; transform:rotate(45deg); border-radius:3px; background:{{ r.c }};"></span>
@@ -904,7 +978,7 @@
           <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Where it stands</div>
           <h2 style="margin:12px 0 0; font-size:clamp(28px, 3.4vw, 44px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Ready for launch</h2>
         </div>
-        <div data-impactgrid="1" style="margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+        <div data-impactgrid="1" style="margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:16px;">
           <sc-for list="{{ impacts }}" as="im" hint-placeholder-count="4">
             <div data-reveal="1" style="padding:30px 24px; border-radius:20px; text-align:center; background:rgba(255,255,255,0.68); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
               <div style="font-size:clamp(36px, 4vw, 48px); font-weight:800; letter-spacing:-0.02em; background:{{ im.grad }}; -webkit-background-clip:text; background-clip:text; color:transparent;">{{ im.n }}</div>
@@ -977,7 +1051,7 @@
         <p style="margin:18px auto 0; max-width:640px; font-size:16px; line-height:1.85; color:#6b7280; text-wrap:pretty;">A homepage hero revamp for the <strong style="color:#111111;">January 2027/2028 admissions intake</strong>, designed to tell prospective students that applications are open and move them straight into an application.</p>
         <div style="margin-top:18px; display:flex; justify-content:center;"><a href="https://hillcrosscollege.com/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 22px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700; text-decoration:none; box-shadow:0 6px 18px rgba(14,165,233,0.35); transition:transform 0.25s ease;" style-hover="transform:translateY(-2px);">Visit hillcrosscollege.com <span>↗</span></a></div>
       </div>
-      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:16px; overflow:hidden;">
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:16px; overflow:hidden;">
         <div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Role</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Product Designer</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Scope</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Hero, announcement bar, nav</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Platform</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Web, responsive</div></div><div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Goal</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#0284c7;">Applications for the new intake</div></div>
       </div>
 
@@ -991,14 +1065,14 @@
         </div>
       </div>
 
-      <div data-reveal="1" data-casecard="1" style="padding:40px 44px; border-radius:24px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:32px;">
+      <div data-reveal="1" data-casecard="1" style="padding:40px 44px; border-radius:24px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:32px;">
         <div><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">The brief</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">An intake campaign needed a front door</h2></div>
         <div><p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">Each year HillCross opens applications for a new intake. The homepage hero was the first thing prospective students saw, but it was written as a general welcome: a long institutional paragraph, one apply button and a cut-out stock photo. Nothing on the page said that admissions were open, or for which year.</p><p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">The brief was to rebuild the hero around the January 2027/2028 intake and keep the credibility markers the college already had.</p></div>
       </div>
 
       <div data-reveal="1">
         <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Before and after</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">From a welcome to an invitation</h2></div>
-        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:18px;">
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:18px;">
           <div style="border-radius:22px; overflow:hidden; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
             <div style="position:relative; background:#ffffff;"><img src="assets/hillcross-before.jpg" alt="Previous HillCross hero" style="display:block; width:100%; height:auto;"><span style="position:absolute; top:14px; left:14px; padding:6px 14px; border-radius:50px; background:rgba(17,17,17,0.75); color:#ffffff; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em;">Before</span></div>
             <p style="margin:0; padding:18px 22px; font-size:13px; line-height:1.7; color:#4b5563;">General welcome headline, a 63-word institutional paragraph, one CTA and the stats tucked bottom right.</p>
@@ -1012,7 +1086,7 @@
 
       <div data-reveal="1">
         <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">What changed</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">Five decisions behind the new hero</h2></div>
-        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:16px;">
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(14,165,233,0.12); color:#0284c7; font-size:13px; font-weight:800;">01</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">An announcement bar for the intake</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">A full-width red bar states the intake in plain words and carries its own Apply Now button. It sits above the navigation on every page, so a student who lands deep in the site still sees that admissions are open.</p></div>
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(139,92,246,0.12); color:#7c3aed; font-size:13px; font-weight:800;">02</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">A headline about the student</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">"Welcome to Hillcross College" became "Your Next Chapter Starts this Intake." The orange highlight on Intake ties the headline to the campaign, and the 63-word institutional paragraph became one line naming the academic year.</p></div>
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; transition:transform 0.3s ease;" style-hover="transform:translateY(-6px);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:rgba(245,158,11,0.14); color:#d97706; font-size:13px; font-weight:800;">03</span><h3 style="margin:16px 0 0; font-size:17px; font-weight:800; color:#111111;">Two clear next steps</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">"Start your application" is the primary action. "Entry requirements" sits beside it as the secondary path for students who want to check eligibility before committing.</p></div>
@@ -1021,7 +1095,7 @@
         </div>
       </div>
 
-      <div data-reveal="1" data-casecard="1" style="position:relative; overflow:hidden; padding:44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25); display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:36px; align-items:center;">
+      <div data-reveal="1" data-casecard="1" style="position:relative; overflow:hidden; padding:44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:36px; align-items:center;">
         <div style="position:absolute; top:-80px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,0.3), transparent 65%); filter:blur(34px); animation:nkFlow 26s ease-in-out infinite; pointer-events:none;"></div>
         <div style="position:absolute; bottom:-100px; left:20%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(236,72,153,0.22), transparent 65%); filter:blur(34px); animation:nkFlow 30s ease-in-out infinite 5s; pointer-events:none;"></div>
         <div style="position:relative;">
@@ -1067,13 +1141,13 @@
 
       <div data-reveal="1">
         <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Metrics</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">What the redesign changed, in numbers</h2></div>
-        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:16px;">
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#0284c7;">2 → 4</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Admissions entry points above the fold</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">Apply Now, Get started, Start your application, Entry requirements</div></div>
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#7c3aed;">63 → 8</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Words of hero body copy</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">One line naming the 2027/2028 academic year</div></div>
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#d97706;">1 → 2+</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Hero stories</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">A slider with counter, progress and pause</div></div>
           <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#16a34a;">No → Yes</div><div style="margin-top:8px; font-size:13px; font-weight:700; color:#111111;">Intake year visible on load</div><div style="margin-top:6px; font-size:12px; line-height:1.6; color:#6b7280;">January 2027/2028 in the bar and the subhead</div></div>
         </div>
-        <div style="margin-top:16px; padding:22px 26px; border-radius:20px; border:2px dashed rgba(14,165,233,0.35); background:rgba(255,255,255,0.45); display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px; align-items:center;">
+        <div style="margin-top:16px; padding:22px 26px; border-radius:20px; border:2px dashed rgba(14,165,233,0.35); background:rgba(255,255,255,0.45); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:16px; align-items:center;">
           <div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#0284c7;">Live performance</div><div style="margin-top:4px; font-size:13px; line-height:1.6; color:#6b7280;">Tracking from intake launch</div></div>
           <div><div style="font-size:20px; font-weight:800; color:#64748b;">Pending</div><div style="margin-top:2px; font-size:12px; font-weight:600; color:#4b5563;">Application starts</div></div>
           <div><div style="font-size:20px; font-weight:800; color:#64748b;">Pending</div><div style="margin-top:2px; font-size:12px; font-weight:600; color:#4b5563;">Hero CTA click-through</div></div>
@@ -1101,7 +1175,7 @@
         <h1 style="margin:14px 0 0; font-size:clamp(36px, 5vw, 64px); font-weight:800; line-height:1.12; letter-spacing:-0.03em; color:#111111; text-wrap:balance;">HillCross University Student Portal</h1>
         <p style="margin:18px auto 0; max-width:640px; font-size:16px; line-height:1.85; color:#6b7280; text-wrap:pretty;">A web platform that takes students from their first application to everyday study, with an AI assistant that plans around how they learn.</p>
       </div>
-      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:16px; overflow:hidden;">
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:16px; overflow:hidden;">
         <div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Role</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Product Designer</div></div>
         <div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Platform</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Web app</div></div>
         <div style="background:rgba(255,255,255,0.85); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Portals</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Student, Lecturer, Admin</div></div>
@@ -1120,7 +1194,7 @@
         <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">The product</div>
         <h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">Three portals for one university</h2>
         <p style="margin:14px 0 0; max-width:760px; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">The platform is made of three connected web portals: one for students, one for lecturers and one for administrators. This case study covers the student portal, from creating an account and applying, through registration, courses, exams, grades and finance.</p>
-        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+        <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:16px;">
           <div style="padding:24px; border-radius:18px; background:rgba(255,255,255,0.8); border:2px solid rgba(14,165,233,0.35);"><div style="display:flex; align-items:center; justify-content:space-between; gap:8px;"><h3 style="margin:0; font-size:17px; font-weight:800; color:#111111;">Student portal</h3><span style="padding:4px 10px; border-radius:6px; background:rgba(14,165,233,0.12); color:#0284c7; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">We are here</span></div><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563;">Application, dashboard, courses, calendar, grades, finance, library, mentorship, internships, documents and support.</p></div>
           <div style="padding:24px; border-radius:18px; background:rgba(255,255,255,0.45); border:1px dashed rgba(0,0,0,0.14);"><div style="display:flex; align-items:center; justify-content:space-between; gap:8px;"><h3 style="margin:0; font-size:17px; font-weight:800; color:#9ca3af;">Lecturer portal</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:50px; background:#f3f4f6; border:1.5px solid #9ca3af; color:#374151; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap;"><span style="width:6px; height:6px; border-radius:50%; background:#6b7280;"></span>Coming soon</span></div><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#9ca3af;">Where lecturers run their courses: lessons, live classes, assignments, exams and grading.</p></div>
           <div style="padding:24px; border-radius:18px; background:rgba(255,255,255,0.45); border:1px dashed rgba(0,0,0,0.14);"><div style="display:flex; align-items:center; justify-content:space-between; gap:8px;"><h3 style="margin:0; font-size:17px; font-weight:800; color:#9ca3af;">Admin portal</h3><span style="display:inline-flex; align-items:center; gap:6px; padding:5px 11px; border-radius:50px; background:#f3f4f6; border:1.5px solid #9ca3af; color:#374151; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; white-space:nowrap;"><span style="width:6px; height:6px; border-radius:50%; background:#6b7280;"></span>Coming soon</span></div><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#9ca3af;">Where university staff manage admissions, registration, finance and student records.</p></div>
@@ -1184,7 +1258,7 @@
         </div>
       </div>
 
-      <div data-reveal="1" data-casecard="1" style="position:relative; overflow:hidden; padding:44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25); display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:36px; align-items:center;">
+      <div data-reveal="1" data-casecard="1" style="position:relative; overflow:hidden; padding:44px; border-radius:26px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.25); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:36px; align-items:center;">
         <div style="position:absolute; top:-80px; right:-60px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,0.3), transparent 65%); filter:blur(34px); animation:nkFlow 26s ease-in-out infinite; pointer-events:none;"></div>
         <div style="position:relative;">
           <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#93c5fd;">AI Assist</div>
@@ -1215,18 +1289,18 @@
       </div>
 
       <div data-reveal="1" data-casecard="1" style="padding:40px 44px; border-radius:24px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;">
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:32px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap:32px;">
           <div><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Design system</div><h2 style="margin:10px 0 0; font-size:clamp(24px, 3vw, 36px); font-weight:800; line-height:1.25; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">Building the system while designing the product</h2></div>
           <p style="margin:14px 0 0; font-size:15px; line-height:1.8; color:#4b5563; text-wrap:pretty;">With the student portal growing module by module and two more portals to follow, the design system was built alongside the screens and maintained as the project grew. Every new screen either used an existing component or added one to the library.</p>
         </div>
-        <div style="margin-top:26px; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px;">
+        <div style="margin-top:26px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:16px;">
           <sc-for list="{{ portalSystem }}" as="d" hint-placeholder-count="4">
             <div style="padding:24px; border-radius:18px; background:rgba(255,255,255,0.8); border:1px solid rgba(0,0,0,0.06);"><span style="display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:12px; background:{{ d.soft }}; color:{{ d.accent }}; font-size:13px; font-weight:800;">{{ d.n }}</span><h3 style="margin:14px 0 0; font-size:16px; font-weight:800; color:#111111;">{{ d.title }}</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.75; color:#4b5563; text-wrap:pretty;">{{ d.body }}</p></div>
           </sc-for>
         </div>
       </div>
 
-      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:16px;">
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:16px;">
         <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#0284c7;">3</div><div style="margin-top:8px; font-size:13px; font-weight:700; line-height:1.5; color:#111111;">Portals on one design system: student, lecturer and admin</div></div>
         <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#7c3aed;">AI</div><div style="margin-top:8px; font-size:13px; font-weight:700; line-height:1.5; color:#111111;">Study planning built into the dashboard</div></div>
         <div style="padding:26px; border-radius:20px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="font-size:clamp(28px, 3vw, 38px); font-weight:800; letter-spacing:-0.02em; color:#d97706;">3</div><div style="margin-top:8px; font-size:13px; font-weight:700; line-height:1.5; color:#111111;">Fee plans set by nationality: SA, SADC and international</div></div>
@@ -1975,6 +2049,150 @@
   </div>
   </sc-if>
 
+  <!-- ============ CASE: HeatBud ============ -->
+  <sc-if value="{{ isCaseHB }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Case Study HeatBud" data-casepad="1" style="position:relative; isolation:isolate; overflow:hidden; padding:130px 52px 88px;">
+    <div style="position:absolute; top:-120px; right:-120px; width:520px; height:520px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,0.35), transparent 65%); filter:blur(40px); z-index:-1; pointer-events:none;"></div>
+    <div style="position:absolute; top:900px; left:-160px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.2), transparent 65%); filter:blur(40px); z-index:-1; pointer-events:none;"></div>
+    <div style="max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:56px;">
+      <div><div onClick="{{ navWork }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:50px; background:rgba(255,255,255,0.68); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; font-size:13px; font-weight:700; color:#1a1a1a;" style-hover="transform:translateY(-2px);"><span>←</span> Back to work</div></div>
+
+      <!-- Hero -->
+      <div style="text-align:center; max-width:820px; margin:-24px auto 0;">
+        <div style="display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:50px; background:rgba(234,88,12,0.1); border:1px solid rgba(234,88,12,0.3); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#9a3412;"><span style="width:8px; height:8px; border-radius:50%; background:#ea580c; animation:nkPulse 1.8s ease-in-out infinite;"></span>In active development · Updated often</div>
+        <div style="margin-top:18px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Case Study · Health &amp; climate · Installable web app</div>
+        <h1 data-hbtitle="1" style="margin:14px 0 0; font-size:clamp(48px, 8vw, 104px); font-weight:800; line-height:1; letter-spacing:-0.045em; color:#111111;">Heat<span style="background:linear-gradient(135deg,#f59e0b,#ea580c); -webkit-background-clip:text; background-clip:text; color:transparent;">Bud</span></h1>
+        <p style="margin:18px auto 0; max-width:640px; font-size:clamp(16px, 1.6vw, 20px); line-height:1.65; color:#4b5563; text-wrap:pretty;">A small heat buddy for Nigeria. It tells you how hot it really feels, when it’s safest to go out, and how much water you need today, in plain words, before the sun catches you off guard.</p>
+        <div style="margin-top:22px; display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
+          <span style="padding:7px 14px; border-radius:8px; background:rgba(255,255,255,0.75); border:1px solid rgba(0,0,0,0.06); font-size:12px; font-weight:600; color:#374151;">Product design</span>
+          <span style="padding:7px 14px; border-radius:8px; background:rgba(255,255,255,0.75); border:1px solid rgba(0,0,0,0.06); font-size:12px; font-weight:600; color:#374151;">Design + build</span>
+          <span style="padding:7px 14px; border-radius:8px; background:rgba(255,255,255,0.75); border:1px solid rgba(0,0,0,0.06); font-size:12px; font-weight:600; color:#374151;">PWA</span>
+          <span style="padding:7px 14px; border-radius:8px; background:rgba(255,255,255,0.75); border:1px solid rgba(0,0,0,0.06); font-size:12px; font-weight:600; color:#374151;">Abuja, Nigeria · 2026</span>
+        </div>
+        <div style="margin-top:26px; display:flex; flex-wrap:wrap; justify-content:center; gap:12px;">
+          <a data-water-btn="1" href="https://heatbud.netlify.app/" target="_blank" rel="noopener" style="position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:10px; height:52px; padding:0 28px; border-radius:50px; background:linear-gradient(135deg,#f59e0b,#ea580c); color:#ffffff; font-size:14px; font-weight:800; text-decoration:none; box-shadow:0 10px 26px rgba(234,88,12,0.35);" style-hover="transform:translateY(-2px); color:#ffffff;"><span data-water="light"></span><span style="position:relative;" aria-hidden="true">☀</span><span style="position:relative;">Try HeatBud live</span><span style="position:relative;" aria-hidden="true">↗</span></a>
+          <a href="#post-heatbud-el-nino" onClick="{{ goHbPost }}" style="display:inline-flex; align-items:center; gap:8px; height:52px; padding:0 24px; border-radius:50px; background:rgba(255,255,255,0.7); border:1.5px solid rgba(0,0,0,0.08); color:#111111; font-size:14px; font-weight:700; text-decoration:none; backdrop-filter:blur(14px);" style-hover="transform:translateY(-2px); color:#111111;">Read the story behind it →</a>
+        </div>
+        <p style="margin:12px 0 0; font-size:12px; font-weight:600; color:#6b7280;">Opens on any phone. Add it to your home screen to use it like an app.</p>
+      </div>
+
+      <!-- Phones -->
+      <div data-reveal="1" style="position:relative; padding:40px clamp(12px, 4vw, 48px) 0; border-radius:32px; background:linear-gradient(160deg,#fde68a 0%,#fdba74 55%,#fb923c 100%); overflow:hidden;">
+        <div style="position:absolute; top:-80px; right:-60px; width:300px; height:300px; border-radius:50%; background:rgba(255,247,214,0.7); filter:blur(30px);"></div>
+        <div data-hbphones="1" style="position:relative; display:flex; gap:clamp(10px, 2.4vw, 28px); align-items:flex-end; max-width:1000px; margin:0 auto;">
+          <div style="flex:1 1 0; min-width:0; transform:translateY(24px);"><div style="border-radius:34px; padding:8px; background:#141418; box-shadow:0 24px 50px rgba(124,45,18,0.35);"><img src="assets/hb-water.jpg" alt="HeatBud home screen with the heat dial and water bottle" loading="lazy" style="display:block; width:100%; border-radius:27px;"></div></div>
+          <div style="flex:1.15 1 0; min-width:0;"><div style="border-radius:34px; padding:8px; background:#141418; box-shadow:0 30px 60px rgba(124,45,18,0.4);"><img src="assets/hb-home.jpg" alt="HeatBud home screen showing feels-like temperature over an illustrated Abuja scene" loading="lazy" style="display:block; width:100%; border-radius:27px;"></div></div>
+          <div style="flex:1 1 0; min-width:0; transform:translateY(24px);"><div style="border-radius:34px; padding:8px; background:#141418; box-shadow:0 24px 50px rgba(124,45,18,0.35);"><img src="assets/hb-buddy.jpg" alt="HeatBud settings screen with twelve buddy characters" loading="lazy" style="display:block; width:100%; border-radius:27px;"></div></div>
+        </div>
+      </div>
+
+      <!-- Inspiration -->
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:clamp(24px, 4vw, 56px); align-items:center; margin-top:24px;">
+        <div>
+          <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#c2410c;">The spark</div>
+          <h2 style="margin:10px 0 0; font-size:clamp(28px, 3.6vw, 44px); font-weight:800; line-height:1.15; letter-spacing:-0.025em; color:#111111; text-wrap:balance;">El Niño was on the news. I was too busy to notice the heat.</h2>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <p style="margin:0; font-size:16px; line-height:1.8; color:#374151; text-wrap:pretty;">Every week there was more talk about El Niño and hotter, drier months. Meanwhile my own days were full of back-to-back work. I’d look up in the afternoon with a headache, realise I’d barely had water, and only then notice how hot it was.</p>
+          <p style="margin:0; font-size:16px; line-height:1.8; color:#374151; text-wrap:pretty;">Weather apps gave me a number. None of them told me what that number meant for <strong style="color:#111111;">my day</strong>: when to step out, when to stay in, and how much to drink.</p>
+          <p style="margin:0; font-size:16px; line-height:1.8; color:#374151; text-wrap:pretty;">And I work indoors. Millions of Nigerians spend their whole day under the sun.</p>
+        </div>
+      </div>
+
+      <!-- Who it's for -->
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Who it’s for</div><h2 style="margin:10px 0 0; font-size:clamp(26px, 3.2vw, 40px); font-weight:800; line-height:1.2; letter-spacing:-0.025em; color:#111111; text-wrap:balance;">Built for me first, shaped for anyone out in the sun</h2></div>
+        <div style="margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:16px;">
+          <div style="padding:24px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="width:44px; height:44px; border-radius:14px; background:rgba(14,165,233,0.12); display:flex; align-items:center; justify-content:center; font-size:22px;" aria-hidden="true">💻</div><h3 style="margin:14px 0 0; font-size:17px; font-weight:800; color:#111111;">The busy desk worker</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#4b5563;">Forgets to drink until the headache arrives. Needs a nudge, not a lecture.</p></div>
+          <div style="padding:24px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="width:44px; height:44px; border-radius:14px; background:rgba(234,88,12,0.12); display:flex; align-items:center; justify-content:center; font-size:22px;" aria-hidden="true">🛵</div><h3 style="margin:14px 0 0; font-size:17px; font-weight:800; color:#111111;">People who work outside</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#4b5563;">Riders, traders, builders, delivery staff. They can’t avoid the sun, but they can plan breaks and water around it.</p></div>
+          <div style="padding:24px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="width:44px; height:44px; border-radius:14px; background:rgba(34,197,94,0.12); display:flex; align-items:center; justify-content:center; font-size:22px;" aria-hidden="true">🎒</div><h3 style="margin:14px 0 0; font-size:17px; font-weight:800; color:#111111;">Students and commuters</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#4b5563;">Long walks, bus stops and hot classrooms. Knowing the safest hour to move makes a real difference.</p></div>
+          <div style="padding:24px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="width:44px; height:44px; border-radius:14px; background:rgba(139,92,246,0.12); display:flex; align-items:center; justify-content:center; font-size:22px;" aria-hidden="true">👵🏾</div><h3 style="margin:14px 0 0; font-size:17px; font-weight:800; color:#111111;">Families looking out for others</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#4b5563;">Parents and carers keeping an eye on children and older relatives, who feel heat faster.</p></div>
+        </div>
+      </div>
+
+      <!-- Principles -->
+      <div data-reveal="1" style="position:relative; overflow:hidden; padding:clamp(28px, 4vw, 52px); border-radius:30px; background:radial-gradient(ellipse 80% 70% at 85% 0%, #7c2d12 0%, #3b1408 55%, #1c0a04 100%); box-shadow:0 24px 60px rgba(28,10,4,0.3);">
+        <div style="position:absolute; top:-80px; right:-40px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(251,191,36,0.4), transparent 65%); filter:blur(30px);"></div>
+        <div style="position:relative;">
+          <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fdba74;">Design principles</div>
+          <h2 style="margin:10px 0 0; max-width:640px; font-size:clamp(26px, 3.2vw, 40px); font-weight:800; line-height:1.2; letter-spacing:-0.025em; color:#ffffff; text-wrap:balance;">A weather number is data. HeatBud turns it into a decision.</h2>
+          <div style="margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap:16px;">
+            <div style="padding:20px; border-radius:18px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);"><div style="font-size:12px; font-weight:800; color:#fbbf24;">01</div><h3 style="margin:8px 0 0; font-size:17px; font-weight:800; color:#ffffff;">Feels like comes first</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#e7d5c9;">Air temperature hides humidity. The big number on screen is what your body actually feels.</p></div>
+            <div style="padding:20px; border-radius:18px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);"><div style="font-size:12px; font-weight:800; color:#fbbf24;">02</div><h3 style="margin:8px 0 0; font-size:17px; font-weight:800; color:#ffffff;">Say what to do</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#e7d5c9;">“OK with precautions until 11 AM. Carry water, wear a hat.” One sentence you can act on.</p></div>
+            <div style="padding:20px; border-radius:18px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);"><div style="font-size:12px; font-weight:800; color:#fbbf24;">03</div><h3 style="margin:8px 0 0; font-size:17px; font-weight:800; color:#ffffff;">Make it feel local</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#e7d5c9;">An illustrated Abuja scene, Nigerian time and plain English, so it feels like it was made here.</p></div>
+            <div style="padding:20px; border-radius:18px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);"><div style="font-size:12px; font-weight:800; color:#fbbf24;">04</div><h3 style="margin:8px 0 0; font-size:17px; font-weight:800; color:#ffffff;">Friendly, never scary</h3><p style="margin:8px 0 0; font-size:14px; line-height:1.7; color:#e7d5c9;">A buddy character and warm colours keep you coming back, without turning heat into panic.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">What’s inside</div><h2 style="margin:10px 0 0; font-size:clamp(26px, 3.2vw, 40px); font-weight:800; line-height:1.2; letter-spacing:-0.025em; color:#111111; text-wrap:balance;">Five tabs, one job: get you through the day safely</h2></div>
+        <div style="margin-top:32px; display:flex; flex-direction:column; gap:22px;">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(20px, 4vw, 48px); padding:clamp(20px, 3vw, 36px); border-radius:28px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+            <div style="flex:0 0 min(100%, 250px); margin:0 auto;"><div style="border-radius:32px; padding:7px; background:#141418; box-shadow:0 18px 40px rgba(0,0,0,0.18);"><img src="assets/hb-home.jpg" alt="Home tab" loading="lazy" style="display:block; width:100%; border-radius:26px;"></div></div>
+            <div style="flex:1 1 320px; min-width:0;"><div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#c2410c;">Home</div><h3 style="margin:8px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; line-height:1.25; color:#111111;">Everything you need in one glance</h3><p style="margin:12px 0 0; font-size:15px; line-height:1.8; color:#4b5563;">Feels-like temperature, a colour-coded rating, humidity, UV, wind, rain and air quality, with one plain sentence that tells you what to do right now. Below it sit a heat dial, the day’s safest window and your water bottle.</p></div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap-reverse; align-items:center; gap:clamp(20px, 4vw, 48px); padding:clamp(20px, 3vw, 36px); border-radius:28px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+            <div style="flex:1 1 320px; min-width:0;"><div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#c2410c;">Forecast</div><h3 style="margin:8px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; line-height:1.25; color:#111111;">Plan around the heat, not into it</h3><p style="margin:12px 0 0; font-size:15px; line-height:1.8; color:#4b5563;">A seven-day view and an hour-by-hour strip coloured Safe, Caution, High risk or Dangerous. The best time out is pinned at the top, with sunrise, sunset, peak UV and your water target for the day.</p></div>
+            <div style="flex:0 0 min(100%, 250px); margin:0 auto;"><div style="border-radius:32px; padding:7px; background:#141418; box-shadow:0 18px 40px rgba(0,0,0,0.18);"><img src="assets/hb-windows.jpg" alt="Forecast tab with heat dial and today's safe windows" loading="lazy" style="display:block; width:100%; border-radius:26px;"></div></div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:clamp(20px, 4vw, 48px); padding:clamp(20px, 3vw, 36px); border-radius:28px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+            <div style="flex:0 0 min(100%, 250px); margin:0 auto;"><div style="border-radius:32px; padding:7px; background:#141418; box-shadow:0 18px 40px rgba(0,0,0,0.18);"><img src="assets/hb-schedule.jpg" alt="Water tab with an hourly drinking schedule" loading="lazy" style="display:block; width:100%; border-radius:26px;"></div></div>
+            <div style="flex:1 1 320px; min-width:0;"><div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#c2410c;">Water</div><h3 style="margin:8px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; line-height:1.25; color:#111111;">A daily water plan that follows the heat</h3><p style="margin:12px 0 0; font-size:15px; line-height:1.8; color:#4b5563;">Your target comes from your weight, how active you are and the day’s forecast. It’s spread across your waking hours, with more during the hottest stretch marked “do not skip”, plus simple advice for heading outdoors.</p></div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap-reverse; align-items:center; gap:clamp(20px, 4vw, 48px); padding:clamp(20px, 3vw, 36px); border-radius:28px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+            <div style="flex:1 1 320px; min-width:0;"><div style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#c2410c;">Alerts &amp; Me</div><h3 style="margin:8px 0 0; font-size:clamp(22px, 2.4vw, 30px); font-weight:800; line-height:1.25; color:#111111;">Reminders that work, and a buddy that’s yours</h3><p style="margin:12px 0 0; font-size:15px; line-height:1.8; color:#4b5563;">Push alerts, in-app reminders and calendar alarms that keep working even when the app is closed. In Me you pick one of twelve buddies, set your body and routine, change location, and add a doctor’s fluid limit if you have one.</p></div>
+            <div style="flex:0 0 min(100%, 250px); margin:0 auto;"><div style="border-radius:32px; padding:7px; background:#141418; box-shadow:0 18px 40px rgba(0,0,0,0.18);"><img src="assets/hb-alerts.jpg" alt="Alerts tab with push alerts and calendar alarms" loading="lazy" style="display:block; width:100%; border-radius:26px;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Challenges -->
+      <div data-reveal="1">
+        <div style="text-align:center;"><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Challenges</div><h2 style="margin:10px 0 0; font-size:clamp(26px, 3.2vw, 40px); font-weight:800; line-height:1.2; letter-spacing:-0.025em; color:#111111; text-wrap:balance;">What was harder than it looked</h2></div>
+        <div style="margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap:16px;">
+          <div style="padding:26px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="display:flex; align-items:center; gap:10px;"><span style="width:32px; height:32px; border-radius:10px; background:#0ea5e9; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;">1</span><h3 style="margin:0; font-size:17px; font-weight:800; color:#111111;">Showing water without taking over</h3></div><p style="margin:12px 0 0; font-size:14.5px; line-height:1.75; color:#4b5563;">My first version filled the whole Water page like a glass. It looked fun, but it buried everything else. I moved tracking onto Home as a real bottle with a side scale that fills as you drink, and kept the Water tab for the plan and schedule.</p></div>
+          <div style="padding:26px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="display:flex; align-items:center; gap:10px;"><span style="width:32px; height:32px; border-radius:10px; background:#ea580c; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;">2</span><h3 style="margin:0; font-size:17px; font-weight:800; color:#111111;">Getting reminders to actually arrive</h3></div><p style="margin:12px 0 0; font-size:14.5px; line-height:1.75; color:#4b5563;">Push notifications on the web need a server and the right permissions on every phone. Dragging files onto Netlify broke the server side, so I switched to deploying from the command line. I also added calendar alarms as a backup that works with no server at all.</p></div>
+          <div style="padding:26px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="display:flex; align-items:center; gap:10px;"><span style="width:32px; height:32px; border-radius:10px; background:#16a34a; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;">3</span><h3 style="margin:0; font-size:17px; font-weight:800; color:#111111;">Being helpful without being unsafe</h3></div><p style="margin:12px 0 0; font-size:14.5px; line-height:1.75; color:#4b5563;">More water isn’t right for everyone. People with heart, kidney or liver conditions can be harmed by it. HeatBud asks about this, keeps targets inside a doctor’s limit, and includes a guide to warning signs.</p></div>
+          <div style="padding:26px; border-radius:22px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);"><div style="display:flex; align-items:center; gap:10px;"><span style="width:32px; height:32px; border-radius:10px; background:#7c3aed; color:#ffffff; display:inline-flex; align-items:center; justify-content:center; font-size:13px; font-weight:800;">4</span><h3 style="margin:0; font-size:17px; font-weight:800; color:#111111;">Making the city look like home</h3></div><p style="margin:12px 0 0; font-size:14.5px; line-height:1.75; color:#4b5563;">The illustrated Abuja scene only works if people recognise it. Getting landmarks to look accurate and real, not generic, is still a work in progress.</p></div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap:18px;">
+        <div style="padding:clamp(24px, 3vw, 36px); border-radius:28px; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.9); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+          <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Where it is today</div>
+          <h2 style="margin:10px 0 0; font-size:clamp(24px, 2.8vw, 34px); font-weight:800; line-height:1.2; letter-spacing:-0.02em; color:#111111;">Live, installable and in my pocket</h2>
+          <div style="margin-top:20px; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px;">
+            <div style="padding:16px; border-radius:16px; background:#fff7ed; border:1px solid #fed7aa;"><div style="font-size:28px; font-weight:800; color:#9a3412;">5</div><div style="font-size:12.5px; font-weight:600; color:#7c2d12;">Tabs: Home, Forecast, Water, Alerts, Me</div></div>
+            <div style="padding:16px; border-radius:16px; background:#f0f9ff; border:1px solid #bae6fd;"><div style="font-size:28px; font-weight:800; color:#075985;">7</div><div style="font-size:12.5px; font-weight:600; color:#0c4a6e;">Days of heat, UV and rain forecast</div></div>
+            <div style="padding:16px; border-radius:16px; background:#f0fdf4; border:1px solid #bbf7d0;"><div style="font-size:28px; font-weight:800; color:#166534;">12</div><div style="font-size:12.5px; font-weight:600; color:#14532d;">Buddy characters to pick from</div></div>
+            <div style="padding:16px; border-radius:16px; background:#f5f3ff; border:1px solid #ddd6fe;"><div style="font-size:28px; font-weight:800; color:#5b21b6;">3</div><div style="font-size:12.5px; font-weight:600; color:#4c1d95;">Ways to be reminded: push, in-app, calendar</div></div>
+          </div>
+          <p style="margin:18px 0 0; font-size:14.5px; line-height:1.75; color:#4b5563;">I designed it, built it and shipped it myself. It’s also my first real step from product designer to design engineer.</p>
+        </div>
+        <div style="padding:clamp(24px, 3vw, 36px); border-radius:28px; background:linear-gradient(160deg,#111827,#1f2937); color:#ffffff;">
+          <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#fdba74;">Still improving</div>
+          <h2 style="margin:10px 0 0; font-size:clamp(24px, 2.8vw, 34px); font-weight:800; line-height:1.2; letter-spacing:-0.02em; color:#ffffff;">What I’m working on next</h2>
+          <ul style="margin:18px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px;">
+            <li style="display:flex; gap:12px; font-size:14.5px; line-height:1.65; color:#e5e7eb;"><span style="color:#fbbf24;" aria-hidden="true">●</span>Making push alerts reliable on every phone.</li>
+            <li style="display:flex; gap:12px; font-size:14.5px; line-height:1.65; color:#e5e7eb;"><span style="color:#fbbf24;" aria-hidden="true">●</span>More accurate, realistic landmark and city scenes.</li>
+            <li style="display:flex; gap:12px; font-size:14.5px; line-height:1.65; color:#e5e7eb;"><span style="color:#fbbf24;" aria-hidden="true">●</span>Feedback from people who spend their day outdoors.</li>
+          </ul>
+          <p style="margin:18px 0 0; font-size:13.5px; line-height:1.7; color:#cbd5e1;">This case study updates as the app does. Try it and tell me what would help you.</p>
+          <a href="https://heatbud.netlify.app/" target="_blank" rel="noopener" style="margin-top:20px; display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 24px; border-radius:50px; background:#ffffff; color:#111111; font-size:13px; font-weight:800; text-decoration:none;" style-hover="transform:translateY(-2px); color:#111111;">Open heatbud.netlify.app <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div data-reveal="1" onClick="{{ nextCaseGo }}" style="cursor:pointer; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:28px 32px; border-radius:22px; background:rgba(255,255,255,0.68); border:1.5px solid rgba(255,255,255,0.9); backdrop-filter:blur(18px) saturate(1.8); -webkit-backdrop-filter:blur(18px) saturate(1.8); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset;" style-hover="transform:translateY(-3px);">
+        <div><div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">Next case study · {{ nextCaseCount }}</div><div style="margin-top:6px; font-size:20px; font-weight:800; color:#111111;">{{ nextCaseTitle }}</div></div>
+        <div style="display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 24px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700;">Read case study <span>→</span></div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
   <!-- ============ CASE 2 / 3 placeholders ============ -->
   <sc-if value="{{ isCasePH }}" hint-placeholder-val="{{ false }}">
   <div data-screen-label="Case Study Placeholder" style="padding:130px 52px 88px;">
@@ -1985,7 +2203,7 @@
           <div style="font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#111111;">{{ pcase.eyebrow }}</div>
           <h1 style="margin:0; font-size:clamp(32px, 3.6vw, 50px); font-weight:800; letter-spacing:-0.02em; color:#111111;">{{ pcase.title }}</h1>
           <p style="margin:0; font-size:16px; line-height:1.65; color:#6b7280; text-wrap:pretty;">{{ pcase.desc }}</p>
-          <div style="margin-top:8px; display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:14px; overflow:hidden;">
+          <div style="margin-top:8px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 120px), 1fr)); gap:1px; background:rgba(0,0,0,0.06); border:1px solid rgba(0,0,0,0.06); border-radius:14px; overflow:hidden;">
             <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Role</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">Lead Designer</div></div>
             <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Timeline</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#2d2d2d;">{{ pcase.year }}</div></div>
             <div style="background:rgba(255,255,255,0.8); padding:14px 16px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#9ca3af;">Status</div><div style="margin-top:4px; font-size:13px; font-weight:600; color:#f59e0b;">In progress</div></div>
@@ -2050,7 +2268,7 @@
           </div>
 
           <h3 style="margin:36px 0 0; font-size:16px; font-weight:800; color:#111111;">What I do</h3>
-          <div style="margin-top:14px; display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+          <div style="margin-top:14px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:12px;">
             <sc-for list="{{ services }}" as="sv" hint-placeholder-count="4">
               <div style="display:flex; gap:12px; padding:16px 18px; border-radius:16px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(14px); transition:all 0.25s ease;" style-hover="transform:translateY(-3px); box-shadow:0 10px 26px rgba(0,0,0,0.08);">
                 <span style="font-size:18px;">{{ sv.icon }}</span>
@@ -2124,6 +2342,185 @@
   </div>
   </sc-if>
 
+
+  <!-- ============ BLOG ============ -->
+  <sc-if value="{{ isBlog }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Blog" style="position:relative; padding:130px 52px 96px;">
+    <div style="position:absolute; top:60px; right:4%; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle, rgba(251,146,60,0.22), transparent 65%); filter:blur(40px); animation:nkFlow 26s ease-in-out infinite; pointer-events:none;"></div>
+    <div style="position:absolute; top:220px; left:2%; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle, rgba(14,165,233,0.2), transparent 65%); filter:blur(40px); animation:nkFlow 30s ease-in-out infinite 4s; pointer-events:none;"></div>
+    <div style="position:relative; max-width:1160px; margin:0 auto;">
+      <a href="#home" onClick="{{ goHomeLink }}" style="display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); font-size:13px; font-weight:700; color:#1a1a1a; text-decoration:none; box-shadow:0 4px 20px rgba(14,165,233,0.15), 0 0 0 1px rgba(255,255,255,0.6) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 8px 26px rgba(14,165,233,0.3); color:#1a1a1a;"><span aria-hidden="true">←</span> Back home</a>
+
+      <div style="margin-top:36px; display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px;">
+        <div style="max-width:640px;">
+          <div style="display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#6b7280;"><span style="width:7px; height:7px; border-radius:50%; background:linear-gradient(135deg,#fbbf24,#ea580c); box-shadow:0 0 0 3px rgba(251,146,60,0.18);"></span>The Journal</div>
+          <h1 style="margin:8px 0 0; font-size:clamp(34px, 4.4vw, 58px); font-weight:800; line-height:1.08; letter-spacing:-0.03em; color:#111111;">What I’m learning as I design, <span style="background:linear-gradient(90deg,#0ea5e9,#6366f1); -webkit-background-clip:text; background-clip:text; color:transparent;">and build.</span></h1>
+          <p style="margin:16px 0 0; font-size:16px; line-height:1.7; color:#4b5563;">I’m Philip. I design apps, brands and systems, mostly for people across Africa, and lately I’ve been learning to build them too. This is where I write down what worked, what didn’t, and what surprised me along the way.</p>
+        </div>
+        <div data-blogstats="1" style="display:flex; gap:28px; padding:16px 24px; border-radius:18px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(14px); box-shadow:0 4px 20px rgba(0,0,0,0.05);">
+          <div><div style="font-size:24px; font-weight:800; color:#111111;">{{ blogCount }}</div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#6b7280;">Posts</div></div>
+          <div><div style="font-size:24px; font-weight:800; color:#111111;">4</div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#6b7280;">Topics</div></div>
+          <div><div style="font-size:24px; font-weight:800; color:#111111;">{{ blogLatest }}</div><div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#6b7280;">Latest</div></div>
+        </div>
+      </div>
+
+      <!-- Filters + search -->
+      <div style="margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;">
+        <div data-blogfilters="1" role="group" aria-label="Filter posts by topic" style="display:flex; flex-wrap:wrap; gap:8px;">
+          <sc-for list="{{ blogFilters }}" as="f" hint-placeholder-count="5">
+            <button data-blogbtn="1" type="button" aria-pressed="{{ f.pressed }}" onClick="{{ f.pick }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:8px; height:40px; padding:0 16px; border-radius:50px; border:1.5px solid {{ f.bc }}; background:{{ f.bg }}; color:{{ f.c }}; font-size:13px; font-weight:700; backdrop-filter:blur(14px); transition:all 0.2s ease;"><span style="width:8px; height:8px; border-radius:50%; background:{{ f.dot }};"></span>{{ f.label }}<span style="font-size:11px; font-weight:800; opacity:0.7;">{{ f.n }}</span></button>
+          </sc-for>
+        </div>
+        <label data-blogsearchwrap="1" style="position:relative; display:block; flex:0 1 300px; min-width:220px;">
+          <span style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">Search posts</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="position:absolute; left:16px; top:50%; z-index:2; transform:translateY(-50%); pointer-events:none;"><circle cx="7" cy="7" r="5" fill="none" stroke="#6b7280" stroke-width="1.7"></circle><path d="M11 11 L14.5 14.5" stroke="#6b7280" stroke-width="1.7" stroke-linecap="round"></path></svg>
+          <input data-blogsearch="1" type="search" value="{{ blogQ }}" onChange="{{ onBlogQ }}" placeholder="Search posts" style="width:100%; box-sizing:border-box; height:44px; padding:0 18px 0 42px; border-radius:50px; border:1.5px solid rgba(0,0,0,0.08); background:rgba(255,255,255,0.8); backdrop-filter:blur(14px); font-family:'Plus Jakarta Sans', sans-serif; font-size:14px; font-weight:600; color:#111111; outline:none; transition:all 0.2s ease;">
+        </label>
+      </div>
+
+      <!-- Featured post -->
+      <sc-if value="{{ blogShowFeat }}" hint-placeholder-val="{{ true }}">
+        <a data-blogcard="1" data-blogfeat="1" href="#{{ blogFeat.route }}" onClick="{{ blogFeat.open }}" style="margin-top:28px; display:flex; flex-wrap:wrap; border-radius:26px; overflow:hidden; background:rgba(255,255,255,0.75); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(14px); box-shadow:0 8px 32px rgba(0,0,0,0.07), 0 1px 0 rgba(255,255,255,0.9) inset; color:#111111; text-decoration:none;">
+          <div style="position:relative; flex:1 1 520px; min-height:340px; overflow:hidden; background:#e8e8e5;">
+            <img src="{{ blogFeat.cover }}" alt="" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+            <span style="position:absolute; top:18px; left:18px; display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:50px; background:#111111; color:#ffffff; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;"><span style="color:#fbbf24;" aria-hidden="true">★</span>Featured</span>
+          </div>
+          <div style="flex:1 1 380px; min-width:280px; padding:40px 40px 36px; display:flex; flex-direction:column; gap:14px;">
+            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;"><span style="padding:6px 12px; border-radius:50px; background:{{ blogFeat.catBg }}; color:{{ blogFeat.catC }}; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em;">{{ blogFeat.cat }}</span><span style="font-size:12px; font-weight:700; color:#6b7280;">{{ blogFeat.date }} · {{ blogFeat.read }} min read</span></div>
+            <h2 style="margin:0; font-size:clamp(24px, 2.6vw, 34px); font-weight:800; line-height:1.2; letter-spacing:-0.02em; color:#111111; text-wrap:balance;">{{ blogFeat.title }}</h2>
+            <p style="margin:0; font-size:15px; line-height:1.7; color:#4b5563; text-wrap:pretty;">{{ blogFeat.excerpt }}</p>
+            <div style="margin-top:auto; padding-top:14px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:10px;"><img src="assets/portrait-about.jpg" alt="" draggable="false" style="width:36px; height:36px; border-radius:50%; object-fit:cover; object-position:center 18%;"><div><div style="font-size:13px; font-weight:800; color:#111111;">Philip Nosike</div><div style="font-size:11px; font-weight:600; color:#6b7280;">Product Designer</div></div></div>
+              <span style="display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 22px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700; box-shadow:0 6px 18px rgba(14,165,233,0.35);">Read post <span aria-hidden="true">→</span></span>
+            </div>
+          </div>
+        </a>
+      </sc-if>
+
+      <!-- Grid -->
+      <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:20px;">
+        <sc-for list="{{ blogList }}" as="p" hint-placeholder-count="6">
+          <a data-blogcard="1" href="#{{ p.route }}" onClick="{{ p.open }}" style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(12px); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; color:#111111; text-decoration:none;">
+            <div style="position:relative; aspect-ratio:16 / 10; overflow:hidden; background:#e8e8e5;">
+              <img src="{{ p.cover }}" alt="" draggable="false" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:14px; left:14px; padding:6px 12px; border-radius:50px; background:rgba(255,255,255,0.9); backdrop-filter:blur(10px); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:{{ p.catC }};">{{ p.cat }}</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:10px; padding:22px 24px 24px;">
+              <div style="font-size:11px; font-weight:700; color:#6b7280;">{{ p.date }} · {{ p.read }} min read</div>
+              <h3 style="margin:0; font-size:19px; font-weight:800; line-height:1.35; letter-spacing:-0.01em; color:#111111; text-wrap:balance;">{{ p.title }}</h3>
+              <p style="margin:0; font-size:14px; line-height:1.65; color:#4b5563; text-wrap:pretty;">{{ p.excerpt }}</p>
+              <div style="margin-top:auto; padding-top:8px; font-size:13px; font-weight:700; color:#0369a1;">Read post →</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+
+      <!-- Empty state -->
+      <sc-if value="{{ blogEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:8px; padding:56px 24px; border-radius:22px; text-align:center; background:rgba(255,255,255,0.6); border:1.5px dashed rgba(0,0,0,0.12);">
+          <div style="font-size:30px;" aria-hidden="true">✎</div>
+          <h2 style="margin:10px 0 0; font-size:20px; font-weight:800; color:#111111;">No posts match “{{ blogQ }}”</h2>
+          <p style="margin:8px auto 0; max-width:380px; font-size:14px; line-height:1.6; color:#4b5563;">Try another word, or clear the search to see everything in this topic.</p>
+          <button data-blogbtn="1" type="button" onClick="{{ clearBlogQ }}" style="margin-top:18px; cursor:pointer; height:42px; padding:0 22px; border-radius:50px; border:2px solid #0ea5e9; background:rgba(255,255,255,0.7); color:#0369a1; font-size:13px; font-weight:700;">Clear search</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ BLOG POST ============ -->
+  <sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Blog post" style="position:relative; padding:130px 52px 96px;">
+    <div style="position:absolute; top:40px; left:50%; width:520px; height:320px; transform:translateX(-50%); border-radius:50%; background:radial-gradient(ellipse, {{ post.glow }}, transparent 65%); filter:blur(48px); pointer-events:none;"></div>
+    <div data-posthead="1" style="position:relative; max-width:760px; margin:0 auto;">
+      <a href="#blog" onClick="{{ goBlog }}" style="display:inline-flex; align-items:center; gap:8px; height:42px; padding:0 20px; border-radius:50px; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(18px) saturate(1.8); font-size:13px; font-weight:700; color:#1a1a1a; text-decoration:none; box-shadow:0 4px 20px rgba(14,165,233,0.15), 0 0 0 1px rgba(255,255,255,0.6) inset; transition:all 0.25s ease;" style-hover="transform:translateY(-2px); box-shadow:0 8px 26px rgba(14,165,233,0.3); color:#1a1a1a;"><span aria-hidden="true">←</span> All posts</a>
+      <div style="margin-top:36px; display:flex; flex-wrap:wrap; align-items:center; gap:10px;">
+        <span style="padding:6px 12px; border-radius:50px; background:{{ post.catBg }}; color:{{ post.catC }}; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em;">{{ post.cat }}</span>
+        <span style="font-size:12px; font-weight:700; color:#6b7280;">{{ post.date }} · {{ post.read }} min read</span>
+      </div>
+      <h1 style="margin:16px 0 0; font-size:clamp(32px, 4.2vw, 52px); font-weight:800; line-height:1.12; letter-spacing:-0.025em; color:#111111; text-wrap:balance;">{{ post.title }}</h1>
+      <p style="margin:18px 0 0; font-size:19px; line-height:1.6; color:#4b5563; text-wrap:pretty;">{{ post.excerpt }}</p>
+      <div style="margin-top:26px; display:flex; align-items:center; gap:12px;">
+        <img src="assets/portrait-about.jpg" alt="" draggable="false" style="width:46px; height:46px; border-radius:50%; object-fit:cover; object-position:center 18%; border:2px solid #ffffff; box-shadow:0 4px 14px rgba(0,0,0,0.12);">
+        <div><div style="font-size:14px; font-weight:800; color:#111111;">Philip Nosike</div><div style="font-size:12px; font-weight:600; color:#6b7280;">Product Designer · Noskshade</div></div>
+      </div>
+    </div>
+
+    <div style="position:relative; max-width:1000px; margin:40px auto 0; border-radius:26px; overflow:hidden; aspect-ratio:16 / 9; background:#e8e8e5; box-shadow:0 20px 50px rgba(0,0,0,0.12);">
+      <img src="{{ post.cover }}" alt="{{ post.coverAlt }}" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <div data-article="1" style="position:relative; max-width:720px; margin:52px auto 0;">
+      <sc-for list="{{ post.blocks }}" as="b" hint-placeholder-count="6">
+        <sc-if value="{{ b.isP }}" hint-placeholder-val="{{ true }}"><p style="margin:0 0 22px; color:#1f2937; text-wrap:pretty;">{{ b.text }}</p></sc-if>
+        <sc-if value="{{ b.isH }}" hint-placeholder-val="{{ false }}"><h2 style="margin:44px 0 16px; font-size:26px; font-weight:800; line-height:1.3; letter-spacing:-0.015em; color:#111111;">{{ b.text }}</h2></sc-if>
+        <sc-if value="{{ b.isQ }}" hint-placeholder-val="{{ false }}"><blockquote style="margin:36px 0; padding:6px 0 6px 26px; border-left:4px solid {{ post.bar }}; font-size:23px; font-weight:700; line-height:1.5; letter-spacing:-0.01em; color:#111111;">{{ b.text }}</blockquote></sc-if>
+        <sc-if value="{{ b.isImg }}" hint-placeholder-val="{{ false }}"><figure style="margin:36px 0;"><div style="max-width:{{ b.maxw }}; margin:0 auto; border-radius:18px; overflow:hidden; background:#e8e8e5; box-shadow:0 10px 30px rgba(0,0,0,0.08);"><img src="{{ b.src }}" alt="{{ b.alt }}" draggable="false" loading="lazy" style="display:block; width:100%; height:auto;"></div><figcaption style="margin-top:12px; font-size:13px; line-height:1.5; color:#6b7280; text-align:center;">{{ b.text }}</figcaption></figure></sc-if>
+        <sc-if value="{{ b.isList }}" hint-placeholder-val="{{ false }}"><ul style="margin:0 0 26px; padding-left:22px;"><sc-for list="{{ b.items }}" as="li" hint-placeholder-count="3"><li style="margin:0 0 10px; color:#1f2937;">{{ li.t }}</li></sc-for></ul></sc-if>
+        <sc-if value="{{ b.isCta }}" hint-placeholder-val="{{ false }}"><div style="margin:20px 0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; padding:20px 22px; border-radius:18px; background:{{ b.ctaBg }}; border:1.5px solid {{ b.ctaBc }};"><p style="margin:0; flex:1 1 260px; font-weight:700; color:{{ b.ctaTc }};">{{ b.text }}</p><a href="{{ b.href }}" target="{{ b.target }}" rel="noopener" onClick="{{ b.go }}" style="flex:0 0 auto; display:inline-flex; align-items:center; height:44px; padding:0 22px; border-radius:50px; background:{{ b.ctaBtn }}; color:#ffffff; font-size:13.5px; font-weight:800; text-decoration:none; box-shadow:{{ b.ctaSh }};">{{ b.label }}</a></div></sc-if>
+        <sc-if value="{{ b.isCode }}" hint-placeholder-val="{{ false }}"><pre style="margin:28px 0; padding:22px 24px; border-radius:16px; background:#0c1d3d; color:#e2e8f0; overflow-x:auto; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:13.5px; line-height:1.7; box-shadow:0 10px 30px rgba(7,15,34,0.2);"><code>{{ b.text }}</code></pre></sc-if>
+      </sc-for>
+
+      <div style="margin-top:40px; display:flex; flex-wrap:wrap; gap:8px;">
+        <sc-for list="{{ post.tagList }}" as="t" hint-placeholder-count="3"><span style="padding:6px 13px; border-radius:50px; border:1px solid rgba(0,0,0,0.1); background:rgba(255,255,255,0.7); font-size:11px; font-weight:700; color:#374151;">#{{ t.t }}</span></sc-for>
+      </div>
+
+      <!-- Share -->
+      <div data-blogshare="1" style="margin-top:28px; padding:18px 0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; border-top:1px solid rgba(0,0,0,0.08); border-bottom:1px solid rgba(0,0,0,0.08);">
+        <div style="font-size:13px; font-weight:800; color:#111111;">Share this post</div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <a href="{{ postShareLi }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:38px; padding:0 16px; border-radius:50px; background:rgba(255,255,255,0.75); border:1.5px solid rgba(0,0,0,0.08); font-size:12px; font-weight:700; color:#0a66c2; text-decoration:none;">LinkedIn</a>
+          <a href="{{ postShareX }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:38px; padding:0 16px; border-radius:50px; background:rgba(255,255,255,0.75); border:1.5px solid rgba(0,0,0,0.08); font-size:12px; font-weight:700; color:#111111; text-decoration:none;">X</a>
+          <button data-blogbtn="1" type="button" onClick="{{ copyPostLink }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 16px; border-radius:50px; background:{{ copyBg }}; border:1.5px solid {{ copyBc }}; font-size:12px; font-weight:700; color:{{ copyC }}; transition:all 0.2s ease;">{{ copyLabel }}</button>
+        </div>
+      </div>
+
+      <!-- Author card -->
+      <div style="margin-top:36px; position:relative; overflow:hidden; display:flex; flex-wrap:wrap; align-items:center; gap:22px; padding:28px 30px; border-radius:24px; background:radial-gradient(ellipse 80% 70% at 80% 0%, #1d3f7a 0%, #0c1d3d 55%, #070f22 100%); box-shadow:0 20px 50px rgba(7,15,34,0.22);">
+        <div style="position:absolute; top:-60px; right:-30px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(56,189,248,0.35), transparent 65%); filter:blur(28px); pointer-events:none;"></div>
+        <img src="assets/portrait-about.jpg" alt="Philip Nosike" draggable="false" style="position:relative; width:84px; height:84px; border-radius:20px; object-fit:cover; object-position:center 18%; background:#e2e8f0;">
+        <div style="position:relative; flex:1 1 300px; min-width:220px;">
+          <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#93c5fd;">Written by</div>
+          <div style="margin-top:4px; font-size:19px; font-weight:800; color:#ffffff;">Philip Nosike</div>
+          <p style="margin:6px 0 0; font-size:14px; line-height:1.65; color:#cbd5e1;">Product designer working across fintech, edtech and consumer products, and learning to ship what I design.</p>
+        </div>
+        <a href="#contact" onClick="{{ goContactLink }}" style="position:relative; display:inline-flex; align-items:center; gap:8px; height:44px; padding:0 22px; border-radius:50px; background:#ffffff; color:#111111; font-size:13px; font-weight:700; text-decoration:none; box-shadow:0 8px 24px rgba(0,0,0,0.25);" style-hover="transform:translateY(-2px); color:#111111;">Work with me <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <!-- Keep reading -->
+    <div style="position:relative; max-width:1160px; margin:88px auto 0;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+        <h2 style="margin:0; font-size:clamp(24px, 2.6vw, 32px); font-weight:800; letter-spacing:-0.02em; color:#111111;">Keep reading</h2>
+        <a href="#blog" onClick="{{ goBlog }}" style="font-size:13px; font-weight:700; color:#0369a1; text-decoration:none;" style-hover="color:#0ea5e9;">All posts →</a>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap:20px;">
+        <sc-for list="{{ postRelated }}" as="p" hint-placeholder-count="3">
+          <a data-blogcard="1" href="#{{ p.route }}" onClick="{{ p.open }}" style="display:flex; flex-direction:column; border-radius:20px; overflow:hidden; background:rgba(255,255,255,0.72); border:1.5px solid rgba(255,255,255,0.85); backdrop-filter:blur(12px); box-shadow:0 4px 24px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,0.9) inset; color:#111111; text-decoration:none;">
+            <div style="position:relative; aspect-ratio:16 / 10; overflow:hidden; background:#e8e8e5;">
+              <img src="{{ p.cover }}" alt="" draggable="false" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:14px; left:14px; padding:6px 12px; border-radius:50px; background:rgba(255,255,255,0.9); backdrop-filter:blur(10px); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:{{ p.catC }};">{{ p.cat }}</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:10px; padding:22px 24px 24px;">
+              <div style="font-size:11px; font-weight:700; color:#6b7280;">{{ p.date }} · {{ p.read }} min read</div>
+              <h3 style="margin:0; font-size:19px; font-weight:800; line-height:1.35; letter-spacing:-0.01em; color:#111111; text-wrap:balance;">{{ p.title }}</h3>
+              <div style="margin-top:auto; padding-top:8px; font-size:13px; font-weight:700; color:#0369a1;">Read post →</div>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- Post not found -->
+  <sc-if value="{{ isPostMissing }}" hint-placeholder-val="{{ false }}">
+  <div data-screen-label="Post not found" style="padding:180px 52px 120px; text-align:center;">
+    <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color:#6b7280;">404 · Journal</div>
+    <h1 style="margin:10px 0 0; font-size:clamp(28px, 3.4vw, 42px); font-weight:800; letter-spacing:-0.02em; color:#111111;">This post has moved or doesn’t exist.</h1>
+    <a href="#blog" onClick="{{ goBlog }}" style="margin-top:24px; display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 24px; border-radius:50px; background:linear-gradient(135deg,#0ea5e9,#0284c7); color:#ffffff; font-size:13px; font-weight:700; text-decoration:none;" style-hover="color:#ffffff; transform:translateY(-2px);">Browse all posts →</a>
+  </div>
+  </sc-if>
 
   <!-- Experience story modal -->
   <sc-if value="{{ expOpen }}" hint-placeholder-val="{{ false }}">
@@ -2504,6 +2901,326 @@ class Component extends DCLogic {
     }, 80);
   }
 
+  // ===== BLOG DATA =====
+  // Placeholder posts. When the Supabase backend is connected, this list is
+  // replaced by posts loaded from the database (same fields).
+  _blogPosts() {
+    return [
+      { slug: 'heatbud-el-nino', cat: 'uiux', featured: true, date: '2026-11-11', read: 8,
+        title: 'I kept forgetting to drink water in the heat, so I designed and built HeatBud',
+        excerpt: 'With El Niño in the news and my days packed with work, I kept noticing the heat only after it had already got to me. So I made a small app to warn me first, and it’s live today.',
+        cover: 'assets/hb-cover.jpg', coverAlt: 'Three HeatBud app screens on a warm orange background',
+        tags: ['heatbud', 'product design', 'design engineering', 'nigeria'],
+        blocks: [
+          ['p', 'For weeks, everyone around me was talking about El Niño.'],
+          ['p', 'Hotter months. Drier air. Afternoons that feel heavier than the number on the weather app.'],
+          ['p', 'And I was too busy to notice any of it.'],
+          ['p', 'My days are mostly back-to-back design work. I’d look up mid-afternoon with a dull headache, realise my bottle was still full, and only then notice how hot the room had become.'],
+          ['p', 'That’s when it clicked: I wasn’t short of weather information. I was short of a nudge at the right time.'],
+          ['h', 'The problem with weather apps'],
+          ['p', 'Every weather app I opened gave me a number. 34°. 36°. Partly cloudy.'],
+          ['p', 'But a number doesn’t tell you what to do with it. Is it safe to go out at 1 PM? Should I move that errand to the evening? How much water do I actually need today?'],
+          ['q', 'A weather number is data. What people need in the heat is a decision.'],
+          ['p', 'And I’m one of the lucky ones who works indoors. Millions of Nigerians spend their whole day outside: riders, traders, builders, delivery staff, students walking to class. For them, heat isn’t an inconvenience. It decides how the day goes.'],
+          ['h', 'So I designed a buddy, not a dashboard'],
+          ['p', 'I gave myself a few rules before drawing a single screen:'],
+          ['l', ['Lead with how hot it feels, not the air temperature, because humidity changes everything.', 'Always say what to do next, in one plain sentence.', 'Make it feel like it was made here: Abuja on screen, Nigerian time, everyday English.', 'Keep it friendly. Heat is serious, but fear doesn’t make people open an app twice.']],
+          ['img', 'assets/hb-home.jpg', 'HeatBud home screen showing feels-like temperature over an illustrated Abuja scene', 'Home: how hot it feels, the risk level, and one sentence telling you what to do.', '340px'],
+          ['p', 'Open HeatBud and the first thing you see is the feels-like temperature over an illustrated Abuja scene, with a rating from Safe to Dangerous and a line like “OK with precautions until about 11 AM. Carry water, wear a hat, keep to shade.”'],
+          ['p', 'Underneath sits a heat dial, the best time to go out today, and a water bottle that fills up as you drink.'],
+          ['h', 'The water bottle took three tries'],
+          ['p', 'My first idea filled the whole Water page like a glass. It looked fun in a mockup. In use, it took over the screen and buried everything else.'],
+          ['p', 'So I moved water tracking onto Home as a real bottle with a side scale, the way you’d check one on your desk. The Water tab now holds the plan: a schedule across your day, with more water during the hottest hours, marked “do not skip.”'],
+          ['img', 'assets/hb-water.jpg', 'HeatBud heat dial and water bottle tracker', 'The bottle tells you how far behind you are and how much to drink now.', '340px'],
+          ['p', 'Your target comes from your weight, how active you are and the day’s forecast. Someone doing manual work outside gets a very different plan from someone at a desk.'],
+          ['h', 'The part I didn’t expect: safety'],
+          ['p', '“Drink more water” sounds like harmless advice. It isn’t for everyone. People with heart, kidney or liver conditions, or on water pills, can be harmed by drinking too much.'],
+          ['p', 'So HeatBud asks. If a doctor has set a fluid limit, the app keeps your target inside it, and there’s a short guide to the warning signs of heat illness.'],
+          ['q', 'Designing for health means designing for the person the feature could hurt, not just the person it helps.'],
+          ['h', 'Becoming a designer who ships'],
+          ['p', 'HeatBud is also my first serious build. I’m learning to code by making things I designed myself, and this one taught me fast.'],
+          ['p', 'Push notifications were the hardest part. On the web they need a server and the right permissions on every phone. Dragging my files onto Netlify kept breaking that, so I learned to deploy from the command line instead. I also added calendar alarms as a backup, so reminders still fire with the app closed and no server involved.'],
+          ['img', 'assets/hb-buddy.jpg', 'HeatBud settings with twelve buddy characters', 'Pick a buddy, set your routine, and add a doctor’s fluid limit if you have one.', '340px'],
+          ['p', 'And yes, there are twelve buddies. Sunny, Spike the cactus, Melon, Gecko and friends. Small things like that are why people come back.'],
+          ['h', 'Where it is now'],
+          ['p', 'HeatBud is live. It opens on any phone and installs to your home screen like an app. It has five tabs: Home, Forecast, Water, Alerts and Me.'],
+          ['p', 'It isn’t finished, and I don’t want it to be. Next I’m working on more reliable push alerts, more realistic landmark scenes, and, most of all, feedback from people who actually spend their day in the sun.'],
+          ['cta', 'Try HeatBud on your phone and tell me what would make it more useful for you.', 'https://heatbud.netlify.app/', 'Open HeatBud ↗', ''],
+          ['cta', 'Want the full design story, with every screen and decision?', '#case-heatbud', 'Read the case study →', 'case-heatbud', 'blue'],
+          ['p', 'Stay cool out there. And drink some water. Your buddy says so.']
+        ] },
+      { slug: 'ai-designs-everywhere-consulting', cat: 'uiux', date: '2026-11-07', read: 6,
+        title: 'AI can design a screen in ten seconds. That’s exactly why you still need a designer.',
+        excerpt: 'Last month a founder showed me 40 screens he’d generated over a weekend. They looked great. None of them answered the one question his users were asking.',
+        cover: 'assets/lc-hero.jpg', coverAlt: 'A consulting website hero section',
+        tags: ['consulting', 'ai', 'founders'],
+        blocks: [
+          ['p', 'A founder sent me a Figma link on a Monday morning.'],
+          ['p', '“I did the whole app over the weekend with AI. Can you just polish it?”'],
+          ['p', 'Forty screens. Clean spacing. Nice gradients. Honestly, it looked better than a lot of first drafts I’ve seen from people.'],
+          ['p', 'Then I asked him one question: “What should a new user do first?”'],
+          ['p', 'He scrolled for a while. He couldn’t point to it. Neither could the app.'],
+          ['h', 'Making screens is no longer the hard part'],
+          ['p', 'This is the shift nobody really talks about. AI didn’t make design easy. It made making things easy.'],
+          ['p', 'You can now produce a hundred good-looking screens before lunch. What you can’t produce that fast is the judgement behind them: which ten screens actually matter, what to cut, what your users don’t trust yet, and what will fall apart when a real person with a slow phone and a full inbox tries to use it.'],
+          ['q', 'When everyone can make something that looks finished, deciding what it should be becomes the real work.'],
+          ['h', 'What consulting looks like now'],
+          ['p', 'More of my work has quietly moved from “design this for me” to “help me make sense of what I already have.” In practice that means:'],
+          ['l', ['Looking at what a team has generated and saying, kindly but clearly, what to keep and what to throw away.', 'Finding the one flow that decides whether people stay, and making that flow excellent before anything else.', 'Turning a pile of screens into a small system, so the product still feels like one product six months from now.', 'Bringing the context a prompt can’t: who your users are, what they’ve been burned by, and how they really pay, share and sign up.']],
+          ['p', 'That last one matters a lot here. Most AI tools learned design from products built for other markets. If your users are in Lagos, Nairobi or Johannesburg, the defaults are often quietly wrong.'],
+          ['h', 'AI isn’t the enemy'],
+          ['p', 'I use it every day. It helps me explore faster, write rough copy, and test ideas I’d never have had time for.'],
+          ['p', 'But a tool that can make anything still needs someone to decide what’s worth making. That’s the job now.'],
+          ['p', 'If you’re sitting on a folder of AI screens and a quiet feeling that something isn’t right, that’s my favourite kind of conversation. Let’s talk.']
+        ] },
+      { slug: 'designing-trust-into-savings', cat: 'uiux', date: '2026-11-04', read: 6,
+        title: 'Nobody told me the hardest part of designing a savings app would be fear',
+        excerpt: 'I thought I was designing for people who wanted to save money. I was really designing for people who had already lost it.',
+        cover: 'assets/koynx-cover-hero.jpg', coverAlt: 'Savings app screens on a blue background',
+        tags: ['fintech', 'trust', 'research'],
+        blocks: [
+          ['p', 'Ten minutes into a research call, a woman stopped answering my questions and started telling me a story.'],
+          ['p', 'Years ago she’d joined a savings group with people she trusted. One day the person holding the money stopped picking up calls.'],
+          ['p', '“So,” she said, “why would I trust an app?”'],
+          ['p', 'I didn’t have an answer. That was the moment the KOYNX project changed for me.'],
+          ['h', 'People had heard every promise already'],
+          ['p', 'Almost everyone we spoke to had a version of that story. A group that collapsed. An app that suddenly froze withdrawals. A friend who “would pay back next month.”'],
+          ['p', 'Big words like “secure” and “guaranteed” didn’t calm anyone down. They’d heard all of that before.'],
+          ['q', 'Trust isn’t something you say. It’s something people can check, again and again, without asking you.'],
+          ['h', 'So we stopped promising and started showing'],
+          ['l', ['Put the boring details right where people look: when the money unlocks, and what happens if you need it early.', 'Let group members see who has paid this round, so nobody has to chase anyone.', 'Show the name on the receiving account before the PIN, so there’s no doubt about where money is going.']],
+          ['p', 'None of these were exciting to design. All of them came straight from people’s fears.'],
+          ['h', 'What I took away'],
+          ['p', 'Next time you start a fintech project, ask people about money they’ve lost, not just money they want to save.'],
+          ['p', 'Their answers will show you exactly which screens need to work hardest.']
+        ] },
+      { slug: 'tokens-first', cat: 'systems', date: '2026-10-28', read: 5,
+        title: 'I built my first design system backwards. Here’s what I’d do instead.',
+        excerpt: 'I started with buttons and cards. Three weeks later I had three versions of every button and a developer who had stopped asking me questions.',
+        cover: 'assets/kx-a10.jpg', coverAlt: 'Dashboard screens built from a shared design system',
+        tags: ['design systems', 'tokens', 'figma'],
+        blocks: [
+          ['p', 'Three products. One small team. One deadline that didn’t care about either.'],
+          ['p', 'I did what felt natural: I designed the components first. Buttons, cards, inputs. Beautiful ones.'],
+          ['p', 'Then the admin dashboard needed tighter tables. The mobile app needed bigger tap areas. Every “small exception” created a new version of something.'],
+          ['p', 'Within a few weeks the system wasn’t a system. It was a collection.'],
+          ['h', 'The fix was making decisions before shapes'],
+          ['p', 'I went back and started with tokens: the small, named decisions underneath everything. Which colour means “do this.” How much space sits between related things. How big a heading is.'],
+          ['p', 'Each product could then use those same decisions at its own size. Same language, different density.'],
+          ['q', 'If a developer has to ask which grey to use, the system has already let them down.'],
+          ['h', 'Two mistakes I won’t repeat'],
+          ['l', ['Naming things by how they look (“blue-500”) instead of what they do (“action-primary”). One brand change meant editing hundreds of layers.', 'Writing the documentation in a separate file nobody opened. Notes inside the components did more than any handbook.']],
+          ['p', 'If you’re starting a system this month, start smaller than feels right. Ten good decisions beat a hundred pretty components.']
+        ] },
+      { slug: 'designer-learning-to-code', cat: 'code', date: '2026-10-21', read: 5,
+        title: 'I’m a designer learning to code. Week one humbled me in a way I didn’t expect.',
+        excerpt: 'I thought the hard part would be the syntax. It was realising how many of my designs were missing half their screens.',
+        cover: 'assets/portal-4.jpg', coverAlt: 'A web portal interface on screen',
+        tags: ['design engineering', 'learning', 'javascript'],
+        blocks: [
+          ['p', 'I’ve “started learning to code” more times than I’d like to admit.'],
+          ['p', 'A bit of C years ago. Some terminal commands. Tutorials I finished without really understanding.'],
+          ['p', 'This time I made one rule: only build things I designed myself. If I write a line of code, I should know exactly why it’s there.'],
+          ['h', 'The first thing code taught me had nothing to do with code'],
+          ['p', 'In Figma, a screen is a picture. In code, a screen is the result of some information: who the user is, what they’ve done, what’s still loading.'],
+          ['c', 'const screen = !user ? "loading" : user.posts.length ? "feed" : "empty";\n\n// three screens. I had designed one.'],
+          ['p', 'That one line showed me two screens I had never drawn. The waiting one, and the empty one.'],
+          ['q', 'Learning to code didn’t make me less of a designer. It showed me which parts of my designs were just wishful thinking.'],
+          ['h', 'What I do differently now'],
+          ['l', ['Design the loading, empty and error screens next to the main one, not later.', 'Name layers the way a developer would name things.', 'Put rough work on a live link early, even when it’s embarrassing.']],
+          ['p', 'If you’re a designer thinking about learning to code: start with something you already designed. It hits differently.']
+        ] },
+      { slug: 'rebrand-without-erasing-history', cat: 'brand', date: '2026-10-14', read: 5,
+        title: 'The hardest part of refreshing a school’s brand was deciding what not to change',
+        excerpt: 'Everyone had an opinion. Alumni loved the old look, parents wanted clarity, students just wanted the portal to work.',
+        cover: 'assets/hillcross-after.jpg', coverAlt: 'Redesigned college website homepage',
+        tags: ['brand identity', 'education', 'web'],
+        blocks: [
+          ['p', 'When people hear “rebrand,” they picture a shiny new logo.'],
+          ['p', 'When I started working on a college’s brand, my first job was the opposite. I had to figure out what people would be upset to lose.'],
+          ['h', 'A school brand belongs to a lot of people'],
+          ['p', 'Former students remember the colours from their uniform. Parents remember the fees page. Current students mostly remember whether the portal let them log in.'],
+          ['p', 'A brand refresh that only pleases the marketing team won’t last a semester.'],
+          ['h', 'So I went looking for what was already working'],
+          ['p', 'I collected everything: signs, social posts, the website, printed forms, the student portal. The name and colours were genuinely recognised. That was worth protecting.'],
+          ['p', 'What felt tired was everything around them: too many fonts, random icons, and a homepage trying to say ten things at once.'],
+          ['l', ['Kept the colours, but gave them clear rules.', 'Went from four fonts to one family.', 'Gave announcements a proper home, so admission news stops taking over everything.']],
+          ['q', 'A good refresh makes people think “they got their act together,” not “who is this?”'],
+          ['p', 'My test was simple: can a former student recognise the college’s post in their feed before reading the name? If yes, we kept what mattered.']
+        ] },
+      { slug: 'onboarding-five-people', cat: 'uiux', date: '2026-10-07', read: 4,
+        title: 'Five people broke my onboarding in one afternoon. Best afternoon of the project.',
+        excerpt: 'I was proud of those eight setup questions. By question four, every single tester was tapping skip without reading.',
+        cover: 'assets/wm-cover.jpg', coverAlt: 'Fitness app onboarding screens',
+        tags: ['user testing', 'onboarding', 'research'],
+        blocks: [
+          ['p', 'For WeMove, a fitness app, I designed an onboarding I was genuinely proud of.'],
+          ['p', 'Eight thoughtful questions. Clean layout. Friendly copy.'],
+          ['p', 'Then I watched five real people use it.'],
+          ['p', 'By question four, everyone was tapping “Skip” without reading. One person said, “I just want to see a workout.”'],
+          ['h', 'Why I test with five people, not fifty'],
+          ['p', 'Five people won’t tell you everything. But they’ll show you the biggest problem almost immediately, and that’s what you need first.'],
+          ['l', ['Find five people who actually match your users, not your colleagues.', 'Give one simple task: “Set this up so it’s useful to you.”', 'Watch. Say nothing. The awkward silences are where the lessons are.', 'Fix the top three problems, then do it again.']],
+          ['q', 'Testing isn’t about proving your design works. It’s about finding out where it doesn’t, as early and cheaply as possible.'],
+          ['p', 'We cut onboarding down to three questions and moved the rest into the first week of using the app. The one question we kept up front was the one that mattered most: how active are you right now?']
+        ] },
+      { slug: 'logo-is-not-brand', cat: 'brand', date: '2026-09-30', read: 4,
+        title: '“I just need a logo.” Why I usually say no to that first.',
+        excerpt: 'Most small businesses don’t lose customers because of their logo. They lose them because nothing they post looks like it comes from the same place.',
+        cover: 'assets/flyer-b.jpg', coverAlt: 'Printed promotional flyer design',
+        tags: ['small business', 'branding', 'freelance'],
+        blocks: [
+          ['p', 'Nearly every new brand enquiry I get starts the same way.'],
+          ['p', '“I need a logo.”'],
+          ['p', 'After years of freelance work, I now reply with a question: where will people actually see your business this month?'],
+          ['p', 'The answer is usually a WhatsApp status, a few Instagram posts, a flyer and maybe a shop sign.'],
+          ['h', 'The logo isn’t what makes those work'],
+          ['p', 'It helps. But what makes people remember you is seeing the same colours, the same tone and the same feel everywhere they meet you.'],
+          ['h', 'What I suggest starting with instead'],
+          ['l', ['One sentence that says what you do and who it’s for.', 'Two brand colours and one neutral. Used every single time.', 'One font for headings, one for everything else.', 'Three ready-to-use templates: a post, a status and a flyer.', 'Then the logo, designed to sit comfortably inside all of that.']],
+          ['q', 'Consistency beats cleverness. A simple mark used everywhere does more than a brilliant one used once.'],
+          ['p', 'If you’re a small business owner reading this, look at your last five posts side by side. Do they look like they came from the same business?']
+        ] },
+      { slug: 'naming-components', cat: 'systems', date: '2026-09-23', read: 4,
+        title: 'The day I realised my developer didn’t understand my Figma file',
+        excerpt: '“Is Card/Large the same as Tile/Primary?” It was. I just never told anyone, and the names didn’t either.',
+        cover: 'assets/bb-cover.jpg', coverAlt: 'Bill payment app screens',
+        tags: ['design systems', 'handoff', 'figma'],
+        blocks: [
+          ['p', 'Halfway through a build, my developer sent me a message.'],
+          ['p', '“Quick one. Is Card/Large the same as Tile/Primary?”'],
+          ['p', 'They were the same thing. I’d just named them on different days, in different moods.'],
+          ['p', 'That question cost us an afternoon. Multiply it across a project and you lose weeks.'],
+          ['h', 'Names are the cheapest documentation you’ll ever write'],
+          ['l', ['Name things by their job, not their look: “PaymentSummary,” not “BlueCard.”', 'Agree on one word with your developer and use it in both Figma and code.', 'Use variants for state and size: default, pressed, disabled; small, medium, large.', 'If a name needs explaining, it’s the wrong name.']],
+          ['q', 'A design system is a shared language. The names are its vocabulary.'],
+          ['p', 'After one afternoon of renaming, the questions almost stopped. Even better, my developer started suggesting names in the comments. That’s when you know you’re speaking the same language.']
+        ] },
+      { slug: 'design-for-states', cat: 'code', date: '2026-09-16', read: 5,
+        title: 'My app had five screens in Figma and twenty on a real phone',
+        excerpt: 'The first time I shipped something myself, the internet in Abuja taught me more about design than any tutorial.',
+        cover: 'assets/portal-13.jpg', coverAlt: 'Student portal dashboard screen',
+        tags: ['pwa', 'design engineering', 'handoff'],
+        blocks: [
+          ['p', 'In Figma, my little web app had five screens. All of them looked perfect.'],
+          ['p', 'Then I opened it on my phone, on a normal Abuja network, and watched it struggle.'],
+          ['p', 'Half-loaded images. A blank white screen for four seconds. A button I tapped twice because nothing seemed to happen.'],
+          ['h', 'The screens nobody designs'],
+          ['l', ['Offline: what still works, and how do you say so without scaring anyone?', 'Slow: a grey outline of the page feels faster than a spinning circle.', 'Half-loaded: the text arrived, but one image didn’t.', 'First visit vs. returning: the same screen with two very different jobs.']],
+          ['q', 'A design isn’t finished when it looks right. It’s finished when it still feels right on a bad connection.'],
+          ['p', 'Now I draw the empty, loading and error screens beside every main screen, before I call anything done.'],
+          ['p', 'That’s the real reason I want to become a design engineer. Not to replace developers, but to hand them designs that already know how they’ll be used.']
+        ] }
+    ];
+  }
+
+  _blog(page) {
+    const CATS = {
+      uiux: { label: 'UI/UX & Product', c: '#0369a1', bg: 'rgba(14,165,233,0.12)', dot: '#0ea5e9', glow: 'rgba(14,165,233,0.28)' },
+      brand: { label: 'Brand identity', c: '#be185d', bg: 'rgba(236,72,153,0.12)', dot: '#ec4899', glow: 'rgba(236,72,153,0.22)' },
+      systems: { label: 'Design systems', c: '#6d28d9', bg: 'rgba(139,92,246,0.12)', dot: '#8b5cf6', glow: 'rgba(139,92,246,0.24)' },
+      code: { label: 'Design x code', c: '#0f766e', bg: 'rgba(20,184,166,0.12)', dot: '#14b8a6', glow: 'rgba(20,184,166,0.24)' }
+    };
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    // Navigate in code so links work inside the design canvas as well as on the live site
+    const link = (r) => (e) => {
+      if (e && e.preventDefault) e.preventDefault();
+      if (typeof location !== 'undefined' && location.hash.replace('#', '') === r) {
+        this.setState({ page: r }, () => window.scrollTo(0, 0));
+      } else { this._go(r); }
+    };
+    const fmt = (d) => { const [y, m, dd] = d.split('-'); return Number(dd) + ' ' + MONTHS[Number(m) - 1] + ' ' + y; };
+    const posts = this._blogPosts()
+      .slice().sort((a, b) => (a.date < b.date ? 1 : -1))
+      .map((p) => {
+        const k = CATS[p.cat] || CATS.uiux;
+        return { ...p, route: 'post-' + p.slug, open: link('post-' + p.slug), date: fmt(p.date), rawDate: p.date, cat: k.label, catId: p.cat, catC: k.c, catBg: k.bg, bar: k.dot, glow: k.glow };
+      });
+
+    const filter = this.state.blogCat || 'all';
+    const q = (this.state.blogQ || '').trim().toLowerCase();
+    const inCat = posts.filter((p) => filter === 'all' || p.catId === filter);
+    const matches = inCat.filter((p) => !q || (p.title + ' ' + p.excerpt + ' ' + p.tags.join(' ')).toLowerCase().indexOf(q) !== -1);
+    const feat = posts.find((p) => p.featured) || posts[0];
+    const showFeat = filter === 'all' && !q && !!feat;
+    const list = showFeat ? matches.filter((p) => p.slug !== feat.slug) : matches;
+
+    const fBtn = (id, label, dot) => {
+      const on = filter === id;
+      return { label, dot, n: id === 'all' ? posts.length : posts.filter((p) => p.catId === id).length,
+        pressed: on ? 'true' : 'false',
+        bg: on ? '#111111' : 'rgba(255,255,255,0.7)', c: on ? '#ffffff' : '#374151', bc: on ? '#111111' : 'rgba(255,255,255,0.9)',
+        pick: () => this.setState({ blogCat: id }) };
+    };
+    const blogFilters = [fBtn('all', 'All posts', 'linear-gradient(135deg,#fbbf24,#ea580c)')]
+      .concat(Object.keys(CATS).map((id) => fBtn(id, CATS[id].label, CATS[id].dot)));
+
+    const isPostRoute = String(page).indexOf('post-') === 0;
+    const slug = isPostRoute ? String(page).slice(5) : '';
+    const cur = isPostRoute ? posts.find((p) => p.slug === slug) : null;
+    const TYPES = { p: 'isP', h: 'isH', q: 'isQ', img: 'isImg', l: 'isList', c: 'isCode', cta: 'isCta' };
+    const blankPost = { title: '', excerpt: '', cover: posts[0].cover, coverAlt: '', cat: '', catC: '#111111', catBg: 'transparent', bar: '#0ea5e9', glow: 'transparent', date: '', read: 0, blocks: [], tagList: [] };
+    const post = cur ? {
+      ...cur,
+      tagList: cur.tags.map((t) => ({ t })),
+      blocks: cur.blocks.map((b) => {
+        const o = { isP: false, isH: false, isQ: false, isImg: false, isList: false, isCode: false, isCta: false, text: '', src: '', alt: '', items: [], href: '', label: '', target: '', go: undefined, maxw: '100%' };
+        o[TYPES[b[0]] || 'isP'] = true;
+        if (b[0] === 'img') { o.src = b[1]; o.alt = b[2]; o.text = b[3] || ''; o.maxw = b[4] || '100%'; }
+        else if (b[0] === 'cta') { o.text = b[1]; o.href = b[2]; o.label = b[3]; o.target = b[4] ? '_self' : '_blank'; o.go = b[4] ? link(b[4]) : undefined;
+          const blue = b[5] === 'blue';
+          o.ctaBg = blue ? 'linear-gradient(135deg, rgba(224,242,254,0.9), rgba(219,234,254,0.75))' : 'linear-gradient(135deg, rgba(254,243,199,0.85), rgba(254,215,170,0.7))';
+          o.ctaBc = blue ? 'rgba(14,165,233,0.35)' : 'rgba(251,146,60,0.35)';
+          o.ctaTc = blue ? '#0c4a6e' : '#431407';
+          o.ctaBtn = blue ? 'linear-gradient(135deg,#0ea5e9,#0284c7)' : 'linear-gradient(135deg,#f59e0b,#ea580c)';
+          o.ctaSh = blue ? '0 8px 20px rgba(14,165,233,0.3)' : '0 8px 20px rgba(234,88,12,0.3)'; }
+        else if (b[0] === 'l') { o.items = b[1].map((t) => ({ t })); }
+        else { o.text = b[1]; }
+        return o;
+      })
+    } : blankPost;
+    const related = cur ? posts.filter((p) => p.slug !== cur.slug && p.catId === cur.catId)
+      .concat(posts.filter((p) => p.slug !== cur.slug && p.catId !== cur.catId)).slice(0, 3) : [];
+
+    const origin = (typeof location !== 'undefined' && location.origin && location.origin.indexOf('http') === 0) ? location.origin : 'https://thenoskshade.netlify.app';
+    const postUrl = origin + '/#post-' + slug;
+    const copied = this.state.blogCopied === slug && !!slug;
+
+    const navC = (on) => on ? '#c2410c' : '#374151';
+    const onBlog = page === 'blog' || isPostRoute;
+    return {
+      goBlog: link('blog'), goHomeLink: link('home'), goContactLink: link('contact'),
+      isBlog: page === 'blog',
+      isPost: !!cur,
+      isPostMissing: isPostRoute && !cur,
+      homePosts: posts.slice(0, 3),
+      blogCount: posts.length,
+      blogLatest: posts.length ? posts[0].date.split(' ').slice(1).join(' ') : '',
+      blogFilters,
+      blogQ: this.state.blogQ || '',
+      onBlogQ: (e) => this.setState({ blogQ: e.target.value }),
+      clearBlogQ: () => this.setState({ blogQ: '' }),
+      blogShowFeat: showFeat,
+      blogFeat: feat || blankPost,
+      blogList: list,
+      blogEmpty: list.length === 0 && !showFeat,
+      post,
+      postRelated: related,
+      postShareLi: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(postUrl),
+      postShareX: 'https://x.com/intent/post?url=' + encodeURIComponent(postUrl) + '&text=' + encodeURIComponent(post.title || ''),
+      copyPostLink: () => {
+        const done = () => { this.setState({ blogCopied: slug }); clearTimeout(this._copyT); this._copyT = setTimeout(() => this.setState({ blogCopied: null }), 2200); };
+        try { navigator.clipboard.writeText(postUrl).then(done, done); } catch (_) { done(); }
+      },
+      copyLabel: copied ? '✓ Link copied' : 'Copy link',
+      copyBg: copied ? 'rgba(34,197,94,0.12)' : 'rgba(255,255,255,0.75)',
+      copyBc: copied ? 'rgba(34,197,94,0.4)' : 'rgba(0,0,0,0.08)',
+      copyC: copied ? '#15803d' : '#111111',
+      lBlogC: navC(onBlog), lBlogBg: onBlog ? 'rgba(251,146,60,0.12)' : 'transparent',
+      tBlogC: onBlog ? '#c2410c' : '#6b7280', tBlogBg: onBlog ? 'rgba(251,146,60,0.12)' : 'transparent'
+    };
+  }
+
   _go(p) { location.hash = p; }
 
   renderVals() {
@@ -2552,6 +3269,13 @@ class Component extends DCLogic {
       tags: [tagBlue, tagTeal, tagIndigo].map((t, i) => ({ ...t, label: ['Web App', 'Dashboard', 'Design System'][i] })),
       slotId: 'card-hcteacher', slotPh: 'Teacher dashboard', img: 'assets/hct-ret.jpg',
       open: go('case-hcteacher')
+    });
+    cards.splice(1, 0, {
+      yr: '2026', title: 'HeatBud', eyebrow: 'Health · Climate', year: 'Live PWA', url: 'heatbud.netlify.app',
+      desc: 'A heat buddy for Nigeria. Feels-like heat, the safest time to go out and a daily water plan, in plain words. Designed and built by me, still improving.',
+      tags: [tagBlue, tagTeal, tagIndigo].map((t, i) => ({ ...t, label: ['Product Design', 'Design + Build', 'PWA'][i] })),
+      slotId: 'card-heatbud', slotPh: 'HeatBud screens', img: 'assets/hb-cover.jpg',
+      open: go('case-heatbud')
     });
     cards.splice(1, 0, {
       title: 'Lucenture Consult', eyebrow: 'Consultancy', year: 'Website', url: 'lucentureconsult.com',
@@ -2890,7 +3614,7 @@ class Component extends DCLogic {
     const homeCards = cardsY.slice(0, 3);
     const workCards = this.state.allWork ? cardsY : cardsY.slice(0, 3);
 
-    const casePid = {"KOYNX":"case-koynx","HillCross College Website":"case-hillcross","WeMove Fitness":"case-wemove","HillCross College Student Dashboard":"case-hcstudent","HillCross College Teacher Dashboard":"case-hcteacher","Lucenture Consult":"case-lucenture","BlissBill":"case-blissbill","Laundromate":"case-laundromate","HillCross University Student Portal":"case-hcportal"};
+    const casePid = {"KOYNX":"case-koynx","HillCross College Website":"case-hillcross","WeMove Fitness":"case-wemove","HillCross College Student Dashboard":"case-hcstudent","HillCross College Teacher Dashboard":"case-hcteacher","Lucenture Consult":"case-lucenture","HeatBud":"case-heatbud","BlissBill":"case-blissbill","Laundromate":"case-laundromate","HillCross University Student Portal":"case-hcportal"};
     const caseSeq = cardsY.map(c => ({ title: c.title, pid: casePid[c.title] })).filter(c => c.pid);
     const curIdx = caseSeq.findIndex(c => c.pid === (page === 'case-koynx-admin' ? 'case-koynx' : page));
     const nextCase = curIdx >= 0 ? caseSeq[(curIdx + 1) % caseSeq.length] : caseSeq[0];
@@ -2968,6 +3692,9 @@ class Component extends DCLogic {
       ...flowVals, ...ivVals, ...nextVals, ...mailVals, ...expVals, ...workExtra, ...lmVals, ...kxVals, ...sgVals, ...bbVals, ...bbStory, isCaseBB: page === 'case-blissbill', ...wmVals, isCaseWM: page === 'case-wemove', navCaseWM: go('case-wemove'), isCaseLC: page === 'case-lucenture', isCaseHCT: page === 'case-hcteacher', isCaseHCS: page === 'case-hcstudent', navCaseHCT: go('case-hcteacher'), ...hcsVals, navCaseBB: go('case-blissbill'), phoneReel, reelLabel, reelGo, isCaseLM: page === 'case-laundromate', navCaseLM: go('case-laundromate'), portalModules, portalScreens, portalSystem, visualItems, visualTabs, chapters, navCasePortal: go('case-hcportal'),
       isAbout: page === 'about',
       isContact: page === 'contact',
+      isCaseHB: page === 'case-heatbud',
+      goHbPost: (e) => { if (e && e.preventDefault) e.preventDefault(); this._go('post-heatbud-el-nino'); },
+      ...this._blog(page),
       lightboxOpen: !!this.state.lightbox,
       lightboxSrc: this.state.lightbox || 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
       closeLightbox: (e) => { if (e) e.stopPropagation(); this.setState({ lightbox: null, lbZ: 1, lbPx: 0, lbPy: 0 }); },
