@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HillCross student dashboard: edtech UX redesign | Philip Nosike, Product Designer</title>
+<meta name="description" content="One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.">
+<link rel="canonical" href="https://thenoskshade.netlify.app/work/hillcross-student-dashboard/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Philip Nosike">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Noskshade · Philip Nosike">
+<meta property="og:locale" content="en_NG">
+<meta property="og:title" content="HillCross student dashboard: edtech UX redesign">
+<meta property="og:description" content="One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.">
+<meta property="og:url" content="https://thenoskshade.netlify.app/work/hillcross-student-dashboard/">
+<meta property="og:image" content="https://thenoskshade.netlify.app/assets/hcs-3.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HillCross student dashboard: edtech UX redesign">
+<meta name="twitter:description" content="One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.">
+<meta name="twitter:image" content="https://thenoskshade.netlify.app/assets/hcs-3.jpg">
+<meta name="theme-color" content="#f1f1ef">
+<link rel="icon" href="/favicon.ico" sizes="32x32"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box}html,body{margin:0;background:#f1f1ef;color:#111;font-family:'Plus Jakarta Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#0284c7}img{max-width:100%;height:auto;display:block}
+.nav{position:sticky;top:0;z-index:5;background:rgba(241,241,239,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,.06)}
+.nav div{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.nav b{font-weight:800;font-size:17px;margin-right:auto}.nav b a{color:#111;text-decoration:none}.nav a{color:#44423d;text-decoration:none;font-weight:600;font-size:14px}
+main{max-width:760px;margin:0 auto;padding:40px 20px 72px}
+.crumb{font-size:13px;color:#6e6c66;margin-bottom:18px}.crumb a{color:#6e6c66}
+.k{display:inline-block;padding:6px 12px;border-radius:999px;font-weight:700;font-size:13px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1;letter-spacing:-1px;margin:16px 0 14px;font-weight:800}
+.lede{font-size:19px;line-height:1.6;color:#44423d;margin:0 0 18px}
+.meta{display:flex;gap:10px;align-items:center;font-size:14px;color:#6e6c66;margin-bottom:26px}.meta img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.cover{border-radius:20px;overflow:hidden;margin:0 0 34px;background:#e6e5e1}.cover img{width:100%}
+article p,article li{font-size:18px;line-height:1.75;color:#2a2925}article h2{font-size:26px;line-height:1.25;margin:40px 0 12px;letter-spacing:-.4px}
+article h3{font-size:20px;margin:28px 0 8px}
+blockquote{margin:28px 0;padding:6px 0 6px 20px;border-left:4px solid #0ea5e9;font-size:21px;line-height:1.5;font-weight:600;color:#111}
+pre{background:#111;color:#e5e7eb;padding:18px;border-radius:14px;overflow:auto;font-size:14px;line-height:1.6}
+figure{margin:28px auto}figure img{border-radius:16px;margin:0 auto}figcaption{font-size:14px;color:#6e6c66;text-align:center;margin-top:10px}
+.cta{margin:34px 0;padding:24px;border-radius:18px;background:#fff7ed;border:1px solid #fed7aa}.cta p{margin:0 0 14px}
+.btn{display:inline-block;padding:13px 22px;border-radius:50px;background:#0284c7;color:#fff!important;font-weight:700;text-decoration:none}
+.btn.o{background:#ea580c}.btn.g{background:transparent;color:#111!important;border:1.5px solid #111}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 30px}.facts div{background:#fff;border-radius:14px;padding:14px 16px}
+.facts small{display:block;font-size:12px;color:#6e6c66;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}.facts span{font-weight:700;font-size:15px}
+.author{display:flex;gap:16px;align-items:center;margin-top:48px;padding:22px;border-radius:18px;background:#fff}.author img{width:72px;height:72px;border-radius:16px;object-fit:cover}
+.author p{margin:4px 0 0;font-size:15px;line-height:1.55;color:#55534e}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;max-width:1080px;margin:0 auto}
+.card{background:#fff;border-radius:18px;overflow:hidden;text-decoration:none;color:#111;display:block}.card img{aspect-ratio:16/10;object-fit:cover;width:100%}
+.card div{padding:16px 18px 20px}.card h2{font-size:19px;line-height:1.3;margin:10px 0 8px}.card p{font-size:15px;line-height:1.55;color:#55534e;margin:0}
+.more{margin-top:44px}.more h2{font-size:20px}
+footer{border-top:1px solid rgba(0,0,0,.08);padding:28px 20px;text-align:center;font-size:14px;color:#6e6c66}footer a{color:#44423d;margin:0 8px}
+@media(max-width:600px){article p,article li{font-size:17px}.nav div{gap:12px}.nav a{font-size:13px}}</style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"CreativeWork","name":"HillCross College Student Dashboard","headline":"HillCross student dashboard: edtech UX redesign","description":"One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.","image":"https://thenoskshade.netlify.app/assets/hcs-3.webp","author":{"@type":"Person","@id":"https://thenoskshade.netlify.app/#person","name":"Philip Nosike","url":"https://thenoskshade.netlify.app/","jobTitle":"Product Designer"},"creator":{"@type":"Person","@id":"https://thenoskshade.netlify.app/#person","name":"Philip Nosike","url":"https://thenoskshade.netlify.app/","jobTitle":"Product Designer"},"url":"https://thenoskshade.netlify.app/work/hillcross-student-dashboard/","genre":"Edtech · Web app","keywords":"edtech product design, student dashboard, LMS, UX redesign","inLanguage":"en"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://thenoskshade.netlify.app/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://thenoskshade.netlify.app/work/"},{"@type":"ListItem","position":3,"name":"HillCross College Student Dashboard","item":"https://thenoskshade.netlify.app/work/hillcross-student-dashboard/"}]}]</script>
+</head>
+<body>
+<header class="nav"><div><b><a href="/">Noskshade</a></b><a href="/#work">Work</a><a href="/blog/">Journal</a><a href="/#about">About</a><a href="/#contact">Contact</a></div></header>
+<main>
+<nav class="crumb"><a href="/">Home</a> / <a href="/work/">Work</a></nav>
+<span class="k" style="color:#0369a1;background:rgba(14,165,233,.14)">Edtech · Web app</span>
+<h1>HillCross College Student Dashboard</h1>
+<p class="lede">A revamp of the legacy student platform into a dashboard that walks a new student from registration to their first module, and keeps returning students one click from class.</p>
+
+<div class="cover"><img src="/assets/hcs-3.webp" alt="HillCross College Student Dashboard" fetchpriority="high"></div>
+<article>
+<h2>The result</h2>
+<p>One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.</p>
+<h2>What I did</h2>
+<p>I redesigned the legacy student platform: the registration card and its three states, the e-portal assessment flow, and the components shared with the teacher and admin portals.</p>
+<h2>The problem</h2>
+<p>New students saw every tool at once and didn&#x27;t know what to do first.</p>
+<h2>New students didn’t know what to do first</h2>
+<p>The old platform showed every tool to every student, whether they had registered or not. Registration status, onboarding and the eLearning portal were hard to find, and support was a separate journey.</p>
+<p>The goal: one dashboard that always shows the student’s next step, from starting registration to opening their first lesson.</p>
+<figure><img src="/assets/hcs-1.webp" alt="Revamped dashboard, new student" loading="lazy" decoding="async"></figure>
+<h2>Registration status that changes with the student</h2>
+<h3>Start registration</h3>
+<p>Pending Registration with Start Registration as the only action. The Virtual Classroom, onboarding video and Notice Board are already visible, so a new student can explore before they enrol.</p>
+<h2>Introductory assessments unlock the first module</h2>
+<p>A banner explains that the initial tests unlock the first module lessons. Upcoming Deadlines stays empty, with one action: Start Test.</p>
+<p>The Aptitude Test turns green, and the first tasks appear as Upcoming Deadlines with a Begin button for each.</p>
+<figure><img src="/assets/hcs-4.webp" alt="E-portal, aptitude test not taken" loading="lazy" decoding="async"></figure>
+<h2>What college students told us</h2>
+<p>Students used the revamped dashboard and shared what helped and what got in the way.</p>
+<blockquote>“The old portal showed me tools I couldn’t use yet. Now it just tells me the next step.”</blockquote>
+<blockquote>“Support and my courses are on the same page, so I stopped emailing to ask where things are.”</blockquote>
+<blockquote>“The checklist made the first week feel manageable.”</blockquote>
+<h2>Shared with the teacher and admin portals</h2>
+<h3>A persistent sidebar</h3>
+<p>Dashboard, Online Application, E-Portal, Timetable, Result Checker and Account Statement, always in the same place.</p>
+<h3>Status cards</h3>
+<p>One red status card with a phase label, a progress underline and a single primary action that changes per state.</p>
+<h3>Media cards</h3>
+<p>Dark photo cards for onboarding video and the Orientation Tutorial, with watch time and one play action.</p>
+<h3>Support everywhere</h3>
+<p>Notice Board alerts and a Live Chat Support bar at the bottom of every dashboard view.</p>
+<h2>The trade-off</h2>
+<p>One primary action per state means fewer shortcuts on screen. In return, a new student never has to guess what comes next.</p>
+<h2>What&#x27;s next</h2>
+<p>Measure the time from sign-up to first lesson, and how many support messages still ask where things are.</p>
+</article>
+<p style="margin-top:36px"><a class="btn" href="/#case-hcstudent">See the full interactive case study</a></p>
+<div class="author"><img src="/assets/portrait-about.webp" alt="Philip Nosike" width="72" height="72" loading="lazy"><div><b>Philip Nosike</b><p>Product designer in Abuja, Nigeria. I design fintech and edtech products, brand identities and design systems, and help founders shape their MVPs.</p></div></div>
+</main>
+<footer>© Philip Nosike · Product designer in Abuja, Nigeria<br><a href="/">Home</a><a href="/#work">Work</a><a href="/blog/">Journal</a><a href="https://www.linkedin.com/in/philipnosike" rel="me">LinkedIn</a><a href="mailto:thenoskshade@gmail.com">Email</a></footer>
+</body>
+</html>
