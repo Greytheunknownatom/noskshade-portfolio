@@ -244,7 +244,7 @@
     [data-blogstats] { width:100%; box-sizing:border-box; justify-content:space-between; }
     [data-blogshare] > div:first-child { flex:1 1 100%; }
     [data-blogshare] > div:last-child { width:100%; }
-    [data-blogshare] > div:last-child > * { flex:1 1 0; justify-content:center; }
+    [data-blogshare] > div:last-child > * { flex:1 1 calc(33% - 8px); justify-content:center; }
     [data-pagebody] [data-posthead] > p { font-size:16.5px !important; line-height:1.65 !important; }
     [data-pagebody] [data-hbtitle] { font-size:60px !important; line-height:1 !important; margin-top:12px !important; }
     [data-hbphones] > div > div { border-radius:20px !important; padding:4px !important; }
@@ -2476,6 +2476,8 @@
         <div style="display:flex; flex-wrap:wrap; gap:8px;">
           <a href="{{ postShareLi }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:38px; padding:0 16px; border-radius:50px; background:rgba(255,255,255,0.75); border:1.5px solid rgba(0,0,0,0.08); font-size:12px; font-weight:700; color:#0a66c2; text-decoration:none;">LinkedIn</a>
           <a href="{{ postShareX }}" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:38px; padding:0 16px; border-radius:50px; background:rgba(255,255,255,0.75); border:1.5px solid rgba(0,0,0,0.08); font-size:12px; font-weight:700; color:#111111; text-decoration:none;">X</a>
+          <sc-if value="{{ hasSocial }}" hint-placeholder-val="{{ true }}"><button data-blogbtn="1" type="button" onClick="{{ openIg }}" style="cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:38px; padding:0 16px; border-radius:50px; background:linear-gradient(135deg,#f58529,#dd2a7b 50%,#8134af); border:none; font-size:12px; font-weight:800; color:#ffffff;"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#fff" stroke-width="2"></rect><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="2"></circle><circle cx="17.3" cy="6.7" r="1.3" fill="#fff"></circle></svg>Instagram</button>
+          <button data-blogbtn="1" type="button" onClick="{{ openTt }}" style="cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:7px; height:38px; padding:0 16px; border-radius:50px; background:#111111; border:none; font-size:12px; font-weight:800; color:#ffffff;"><svg width="13" height="14" viewBox="0 0 24 26" aria-hidden="true"><path d="M17 1c.4 3.1 2.2 5 5 5.3v4c-1.9.1-3.6-.5-5-1.5v8.4c0 4.3-3.4 7.8-7.6 7.8S1.8 21.5 1.8 17.2c0-4.6 4-8.1 8.6-7.6v4.2c-.4-.1-.8-.2-1.2-.2-1.9 0-3.4 1.6-3.4 3.6s1.5 3.6 3.4 3.6c2 0 3.6-1.6 3.6-3.7V1h4.2Z" fill="#25F4EE" transform="translate(-0.6,-0.4)"></path><path d="M17 1c.4 3.1 2.2 5 5 5.3v4c-1.9.1-3.6-.5-5-1.5v8.4c0 4.3-3.4 7.8-7.6 7.8S1.8 21.5 1.8 17.2c0-4.6 4-8.1 8.6-7.6v4.2c-.4-.1-.8-.2-1.2-.2-1.9 0-3.4 1.6-3.4 3.6s1.5 3.6 3.4 3.6c2 0 3.6-1.6 3.6-3.7V1h4.2Z" fill="#FE2C55" transform="translate(0.6,0.4)"></path><path d="M17 1c.4 3.1 2.2 5 5 5.3v4c-1.9.1-3.6-.5-5-1.5v8.4c0 4.3-3.4 7.8-7.6 7.8S1.8 21.5 1.8 17.2c0-4.6 4-8.1 8.6-7.6v4.2c-.4-.1-.8-.2-1.2-.2-1.9 0-3.4 1.6-3.4 3.6s1.5 3.6 3.4 3.6c2 0 3.6-1.6 3.6-3.7V1h4.2Z" fill="#ffffff"></path></svg>TikTok</button></sc-if>
           <button data-blogbtn="1" type="button" onClick="{{ copyPostLink }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:6px; height:38px; padding:0 16px; border-radius:50px; background:{{ copyBg }}; border:1.5px solid {{ copyBc }}; font-size:12px; font-weight:700; color:{{ copyC }}; transition:all 0.2s ease;">{{ copyLabel }}</button>
         </div>
       </div>
@@ -2514,6 +2516,35 @@
           </a>
         </sc-for>
       </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- Social share panel (Instagram / TikTok) -->
+  <sc-if value="{{ socOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeSoc }}" style="position:fixed; inset:0; z-index:200; background:rgba(15,23,42,0.55); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:16px;">
+    <div role="dialog" aria-modal="true" aria-label="{{ socTitle }}" onClick="{{ stopSoc }}" style="position:relative; width:100%; max-width:720px; max-height:calc(100vh - 32px); overflow:auto; border-radius:28px; background:#f8f8f6; box-shadow:0 30px 80px rgba(0,0,0,0.35); padding:clamp(20px, 3vw, 32px); box-sizing:border-box;">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px;">
+        <div><div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:{{ socAccent }};">{{ socEyebrow }}</div><h2 style="margin:6px 0 0; font-size:24px; font-weight:800; letter-spacing:-0.02em; color:#111111;">{{ socTitle }}</h2><p style="margin:6px 0 0; font-size:14px; line-height:1.6; color:#4b5563;">{{ socHint }}</p></div>
+        <button data-blogbtn="1" type="button" aria-label="Close" onClick="{{ closeSoc }}" style="flex:0 0 auto; cursor:pointer; width:40px; height:40px; border-radius:50%; border:1.5px solid rgba(0,0,0,0.1); background:#ffffff; font-size:18px; font-weight:700; color:#111111;">✕</button>
+      </div>
+      <sc-if value="{{ socIsIg }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top:20px; display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; scroll-snap-type:x mandatory;">
+          <sc-for list="{{ socSlides }}" as="sl" hint-placeholder-count="4"><img src="{{ sl.src }}" alt="{{ sl.alt }}" draggable="false" style="flex:0 0 auto; width:min(62vw, 240px); aspect-ratio:4 / 5; object-fit:cover; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,0.12); scroll-snap-align:start;"></sc-for>
+        </div>
+      </sc-if>
+      <sc-if value="{{ socIsTt }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:20px; display:flex; justify-content:center;"><video src="{{ socVideo }}" controls="{{ true }}" muted="{{ true }}" autoPlay="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" style="width:min(70vw, 270px); aspect-ratio:9 / 16; border-radius:18px; background:#111; box-shadow:0 12px 30px rgba(0,0,0,0.2);"></video></div>
+      </sc-if>
+      <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:10px;">
+        <button data-blogbtn="1" type="button" onClick="{{ socShare }}" style="cursor:pointer; flex:1 1 200px; height:48px; border-radius:50px; border:none; background:{{ socBtnBg }}; color:#ffffff; font-size:14px; font-weight:800;">{{ socShareLabel }}</button>
+        <button data-blogbtn="1" type="button" onClick="{{ socDownload }}" style="cursor:pointer; flex:1 1 160px; height:48px; border-radius:50px; border:1.5px solid rgba(0,0,0,0.12); background:#ffffff; color:#111111; font-size:14px; font-weight:800;">{{ socDlLabel }}</button>
+      </div>
+      <div style="margin-top:18px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:10px;"><label for="socCaption" style="font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:#374151;">Caption</label><button data-blogbtn="1" type="button" onClick="{{ socCopy }}" style="cursor:pointer; height:32px; padding:0 14px; border-radius:50px; border:1.5px solid rgba(0,0,0,0.12); background:#ffffff; font-size:12px; font-weight:800; color:#111111;">{{ socCopyLabel }}</button></div>
+        <textarea id="socCaption" readOnly="{{ true }}" value="{{ socCaption }}" rows="6" style="margin-top:8px; width:100%; box-sizing:border-box; padding:14px 16px; border-radius:16px; border:1.5px solid rgba(0,0,0,0.1); background:#ffffff; font-family:'Plus Jakarta Sans', sans-serif; font-size:13px; line-height:1.6; color:#1f2937; resize:vertical;"></textarea>
+      </div>
+      <sc-if value="{{ socHasMsg }}" hint-placeholder-val="{{ false }}"><p role="status" style="margin:12px 0 0; padding:12px 14px; border-radius:12px; background:rgba(14,165,233,0.1); font-size:13px; line-height:1.55; font-weight:600; color:#0c4a6e;">{{ socMsg }}</p></sc-if>
     </div>
   </div>
   </sc-if>
@@ -2618,7 +2649,7 @@ class Component extends DCLogic {
     // Hash routing
     this._onHash = () => {
       const p = location.hash.replace('#', '') || 'home';
-      this.setState({ page: p }, () => {
+      this.setState({ page: p, socKind: null, socMsg: '' }, () => {
         window.scrollTo(0, 0);
         this._initReveals();
         this._vids();
@@ -3195,6 +3226,30 @@ class Component extends DCLogic {
     const onBlog = page === 'blog' || isPostRoute;
     return {
       goBlog: link('blog'), goHomeLink: link('home'), goContactLink: link('contact'),
+      ...(() => {
+        const S = this._social(); const d = cur ? S[slug] : null; const k = this.state.socKind; const ig = k === 'ig';
+        const open = (kind) => () => this.setState({ socKind: kind, socMsg: '', socCopied: false });
+        return {
+          hasSocial: !!d, socOpen: !!(d && k), socIsIg: ig, socIsTt: k === 'tt',
+          openIg: open('ig'), openTt: open('tt'),
+          closeSoc: () => this.setState({ socKind: null, socMsg: '' }), stopSoc: (e) => e.stopPropagation(),
+          socEyebrow: ig ? 'Instagram carousel · ' + (d ? d.slides.length : 0) + ' slides' : 'TikTok video · ' + (d ? d.seconds : 0) + ' seconds',
+          socTitle: ig ? 'Share to Instagram' : 'Share to TikTok',
+          socHint: ig ? 'Ready-made slides in 4:5. On your phone, tap Share and choose Instagram. On a computer, download the slides and post them as a carousel.' : 'A ready-made vertical video. On your phone, tap Share and choose TikTok. On a computer, download it and upload it in TikTok.',
+          socAccent: ig ? '#be185d' : '#111111',
+          socBtnBg: ig ? 'linear-gradient(135deg,#f58529,#dd2a7b 50%,#8134af)' : '#111111',
+          socShareLabel: ig ? 'Share to Instagram' : 'Share to TikTok',
+          socDlLabel: ig ? 'Download slides' : 'Download video',
+          socSlides: d ? d.slides.map((f, i) => ({ src: 'assets/social/' + slug + '/' + f, alt: 'Slide ' + (i + 1) })) : [],
+          socVideo: d ? 'assets/social/' + slug + '/' + d.video : '',
+          socCaption: d ? (ig ? d.instagram : d.tiktok) : '',
+          socShare: () => d && this._socShare(k, slug, d),
+          socDownload: () => { if (d) { this._socDownload(k, slug, d); this.setState({ socMsg: 'Downloading. Then add ' + (ig ? 'the slides to a new Instagram carousel' : 'the video in TikTok') + ' and paste the caption.' }); } },
+          socCopy: () => { const t = d ? (ig ? d.instagram : d.tiktok) : ''; const done = () => this.setState({ socCopied: true }); try { navigator.clipboard.writeText(t).then(done, done); } catch (_) { done(); } },
+          socCopyLabel: this.state.socCopied ? '✓ Copied' : 'Copy caption',
+          socHasMsg: !!this.state.socMsg, socMsg: this.state.socMsg || ''
+        };
+      })(),
       isBlog: page === 'blog',
       isPost: !!cur,
       isPostMissing: isPostRoute && !cur,
@@ -3224,6 +3279,33 @@ class Component extends DCLogic {
       lBlogC: navC(onBlog), lBlogBg: onBlog ? 'rgba(251,146,60,0.12)' : 'transparent',
       tBlogC: onBlog ? '#c2410c' : '#6b7280', tBlogBg: onBlog ? 'rgba(251,146,60,0.12)' : 'transparent'
     };
+  }
+
+  _social() {
+    return {"heatbud-el-nino": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg", "slide-06.jpg", "slide-07.jpg", "slide-08.jpg", "slide-09.jpg", "slide-10.jpg"], "video": "tiktok.mp4", "seconds": 42, "instagram": "I kept forgetting to drink water in the heat, so I designed and built HeatBud\n\nWith El Niño in the news and my days packed with work, I kept noticing the heat only after it had already got to me. So I made a small app to warn me first, and it’s live today.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/heatbud-el-nino/\n\n#productdesign #uxdesign #uidesign #heatbud #nigeria #elnino #heatwave #ux #pwa #noskshade", "tiktok": "With El Niño in the news and my days packed with work, I kept noticing the heat only after it had already got to me. Full story: link in bio. #productdesign #uxdesign #uidesign #heatbud #nigeria #elnino #heatwave #ux #pwa #designtok", "url": "https://thenoskshade.netlify.app/blog/heatbud-el-nino/"}, "ai-designs-everywhere-consulting": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg", "slide-06.jpg"], "video": "tiktok.mp4", "seconds": 25, "instagram": "AI can design a screen in ten seconds. That’s exactly why you still need a designer.\n\nLast month a founder showed me 40 screens he’d generated over a weekend. They looked great. None of them answered the one question his users were asking.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/ai-designs-everywhere-consulting/\n\n#productdesign #uxdesign #uidesign #designer #africandesign #noskshade", "tiktok": "Last month a founder showed me 40 screens he’d generated over a weekend. They looked great. Full story: link in bio. #productdesign #uxdesign #uidesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/ai-designs-everywhere-consulting/"}, "designing-trust-into-savings": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg", "slide-06.jpg"], "video": "tiktok.mp4", "seconds": 25, "instagram": "Nobody told me the hardest part of designing a savings app would be fear\n\nI thought I was designing for people who wanted to save money. I was really designing for people who had already lost it.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/designing-trust-into-savings/\n\n#productdesign #uxdesign #uidesign #designer #africandesign #noskshade", "tiktok": "I thought I was designing for people who wanted to save money. I was really designing for people who had already lost it. Full story: link in bio. #productdesign #uxdesign #uidesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/designing-trust-into-savings/"}, "tokens-first": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg"], "video": "tiktok.mp4", "seconds": 21, "instagram": "I built my first design system backwards. Here’s what I’d do instead.\n\nI started with buttons and cards. Three weeks later I had three versions of every button and a developer who had stopped asking me questions.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/tokens-first/\n\n#designsystems #figma #uidesign #designer #africandesign #noskshade", "tiktok": "I started with buttons and cards. Three weeks later I had three versions of every button and a developer who had stopped asking me… Full story: link in bio. #designsystems #figma #uidesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/tokens-first/"}, "designer-learning-to-code": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg"], "video": "tiktok.mp4", "seconds": 21, "instagram": "I’m a designer learning to code. Week one humbled me in a way I didn’t expect.\n\nI thought the hard part would be the syntax. It was realising how many of my designs were missing half their screens.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/designer-learning-to-code/\n\n#designengineer #webdev #learntocode #designer #africandesign #noskshade", "tiktok": "I thought the hard part would be the syntax. It was realising how many of my designs were missing half their screens. Full story: link in bio. #designengineer #webdev #learntocode #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/designer-learning-to-code/"}, "rebrand-without-erasing-history": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg", "slide-06.jpg"], "video": "tiktok.mp4", "seconds": 25, "instagram": "The hardest part of refreshing a school’s brand was deciding what not to change\n\nEveryone had an opinion. Alumni loved the old look, parents wanted clarity, students just wanted the portal to work.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/rebrand-without-erasing-history/\n\n#branding #brandidentity #logodesign #designer #africandesign #noskshade", "tiktok": "Everyone had an opinion. Alumni loved the old look, parents wanted clarity, students just wanted the portal to work. Full story: link in bio. #branding #brandidentity #logodesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/rebrand-without-erasing-history/"}, "onboarding-five-people": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg"], "video": "tiktok.mp4", "seconds": 21, "instagram": "Five people broke my onboarding in one afternoon. Best afternoon of the project.\n\nI was proud of those eight setup questions. By question four, every single tester was tapping skip without reading.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/onboarding-five-people/\n\n#productdesign #uxdesign #uidesign #designer #africandesign #noskshade", "tiktok": "I was proud of those eight setup questions. By question four, every single tester was tapping skip without reading. Full story: link in bio. #productdesign #uxdesign #uidesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/onboarding-five-people/"}, "logo-is-not-brand": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg", "slide-05.jpg"], "video": "tiktok.mp4", "seconds": 21, "instagram": "“I just need a logo.” Why I usually say no to that first.\n\nMost small businesses don’t lose customers because of their logo. They lose them because nothing they post looks like it comes from the same place.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/logo-is-not-brand/\n\n#branding #brandidentity #logodesign #designer #africandesign #noskshade", "tiktok": "Most small businesses don’t lose customers because of their logo. They lose them because nothing they post looks like it comes from the… Full story: link in bio. #branding #brandidentity #logodesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/logo-is-not-brand/"}, "naming-components": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg"], "video": "tiktok.mp4", "seconds": 16, "instagram": "The day I realised my developer didn’t understand my Figma file\n\n“Is Card/Large the same as Tile/Primary?” It was. I just never told anyone, and the names didn’t either.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/naming-components/\n\n#designsystems #figma #uidesign #designer #africandesign #noskshade", "tiktok": "“Is Card/Large the same as Tile/Primary?” It was. I just never told anyone, and the names didn’t either. Full story: link in bio. #designsystems #figma #uidesign #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/naming-components/"}, "design-for-states": {"slides": ["slide-01.jpg", "slide-02.jpg", "slide-03.jpg", "slide-04.jpg"], "video": "tiktok.mp4", "seconds": 16, "instagram": "My app had five screens in Figma and twenty on a real phone\n\nThe first time I shipped something myself, the internet in Abuja taught me more about design than any tutorial.\n\nSwipe through for the key ideas →\n\nFull story on my site (link in bio):\nhttps://thenoskshade.netlify.app/blog/design-for-states/\n\n#designengineer #webdev #learntocode #designer #africandesign #noskshade", "tiktok": "The first time I shipped something myself, the internet in Abuja taught me more about design than any tutorial. Full story: link in bio. #designengineer #webdev #learntocode #designer #africandesign #designtok", "url": "https://thenoskshade.netlify.app/blog/design-for-states/"}};
+  }
+
+  async _socShare(kind, slug, d) {
+    const files = kind === 'ig' ? d.slides.map(f => 'assets/social/' + slug + '/' + f) : ['assets/social/' + slug + '/' + d.video];
+    const caption = kind === 'ig' ? d.instagram : d.tiktok;
+    try { if (navigator.clipboard) await navigator.clipboard.writeText(caption); } catch (_) {}
+    try {
+      this.setState({ socMsg: 'Preparing files…' });
+      const blobs = await Promise.all(files.map(u => fetch(u).then(r => r.blob())));
+      const fl = blobs.map((b, i) => new File([b], files[i].split('/').pop().replace(/^/, slug + '-'), { type: b.type || (kind === 'ig' ? 'image/jpeg' : 'video/mp4') }));
+      if (navigator.canShare && navigator.canShare({ files: fl })) {
+        await navigator.share({ files: fl, title: d.url });
+        this.setState({ socMsg: 'Caption copied. Paste it when you post.' });
+        return;
+      }
+    } catch (e) { if (e && e.name === 'AbortError') { this.setState({ socMsg: '' }); return; } }
+    this._socDownload(kind, slug, d);
+    this.setState({ socMsg: 'Your browser can’t send files straight to ' + (kind === 'ig' ? 'Instagram' : 'TikTok') + ', so they’re downloading instead. The caption is copied: open the app, add the ' + (kind === 'ig' ? 'slides as a carousel' : 'video') + ' and paste it.' });
+  }
+
+  _socDownload(kind, slug, d) {
+    const files = kind === 'ig' ? d.slides : [d.video];
+    files.forEach((f, i) => setTimeout(() => { const a = document.createElement('a'); a.href = 'assets/social/' + slug + '/' + f; a.download = slug + '-' + f; document.body.appendChild(a); a.click(); a.remove(); }, i * 350));
   }
 
   _go(p) { location.hash = p; }
