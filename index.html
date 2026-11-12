@@ -671,7 +671,7 @@
       <div style="margin-top:24px; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap:16px; align-items:start;">
         <sc-for list="{{ visualItems }}" as="v" hint-placeholder-count="8">
           <div style="border-radius:18px; overflow:hidden; background:rgba(255,255,255,0.7); border:1.5px solid rgba(255,255,255,0.85); box-shadow:0 4px 24px rgba(0,0,0,0.06);">
-            <div style="position:relative; aspect-ratio:{{ v.ratio }}; background:#e8e8e5;"><image-slot id="{{ v.slotId }}" shape="rect" src="{{ v.img }}" fit="cover" placeholder="{{ v.ph }}"></image-slot></div>
+            <div style="position:relative; aspect-ratio:{{ v.ratio }}; background:#e8e8e5;"><sc-if value="{{ v.hasImg }}" hint-placeholder-val="{{ true }}"><img src="{{ v.img }}" alt="{{ v.title }}" loading="lazy" decoding="async" draggable="false" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;"></sc-if><sc-if value="{{ v.noImg }}" hint-placeholder-val="{{ false }}"><image-slot id="{{ v.slotId }}" shape="rect" src="{{ v.img }}" fit="cover" placeholder="{{ v.ph }}"></image-slot></sc-if></div>
             <div style="padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:8px;"><span style="font-size:13px; font-weight:700; color:#111111;">{{ v.title }}</span><span style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:{{ v.c }};">{{ v.cat }}</span></div>
           </div>
         </sc-for>
@@ -2722,7 +2722,8 @@ class Component extends DCLogic {
       el.setAttribute('data-soon', '');
     });
     this._soon = setInterval(this._soonCheck, 1200);
-    this._reel = setInterval(() => this.setState(s => ({ reelIdx: (s.reelIdx || 0) + 1 })), 2600);
+    // The phone reel only exists on Home: tick it there only (a full redraw every 2.6s elsewhere strains phones)
+    this._reel = setInterval(() => { if ((this.state.page || 'home') === 'home' && !document.hidden) this.setState(s => ({ reelIdx: (s.reelIdx || 0) + 1 })); }, 2600);
     this._alive = () => {
       const vh = window.innerHeight;
       const sf = document.querySelector('[data-storyfill]');
@@ -3649,7 +3650,7 @@ class Component extends DCLogic {
     const vf = this.state.visualFilter || 'all';
     const vCats = { graphics: { label: 'Graphics', c: '#0284c7' }, flyers: { label: 'Flyers', c: '#db2777' }, '3d': { label: '3D & World Assets', c: '#7c3aed' } };
     const vAll = [
-      { key: 'graphics', title: 'Dizpharm 2026 Calendar', img: 'assets/visual-calendar.jpg', ratio: '3573 / 5952' },
+      { key: 'graphics', title: 'Dizpharm 2026 Calendar', img: 'assets/visual-calendar.jpg', ratio: '1600 / 2665' },
       { key: 'flyers', title: 'Dizpharm Exhibition Flyer', img: 'assets/flyer-a.jpg', ratio: '1836 / 2674' },
       { key: 'flyers', title: 'Dizpharm Exhibition Flyer, Team', img: 'assets/flyer-b.jpg', ratio: '1836 / 2674' },
       { key: 'flyers', title: 'Dizpharm Trade Range Flyer', img: 'assets/flyer-f.jpg', ratio: '1836 / 2674' },
@@ -3660,7 +3661,7 @@ class Component extends DCLogic {
       { key: '3d', title: '3D piece 2', img: '', ratio: '1' },
       { key: '3d', title: '3D piece 3', img: '', ratio: '4 / 3' },
       { key: '3d', title: '3D piece 4', img: '', ratio: '1' }
-    ].map((v, i) => ({ ...v, title: v.img ? v.title : 'Coming soon', cat: vCats[v.key].label, c: vCats[v.key].c, slotId: `visual-${v.key}-${i}`, ph: `Drop ${vCats[v.key].label.toLowerCase()} image` }));
+    ].map((v, i) => ({ ...v, hasImg: !!v.img, noImg: !v.img, title: v.img ? v.title : 'Coming soon', cat: vCats[v.key].label, c: vCats[v.key].c, slotId: `visual-${v.key}-${i}`, ph: `Drop ${vCats[v.key].label.toLowerCase()} image` }));
     const visualItems = vf === 'all' ? vAll : vAll.filter(v => v.key === vf);
     const visualTabs = [['all', 'All'], ['graphics', 'Graphics'], ['flyers', 'Flyers'], ['3d', '3D & World Assets']]
       .map(([k, label]) => ({ label: k === '3d' ? label + ' · Soon' : label, bg: vf === k ? '#111111' : 'transparent', c: vf === k ? '#ffffff' : (k === '3d' ? '#b0b5bd' : '#4b5563'), pick: () => this.setState({ visualFilter: k }) }));
