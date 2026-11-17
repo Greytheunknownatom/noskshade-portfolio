@@ -1,11 +1,16 @@
 # LEARN (lesson 7): Netlify reads this on every deploy. It detects Next.js and runs it with its
-# Next.js runtime (static pages on the CDN, server parts as functions). No plugin needed.
+# Next.js runtime (static pages on the CDN, server parts as functions), set by the plugin below.
 [build]
   command = "npm run build"
   publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Runs Next.js properly on Netlify (server pages, images, admin). Without it Netlify
+# uploads the build folder as plain files and every page shows "Page not found".
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [[headers]]
   for = "/assets/*"
