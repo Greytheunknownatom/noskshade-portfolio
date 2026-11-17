@@ -32,7 +32,12 @@ export async function submitEnquiry(_prev: EnquiryResult | null, form: FormData)
     plan: clean(form.get('plan'), 20), budget: clean(form.get('budget'), 60), start: clean(form.get('start'), 60),
     message: clean(form.get('message'), 4000), currency, selection: sel, addons, estimate: est,
   };
-  await saveEnquiry(enquiry);
+  try {
+    await saveEnquiry(enquiry);
+  } catch (e) {
+    console.error('Saving enquiry failed', e);
+    return { ok: false, error: 'Sorry, your brief could not be sent just now. Please email or WhatsApp me instead.' };
+  }
 
   const typeName = d.estimator.projectTypes.find((t) => t.id === sel.type)?.name ?? '';
   const summary = kind === 'consultation'
