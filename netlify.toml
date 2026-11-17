@@ -1,6 +1,11 @@
+# LEARN (lesson 7): Netlify reads this on every deploy. It detects Next.js and runs it with its
+# Next.js runtime (static pages on the CDN, server parts as functions). No plugin needed.
 [build]
-  publish = "."
-  command = ""
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 [[headers]]
   for = "/assets/*"
@@ -8,21 +13,12 @@
     Cache-Control = "public, max-age=604800"
 
 [[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/index.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/vendor/*"
+  for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/*.xml"
-  [headers.values]
-    Content-Type = "application/xml; charset=utf-8"
+# Old share links from the previous site still work.
+[[redirects]]
+  from = "/blog/:slug/index.html"
+  to = "/blog/:slug"
+  status = 301

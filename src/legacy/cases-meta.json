@@ -1,0 +1,101 @@
+{
+ "koynx": {
+  "route": "case-koynx",
+  "title": "KOYNX",
+  "seoTitle": "KOYNX: fintech savings app with Esusu and stokvel",
+  "desc": "Three surfaces (mobile, web and admin) designed end to end on one design system. Every money-moving flow passed compliance review with zero redesign…",
+  "og": "/assets/koynx-cover-hero.jpg",
+  "kind": "Fintech · Mobile, web & admin",
+  "cover": "/assets/koynx-cover-hero.webp"
+ },
+ "koynx-admin": {
+  "route": "case-koynx-admin",
+  "title": "KOYNX Admin",
+  "seoTitle": "KOYNX Admin: fintech admin dashboard and KYC design",
+  "desc": "One portal for every operations job: KYC in three tiers, risk ranked by severity, and role-based access, with every action logged by IP and timestamp.",
+  "og": "/assets/kx-a01.jpg",
+  "kind": "Fintech · Admin portal",
+  "cover": "/assets/kx-a01.webp"
+ },
+ "hillcross-college-website": {
+  "route": "case-hillcross",
+  "title": "HillCross College Website",
+  "seoTitle": "HillCross College website: admissions hero redesign",
+  "desc": "The intake year is now visible as soon as the page loads. Admissions entry points above the fold went from 2 to 4, and hero copy dropped from 63 words to 8.",
+  "og": "/assets/hillcross-after.jpg",
+  "kind": "Edtech · Website",
+  "cover": "/assets/hillcross-after.webp"
+ },
+ "hillcross-student-dashboard": {
+  "route": "case-hcstudent",
+  "title": "HillCross College Student Dashboard",
+  "seoTitle": "HillCross student dashboard: edtech UX redesign",
+  "desc": "One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.",
+  "og": "/assets/hcs-3.jpg",
+  "kind": "Edtech · Web app",
+  "cover": "/assets/hcs-3.webp"
+ },
+ "hillcross-teacher-dashboard": {
+  "route": "case-hcteacher",
+  "title": "HillCross College Teacher Dashboard",
+  "seoTitle": "HillCross teacher dashboard: edtech LMS redesign",
+  "desc": "Signing in now answers three questions on one screen: how the class is doing, what needs grading and what has changed.",
+  "og": "/assets/hct-ret.jpg",
+  "kind": "Edtech · Web app",
+  "cover": "/assets/hct-ret.webp"
+ },
+ "hillcross-university-student-portal": {
+  "route": "case-hcportal",
+  "title": "HillCross University Student Portal",
+  "seoTitle": "HillCross University student portal: edtech web app with AI study planning",
+  "desc": "13 student flows designed end to end, from first application to exam day, on one design system that the lecturer and admin portals will share.",
+  "og": "/assets/portal-8.jpg",
+  "kind": "Edtech · Web app",
+  "cover": "/assets/portal-8.webp"
+ },
+ "wemove-fitness": {
+  "route": "case-wemove",
+  "title": "WeMove Fitness",
+  "seoTitle": "WeMove Fitness: gamified fitness app UI/UX",
+  "desc": "A seven-step onboarding that ends in the first reward, and a collectible mint system that testers said gave them a reason not to skip a day.",
+  "og": "/assets/wm-cover.jpg",
+  "kind": "Health · Mobile app",
+  "cover": "/assets/wm-cover.webp"
+ },
+ "lucenture-consult": {
+  "route": "case-lucenture",
+  "title": "Lucenture Consult",
+  "seoTitle": "Lucenture Consult: brand identity and website for a Nigerian consultancy",
+  "desc": "A live four-page site with a booking flow, where Book a call is always within reach and every service says who it's for.",
+  "og": "/assets/lc-hero.jpg",
+  "kind": "Brand & web · Consultancy",
+  "cover": "/assets/lc-hero.webp"
+ },
+ "heatbud": {
+  "route": "case-heatbud",
+  "title": "HeatBud",
+  "seoTitle": "HeatBud: heat safety app for Nigeria, designed and built",
+  "desc": "Live and installable at heatbud.netlify.app: feels-like temperature, a seven-day heat forecast, a personal water plan and three ways to be reminded.",
+  "og": "/assets/hb-cover.jpg",
+  "kind": "Health & climate · PWA",
+  "cover": "/assets/hb-cover.webp"
+ },
+ "blissbill": {
+  "route": "case-blissbill",
+  "title": "BlissBill",
+  "seoTitle": "BlissBill: Nigerian bill payment fintech app design",
+  "desc": "Seven flows designed end to end in light and dark mode, from sign-up and identity checks to bill payments and a virtual card.",
+  "og": "/assets/bb-cover.jpg",
+  "kind": "Fintech · Mobile app",
+  "cover": "/assets/bb-cover.webp"
+ },
+ "laundromate": {
+  "route": "case-laundromate",
+  "title": "Laundromate",
+  "seoTitle": "Laundromate: on-demand laundry app UX for African cities",
+  "desc": "A complete booking app with 8 flows. Prices show in local currency before sign-up, and the receipt matches the review screen line for line.",
+  "og": "/assets/lm-welcome.jpg",
+  "kind": "On-demand · Mobile app",
+  "cover": "/assets/lm-welcome.webp"
+ }
+}

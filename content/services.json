@@ -1,0 +1,408 @@
+{
+ "_note": "Mid-market ranges (Nov 2026). Naira prices are for Nigerian clients; USD prices are for international clients, so they are not a straight conversion. Change any figure here (later in the admin).",
+ "currencies": {
+  "NGN": {
+   "symbol": "₦",
+   "label": "Naira"
+  },
+  "USD": {
+   "symbol": "$",
+   "label": "USD"
+  }
+ },
+ "plans": [
+  {
+   "id": "spark",
+   "name": "Spark",
+   "tagline": "Prove the idea fast",
+   "weeks": "1–3 weeks",
+   "bestFor": "Founders testing an idea or fixing one key flow",
+   "includes": [
+    "Discovery call and a one-page brief",
+    "Up to 10 key screens or 1 landing page",
+    "Clickable prototype",
+    "2 review rounds",
+    "Developer-ready handoff"
+   ],
+   "accent": "#f59e0b",
+   "priceRange": {
+    "NGN": [
+     350000,
+     700000
+    ],
+    "USD": [
+     500,
+     1200
+    ]
+   }
+  },
+  {
+   "id": "build",
+   "name": "Build",
+   "tagline": "A complete product, designed properly",
+   "popular": true,
+   "weeks": "4–8 weeks",
+   "bestFor": "Startups and teams shipping a full MVP or redesign",
+   "includes": [
+    "User research and flows",
+    "Full UI for web or mobile",
+    "Design system with tokens and components",
+    "Usability testing round",
+    "Weekly reviews and handoff support"
+   ],
+   "accent": "#0ea5e9",
+   "priceRange": {
+    "NGN": [
+     1200000,
+     2500000
+    ],
+    "USD": [
+     2500,
+     6000
+    ]
+   }
+  },
+  {
+   "id": "scale",
+   "name": "Scale",
+   "tagline": "Design and development, end to end",
+   "weeks": "8–16 weeks",
+   "bestFor": "Teams that want one partner from research to a live product",
+   "includes": [
+    "Everything in Build",
+    "Front-end development (Next.js / React)",
+    "Admin dashboard and CMS",
+    "Launch, analytics and SEO setup",
+    "30 days of post-launch support"
+   ],
+   "accent": "#6366f1",
+   "priceRange": {
+    "NGN": [
+     3000000,
+     6000000
+    ],
+    "USD": [
+     6000,
+     15000
+    ]
+   }
+  }
+ ],
+ "consultation": {
+  "name": "Design consultation",
+  "tagline": "An hour with a product designer, without a full project",
+  "unit": "per hour",
+  "includes": [
+   "Review of your product, idea or designs",
+   "Clear priorities and next steps",
+   "A written summary after the call"
+  ],
+  "addons": [
+   {
+    "id": "embedded",
+    "name": "Embedded designer",
+    "desc": "I join your team part-time or full-time as your designer.",
+    "unit": "per month (part-time)",
+    "priceRange": {
+     "NGN": [
+      400000,
+      700000
+     ],
+     "USD": [
+      1000,
+      2000
+     ]
+    }
+   },
+   {
+    "id": "review-fix",
+    "name": "Design review + fixes",
+    "desc": "I audit your product, then design the fixes as a fixed bundle.",
+    "unit": "fixed bundle",
+    "priceRange": {
+     "NGN": [
+      250000,
+      500000
+     ],
+     "USD": [
+      600,
+      1200
+     ]
+    }
+   },
+   {
+    "id": "ai-speed",
+    "name": "AI-assisted design speed-up",
+    "desc": "I set your team up with AI design tools and workflows so you design faster.",
+    "unit": "per team session",
+    "priceRange": {
+     "NGN": [
+      150000,
+      300000
+     ],
+     "USD": [
+      300,
+      700
+     ]
+    }
+   }
+  ],
+  "priceRange": {
+   "NGN": [
+    30000,
+    50000
+   ],
+   "USD": [
+    40,
+    75
+   ]
+  }
+ },
+ "processes": [
+  {
+   "id": "5d",
+   "name": "5D process",
+   "fit": "Best for new products with open questions",
+   "steps": [
+    {
+     "name": "Discover",
+     "desc": "Goals, users and competitors. You get a one-page brief."
+    },
+    {
+     "name": "Define",
+     "desc": "Flows, scope and priorities. You get a user-flow map."
+    },
+    {
+     "name": "Design",
+     "desc": "Wireframes to polished UI. You get a clickable prototype."
+    },
+    {
+     "name": "Develop",
+     "desc": "Built in code, or handed to your developers."
+    },
+    {
+     "name": "Deliver",
+     "desc": "Launch, testing and handover. You get the files and a walkthrough."
+    }
+   ]
+  },
+  {
+   "id": "sprint",
+   "name": "Sprint-based",
+   "fit": "Best for teams who want to see progress every week",
+   "steps": [
+    {
+     "name": "Kickoff",
+     "desc": "Agree the goal, the backlog and the first sprint."
+    },
+    {
+     "name": "Sprint 1–2 weeks",
+     "desc": "Design a slice of the product, end to end."
+    },
+    {
+     "name": "Review",
+     "desc": "Demo, feedback, and plan the next sprint."
+    },
+    {
+     "name": "Repeat",
+     "desc": "Until the scope is done."
+    },
+    {
+     "name": "Handover",
+     "desc": "Final files, design system and build support."
+    }
+   ]
+  },
+  {
+   "id": "handoff",
+   "name": "Design, then handoff",
+   "fit": "Best when you already have developers",
+   "steps": [
+    {
+     "name": "Research",
+     "desc": "Understand users and the problem."
+    },
+    {
+     "name": "UX",
+     "desc": "Flows and wireframes you can test early."
+    },
+    {
+     "name": "UI",
+     "desc": "Final screens in your brand."
+    },
+    {
+     "name": "Design system",
+     "desc": "Tokens and components your developers reuse."
+    },
+    {
+     "name": "Developer handoff",
+     "desc": "Specs, assets and a walkthrough. Development is optional."
+    }
+   ]
+  }
+ ],
+ "estimator": {
+  "projectTypes": [
+   {
+    "id": "website",
+    "name": "Website",
+    "desc": "Marketing or company site",
+    "price": {
+     "NGN": 350000,
+     "USD": 600
+    },
+    "designWeeks": 2,
+    "devWeeks": 2
+   },
+   {
+    "id": "mobile",
+    "name": "Mobile app",
+    "desc": "iOS and Android",
+    "price": {
+     "NGN": 900000,
+     "USD": 2000
+    },
+    "designWeeks": 4,
+    "devWeeks": 6
+   },
+   {
+    "id": "webapp",
+    "name": "Web app / dashboard",
+    "desc": "SaaS, portals, admin",
+    "price": {
+     "NGN": 900000,
+     "USD": 2000
+    },
+    "designWeeks": 4,
+    "devWeeks": 6
+   },
+   {
+    "id": "brand",
+    "name": "Brand identity",
+    "desc": "Logo, colours, guide",
+    "price": {
+     "NGN": 250000,
+     "USD": 500
+    },
+    "designWeeks": 2,
+    "devWeeks": 0
+   },
+   {
+    "id": "system",
+    "name": "Design system",
+    "desc": "Tokens, components, docs",
+    "price": {
+     "NGN": 600000,
+     "USD": 1500
+    },
+    "designWeeks": 3,
+    "devWeeks": 0
+   }
+  ],
+  "sizes": [
+   {
+    "id": "s",
+    "name": "Small",
+    "desc": "Up to 10 screens or pages",
+    "multiplier": 1
+   },
+   {
+    "id": "m",
+    "name": "Medium",
+    "desc": "10–30 screens or pages",
+    "multiplier": 1.8
+   },
+   {
+    "id": "l",
+    "name": "Large",
+    "desc": "30+ screens or pages",
+    "multiplier": 3
+   }
+  ],
+  "extras": [
+   {
+    "id": "research",
+    "name": "User research",
+    "price": {
+     "NGN": 200000,
+     "USD": 700
+    },
+    "designWeeks": 1,
+    "devWeeks": 0
+   },
+   {
+    "id": "system",
+    "name": "Design system",
+    "price": {
+     "NGN": 350000,
+     "USD": 1000
+    },
+    "designWeeks": 1,
+    "devWeeks": 0
+   },
+   {
+    "id": "dev",
+    "name": "Development",
+    "price": {
+     "NGN": 0,
+     "USD": 0
+    },
+    "devOnly": true,
+    "designWeeks": 0,
+    "devWeeks": 0
+   },
+   {
+    "id": "admin",
+    "name": "Admin dashboard / CMS",
+    "price": {
+     "NGN": 500000,
+     "USD": 1500
+    },
+    "designWeeks": 1,
+    "devWeeks": 2
+   },
+   {
+    "id": "brand",
+    "name": "Branding",
+    "price": {
+     "NGN": 250000,
+     "USD": 500
+    },
+    "designWeeks": 1,
+    "devWeeks": 0
+   }
+  ],
+  "devRate": 1.4,
+  "rangeSpread": 0.25,
+  "teams": [
+   {
+    "id": "solo",
+    "name": "Solo founder",
+    "process": "handoff"
+   },
+   {
+    "id": "startup",
+    "name": "Startup team",
+    "process": "sprint"
+   },
+   {
+    "id": "company",
+    "name": "Company / organisation",
+    "process": "5d"
+   }
+  ],
+  "budgets": [
+   "Not sure yet",
+   "Under ₦500k / $1k",
+   "₦500k–₦1.5m / $1k–$3k",
+   "₦1.5m–₦3m / $3k–$7k",
+   "₦3m–₦6m / $7k–$15k",
+   "₦6m+ / $15k+"
+  ]
+ },
+ "contact": {
+  "email": "thenoskshade@gmail.com",
+  "calendarUrl": "",
+  "whatsapp": "+2349023661518"
+ }
+}

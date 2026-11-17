@@ -1,0 +1,795 @@
+[
+ {
+  "slug": "heatbud-el-nino",
+  "title": "I kept forgetting to drink water in the heat, so I designed and built HeatBud",
+  "excerpt": "With El Niño in the news and my days packed with work, I kept noticing the heat only after it had already got to me. So I made a small app to warn me first, and it’s live today.",
+  "category": "uiux",
+  "publishedAt": "2026-11-11",
+  "readMinutes": 8,
+  "cover": "/assets/hb-cover.webp",
+  "coverAlt": "Three HeatBud app screens on a warm orange background",
+  "tags": [
+   "heatbud",
+   "product design",
+   "design engineering",
+   "nigeria"
+  ],
+  "featured": true,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "For weeks, everyone around me was talking about El Niño."
+   ],
+   [
+    "p",
+    "Hotter months. Drier air. Afternoons that feel heavier than the number on the weather app."
+   ],
+   [
+    "p",
+    "And I was too busy to notice any of it."
+   ],
+   [
+    "p",
+    "My days are mostly back-to-back design work. I’d look up mid-afternoon with a dull headache, realise my bottle was still full, and only then notice how hot the room had become."
+   ],
+   [
+    "p",
+    "That’s when it clicked: I wasn’t short of weather information. I was short of a nudge at the right time."
+   ],
+   [
+    "h",
+    "The problem with weather apps"
+   ],
+   [
+    "p",
+    "Every weather app I opened gave me a number. 34°. 36°. Partly cloudy."
+   ],
+   [
+    "p",
+    "But a number doesn’t tell you what to do with it. Is it safe to go out at 1 PM? Should I move that errand to the evening? How much water do I actually need today?"
+   ],
+   [
+    "q",
+    "A weather number is data. What people need in the heat is a decision."
+   ],
+   [
+    "p",
+    "And I’m one of the lucky ones who works indoors. Millions of Nigerians spend their whole day outside: riders, traders, builders, delivery staff, students walking to class. For them, heat isn’t an inconvenience. It decides how the day goes."
+   ],
+   [
+    "h",
+    "So I designed a buddy, not a dashboard"
+   ],
+   [
+    "p",
+    "I gave myself a few rules before drawing a single screen:"
+   ],
+   [
+    "l",
+    [
+     "Lead with how hot it feels, not the air temperature, because humidity changes everything.",
+     "Always say what to do next, in one plain sentence.",
+     "Make it feel like it was made here: Abuja on screen, Nigerian time, everyday English.",
+     "Keep it friendly. Heat is serious, but fear doesn’t make people open an app twice."
+    ]
+   ],
+   [
+    "img",
+    "assets/hb-home.webp",
+    "HeatBud home screen showing feels-like temperature over an illustrated Abuja scene",
+    "Home: how hot it feels, the risk level, and one sentence telling you what to do.",
+    "340px"
+   ],
+   [
+    "p",
+    "Open HeatBud and the first thing you see is the feels-like temperature over an illustrated Abuja scene, with a rating from Safe to Dangerous and a line like “OK with precautions until about 11 AM. Carry water, wear a hat, keep to shade.”"
+   ],
+   [
+    "p",
+    "Underneath sits a heat dial, the best time to go out today, and a water bottle that fills up as you drink."
+   ],
+   [
+    "h",
+    "The water bottle took three tries"
+   ],
+   [
+    "p",
+    "My first idea filled the whole Water page like a glass. It looked fun in a mockup. In use, it took over the screen and buried everything else."
+   ],
+   [
+    "p",
+    "So I moved water tracking onto Home as a real bottle with a side scale, the way you’d check one on your desk. The Water tab now holds the plan: a schedule across your day, with more water during the hottest hours, marked “do not skip.”"
+   ],
+   [
+    "img",
+    "assets/hb-water.webp",
+    "HeatBud heat dial and water bottle tracker",
+    "The bottle tells you how far behind you are and how much to drink now.",
+    "340px"
+   ],
+   [
+    "p",
+    "Your target comes from your weight, how active you are and the day’s forecast. Someone doing manual work outside gets a very different plan from someone at a desk."
+   ],
+   [
+    "h",
+    "The part I didn’t expect: safety"
+   ],
+   [
+    "p",
+    "“Drink more water” sounds like harmless advice. It isn’t for everyone. People with heart, kidney or liver conditions, or on water pills, can be harmed by drinking too much."
+   ],
+   [
+    "p",
+    "So HeatBud asks. If a doctor has set a fluid limit, the app keeps your target inside it, and there’s a short guide to the warning signs of heat illness."
+   ],
+   [
+    "q",
+    "Designing for health means designing for the person the feature could hurt, not just the person it helps."
+   ],
+   [
+    "h",
+    "Becoming a designer who ships"
+   ],
+   [
+    "p",
+    "HeatBud is also my first serious build. I’m learning to code by making things I designed myself, and this one taught me fast."
+   ],
+   [
+    "p",
+    "Push notifications were the hardest part. On the web they need a server and the right permissions on every phone. Dragging my files onto Netlify kept breaking that, so I learned to deploy from the command line instead. I also added calendar alarms as a backup, so reminders still fire with the app closed and no server involved."
+   ],
+   [
+    "img",
+    "assets/hb-buddy.webp",
+    "HeatBud settings with twelve buddy characters",
+    "Pick a buddy, set your routine, and add a doctor’s fluid limit if you have one.",
+    "340px"
+   ],
+   [
+    "p",
+    "And yes, there are twelve buddies. Sunny, Spike the cactus, Melon, Gecko and friends. Small things like that are why people come back."
+   ],
+   [
+    "h",
+    "Where it is now"
+   ],
+   [
+    "p",
+    "HeatBud is live. It opens on any phone and installs to your home screen like an app. It has five tabs: Home, Forecast, Water, Alerts and Me."
+   ],
+   [
+    "p",
+    "It isn’t finished, and I don’t want it to be. Next I’m working on more reliable push alerts, more realistic landmark scenes, and, most of all, feedback from people who actually spend their day in the sun."
+   ],
+   [
+    "cta",
+    "Try HeatBud on your phone and tell me what would make it more useful for you.",
+    "https://heatbud.netlify.app/",
+    "Open HeatBud ↗",
+    ""
+   ],
+   [
+    "cta",
+    "Want the full design story, with every screen and decision?",
+    "#case-heatbud",
+    "Read the case study →",
+    "case-heatbud",
+    "blue"
+   ],
+   [
+    "p",
+    "Stay cool out there. And drink some water. Your buddy says so."
+   ]
+  ]
+ },
+ {
+  "slug": "ai-designs-everywhere-consulting",
+  "title": "AI can design a screen in ten seconds. That’s exactly why you still need a designer.",
+  "excerpt": "Last month a founder showed me 40 screens he’d generated over a weekend. They looked great. None of them answered the one question his users were asking.",
+  "category": "uiux",
+  "publishedAt": "2026-11-07",
+  "readMinutes": 6,
+  "cover": "/assets/lc-hero.webp",
+  "coverAlt": "A consulting website hero section",
+  "tags": [
+   "consulting",
+   "ai",
+   "founders"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "A founder sent me a Figma link on a Monday morning."
+   ],
+   [
+    "p",
+    "“I did the whole app over the weekend with AI. Can you just polish it?”"
+   ],
+   [
+    "p",
+    "Forty screens. Clean spacing. Nice gradients. Honestly, it looked better than a lot of first drafts I’ve seen from people."
+   ],
+   [
+    "p",
+    "Then I asked him one question: “What should a new user do first?”"
+   ],
+   [
+    "p",
+    "He scrolled for a while. He couldn’t point to it. Neither could the app."
+   ],
+   [
+    "h",
+    "Making screens is no longer the hard part"
+   ],
+   [
+    "p",
+    "This is the shift nobody really talks about. AI didn’t make design easy. It made making things easy."
+   ],
+   [
+    "p",
+    "You can now produce a hundred good-looking screens before lunch. What you can’t produce that fast is the judgement behind them: which ten screens actually matter, what to cut, what your users don’t trust yet, and what will fall apart when a real person with a slow phone and a full inbox tries to use it."
+   ],
+   [
+    "q",
+    "When everyone can make something that looks finished, deciding what it should be becomes the real work."
+   ],
+   [
+    "h",
+    "What consulting looks like now"
+   ],
+   [
+    "p",
+    "More of my work has quietly moved from “design this for me” to “help me make sense of what I already have.” In practice that means:"
+   ],
+   [
+    "l",
+    [
+     "Looking at what a team has generated and saying, kindly but clearly, what to keep and what to throw away.",
+     "Finding the one flow that decides whether people stay, and making that flow excellent before anything else.",
+     "Turning a pile of screens into a small system, so the product still feels like one product six months from now.",
+     "Bringing the context a prompt can’t: who your users are, what they’ve been burned by, and how they really pay, share and sign up."
+    ]
+   ],
+   [
+    "p",
+    "That last one matters a lot here. Most AI tools learned design from products built for other markets. If your users are in Lagos, Nairobi or Johannesburg, the defaults are often quietly wrong."
+   ],
+   [
+    "h",
+    "AI isn’t the enemy"
+   ],
+   [
+    "p",
+    "I use it every day. It helps me explore faster, write rough copy, and test ideas I’d never have had time for."
+   ],
+   [
+    "p",
+    "But a tool that can make anything still needs someone to decide what’s worth making. That’s the job now."
+   ],
+   [
+    "p",
+    "If you’re sitting on a folder of AI screens and a quiet feeling that something isn’t right, that’s my favourite kind of conversation. Let’s talk."
+   ]
+  ]
+ },
+ {
+  "slug": "designing-trust-into-savings",
+  "title": "Nobody told me the hardest part of designing a savings app would be fear",
+  "excerpt": "I thought I was designing for people who wanted to save money. I was really designing for people who had already lost it.",
+  "category": "uiux",
+  "publishedAt": "2026-11-04",
+  "readMinutes": 6,
+  "cover": "/assets/koynx-cover-hero.webp",
+  "coverAlt": "Savings app screens on a blue background",
+  "tags": [
+   "fintech",
+   "trust",
+   "research"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "Ten minutes into a research call, a woman stopped answering my questions and started telling me a story."
+   ],
+   [
+    "p",
+    "Years ago she’d joined a savings group with people she trusted. One day the person holding the money stopped picking up calls."
+   ],
+   [
+    "p",
+    "“So,” she said, “why would I trust an app?”"
+   ],
+   [
+    "p",
+    "I didn’t have an answer. That was the moment the KOYNX project changed for me."
+   ],
+   [
+    "h",
+    "People had heard every promise already"
+   ],
+   [
+    "p",
+    "Almost everyone we spoke to had a version of that story. A group that collapsed. An app that suddenly froze withdrawals. A friend who “would pay back next month.”"
+   ],
+   [
+    "p",
+    "Big words like “secure” and “guaranteed” didn’t calm anyone down. They’d heard all of that before."
+   ],
+   [
+    "q",
+    "Trust isn’t something you say. It’s something people can check, again and again, without asking you."
+   ],
+   [
+    "h",
+    "So we stopped promising and started showing"
+   ],
+   [
+    "l",
+    [
+     "Put the boring details right where people look: when the money unlocks, and what happens if you need it early.",
+     "Let group members see who has paid this round, so nobody has to chase anyone.",
+     "Show the name on the receiving account before the PIN, so there’s no doubt about where money is going."
+    ]
+   ],
+   [
+    "p",
+    "None of these were exciting to design. All of them came straight from people’s fears."
+   ],
+   [
+    "h",
+    "What I took away"
+   ],
+   [
+    "p",
+    "Next time you start a fintech project, ask people about money they’ve lost, not just money they want to save."
+   ],
+   [
+    "p",
+    "Their answers will show you exactly which screens need to work hardest."
+   ]
+  ]
+ },
+ {
+  "slug": "tokens-first",
+  "title": "I built my first design system backwards. Here’s what I’d do instead.",
+  "excerpt": "I started with buttons and cards. Three weeks later I had three versions of every button and a developer who had stopped asking me questions.",
+  "category": "systems",
+  "publishedAt": "2026-10-28",
+  "readMinutes": 5,
+  "cover": "/assets/kx-a10.webp",
+  "coverAlt": "Dashboard screens built from a shared design system",
+  "tags": [
+   "design systems",
+   "tokens",
+   "figma"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "Three products. One small team. One deadline that didn’t care about either."
+   ],
+   [
+    "p",
+    "I did what felt natural: I designed the components first. Buttons, cards, inputs. Beautiful ones."
+   ],
+   [
+    "p",
+    "Then the admin dashboard needed tighter tables. The mobile app needed bigger tap areas. Every “small exception” created a new version of something."
+   ],
+   [
+    "p",
+    "Within a few weeks the system wasn’t a system. It was a collection."
+   ],
+   [
+    "h",
+    "The fix was making decisions before shapes"
+   ],
+   [
+    "p",
+    "I went back and started with tokens: the small, named decisions underneath everything. Which colour means “do this.” How much space sits between related things. How big a heading is."
+   ],
+   [
+    "p",
+    "Each product could then use those same decisions at its own size. Same language, different density."
+   ],
+   [
+    "q",
+    "If a developer has to ask which grey to use, the system has already let them down."
+   ],
+   [
+    "h",
+    "Two mistakes I won’t repeat"
+   ],
+   [
+    "l",
+    [
+     "Naming things by how they look (“blue-500”) instead of what they do (“action-primary”). One brand change meant editing hundreds of layers.",
+     "Writing the documentation in a separate file nobody opened. Notes inside the components did more than any handbook."
+    ]
+   ],
+   [
+    "p",
+    "If you’re starting a system this month, start smaller than feels right. Ten good decisions beat a hundred pretty components."
+   ]
+  ]
+ },
+ {
+  "slug": "designer-learning-to-code",
+  "title": "I’m a designer learning to code. Week one humbled me in a way I didn’t expect.",
+  "excerpt": "I thought the hard part would be the syntax. It was realising how many of my designs were missing half their screens.",
+  "category": "code",
+  "publishedAt": "2026-10-21",
+  "readMinutes": 5,
+  "cover": "/assets/portal-4.webp",
+  "coverAlt": "A web portal interface on screen",
+  "tags": [
+   "design engineering",
+   "learning",
+   "javascript"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "I’ve “started learning to code” more times than I’d like to admit."
+   ],
+   [
+    "p",
+    "A bit of C years ago. Some terminal commands. Tutorials I finished without really understanding."
+   ],
+   [
+    "p",
+    "This time I made one rule: only build things I designed myself. If I write a line of code, I should know exactly why it’s there."
+   ],
+   [
+    "h",
+    "The first thing code taught me had nothing to do with code"
+   ],
+   [
+    "p",
+    "In Figma, a screen is a picture. In code, a screen is the result of some information: who the user is, what they’ve done, what’s still loading."
+   ],
+   [
+    "c",
+    "const screen = !user ? \"loading\" : user.posts.length ? \"feed\" : \"empty\";\n\n// three screens. I had designed one."
+   ],
+   [
+    "p",
+    "That one line showed me two screens I had never drawn. The waiting one, and the empty one."
+   ],
+   [
+    "q",
+    "Learning to code didn’t make me less of a designer. It showed me which parts of my designs were just wishful thinking."
+   ],
+   [
+    "h",
+    "What I do differently now"
+   ],
+   [
+    "l",
+    [
+     "Design the loading, empty and error screens next to the main one, not later.",
+     "Name layers the way a developer would name things.",
+     "Put rough work on a live link early, even when it’s embarrassing."
+    ]
+   ],
+   [
+    "p",
+    "If you’re a designer thinking about learning to code: start with something you already designed. It hits differently."
+   ]
+  ]
+ },
+ {
+  "slug": "rebrand-without-erasing-history",
+  "title": "The hardest part of refreshing a school’s brand was deciding what not to change",
+  "excerpt": "Everyone had an opinion. Alumni loved the old look, parents wanted clarity, students just wanted the portal to work.",
+  "category": "brand",
+  "publishedAt": "2026-10-14",
+  "readMinutes": 5,
+  "cover": "/assets/hillcross-after.webp",
+  "coverAlt": "Redesigned college website homepage",
+  "tags": [
+   "brand identity",
+   "education",
+   "web"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "When people hear “rebrand,” they picture a shiny new logo."
+   ],
+   [
+    "p",
+    "When I started working on a college’s brand, my first job was the opposite. I had to figure out what people would be upset to lose."
+   ],
+   [
+    "h",
+    "A school brand belongs to a lot of people"
+   ],
+   [
+    "p",
+    "Former students remember the colours from their uniform. Parents remember the fees page. Current students mostly remember whether the portal let them log in."
+   ],
+   [
+    "p",
+    "A brand refresh that only pleases the marketing team won’t last a semester."
+   ],
+   [
+    "h",
+    "So I went looking for what was already working"
+   ],
+   [
+    "p",
+    "I collected everything: signs, social posts, the website, printed forms, the student portal. The name and colours were genuinely recognised. That was worth protecting."
+   ],
+   [
+    "p",
+    "What felt tired was everything around them: too many fonts, random icons, and a homepage trying to say ten things at once."
+   ],
+   [
+    "l",
+    [
+     "Kept the colours, but gave them clear rules.",
+     "Went from four fonts to one family.",
+     "Gave announcements a proper home, so admission news stops taking over everything."
+    ]
+   ],
+   [
+    "q",
+    "A good refresh makes people think “they got their act together,” not “who is this?”"
+   ],
+   [
+    "p",
+    "My test was simple: can a former student recognise the college’s post in their feed before reading the name? If yes, we kept what mattered."
+   ]
+  ]
+ },
+ {
+  "slug": "onboarding-five-people",
+  "title": "Five people broke my onboarding in one afternoon. Best afternoon of the project.",
+  "excerpt": "I was proud of those eight setup questions. By question four, every single tester was tapping skip without reading.",
+  "category": "uiux",
+  "publishedAt": "2026-10-07",
+  "readMinutes": 4,
+  "cover": "/assets/wm-cover.webp",
+  "coverAlt": "Fitness app onboarding screens",
+  "tags": [
+   "user testing",
+   "onboarding",
+   "research"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "For WeMove, a fitness app, I designed an onboarding I was genuinely proud of."
+   ],
+   [
+    "p",
+    "Eight thoughtful questions. Clean layout. Friendly copy."
+   ],
+   [
+    "p",
+    "Then I watched five real people use it."
+   ],
+   [
+    "p",
+    "By question four, everyone was tapping “Skip” without reading. One person said, “I just want to see a workout.”"
+   ],
+   [
+    "h",
+    "Why I test with five people, not fifty"
+   ],
+   [
+    "p",
+    "Five people won’t tell you everything. But they’ll show you the biggest problem almost immediately, and that’s what you need first."
+   ],
+   [
+    "l",
+    [
+     "Find five people who actually match your users, not your colleagues.",
+     "Give one simple task: “Set this up so it’s useful to you.”",
+     "Watch. Say nothing. The awkward silences are where the lessons are.",
+     "Fix the top three problems, then do it again."
+    ]
+   ],
+   [
+    "q",
+    "Testing isn’t about proving your design works. It’s about finding out where it doesn’t, as early and cheaply as possible."
+   ],
+   [
+    "p",
+    "We cut onboarding down to three questions and moved the rest into the first week of using the app. The one question we kept up front was the one that mattered most: how active are you right now?"
+   ]
+  ]
+ },
+ {
+  "slug": "logo-is-not-brand",
+  "title": "“I just need a logo.” Why I usually say no to that first.",
+  "excerpt": "Most small businesses don’t lose customers because of their logo. They lose them because nothing they post looks like it comes from the same place.",
+  "category": "brand",
+  "publishedAt": "2026-09-30",
+  "readMinutes": 4,
+  "cover": "/assets/flyer-b.webp",
+  "coverAlt": "Printed promotional flyer design",
+  "tags": [
+   "small business",
+   "branding",
+   "freelance"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "Nearly every new brand enquiry I get starts the same way."
+   ],
+   [
+    "p",
+    "“I need a logo.”"
+   ],
+   [
+    "p",
+    "After years of freelance work, I now reply with a question: where will people actually see your business this month?"
+   ],
+   [
+    "p",
+    "The answer is usually a WhatsApp status, a few Instagram posts, a flyer and maybe a shop sign."
+   ],
+   [
+    "h",
+    "The logo isn’t what makes those work"
+   ],
+   [
+    "p",
+    "It helps. But what makes people remember you is seeing the same colours, the same tone and the same feel everywhere they meet you."
+   ],
+   [
+    "h",
+    "What I suggest starting with instead"
+   ],
+   [
+    "l",
+    [
+     "One sentence that says what you do and who it’s for.",
+     "Two brand colours and one neutral. Used every single time.",
+     "One font for headings, one for everything else.",
+     "Three ready-to-use templates: a post, a status and a flyer.",
+     "Then the logo, designed to sit comfortably inside all of that."
+    ]
+   ],
+   [
+    "q",
+    "Consistency beats cleverness. A simple mark used everywhere does more than a brilliant one used once."
+   ],
+   [
+    "p",
+    "If you’re a small business owner reading this, look at your last five posts side by side. Do they look like they came from the same business?"
+   ]
+  ]
+ },
+ {
+  "slug": "naming-components",
+  "title": "The day I realised my developer didn’t understand my Figma file",
+  "excerpt": "“Is Card/Large the same as Tile/Primary?” It was. I just never told anyone, and the names didn’t either.",
+  "category": "systems",
+  "publishedAt": "2026-09-23",
+  "readMinutes": 4,
+  "cover": "/assets/bb-cover.webp",
+  "coverAlt": "Bill payment app screens",
+  "tags": [
+   "design systems",
+   "handoff",
+   "figma"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "Halfway through a build, my developer sent me a message."
+   ],
+   [
+    "p",
+    "“Quick one. Is Card/Large the same as Tile/Primary?”"
+   ],
+   [
+    "p",
+    "They were the same thing. I’d just named them on different days, in different moods."
+   ],
+   [
+    "p",
+    "That question cost us an afternoon. Multiply it across a project and you lose weeks."
+   ],
+   [
+    "h",
+    "Names are the cheapest documentation you’ll ever write"
+   ],
+   [
+    "l",
+    [
+     "Name things by their job, not their look: “PaymentSummary,” not “BlueCard.”",
+     "Agree on one word with your developer and use it in both Figma and code.",
+     "Use variants for state and size: default, pressed, disabled; small, medium, large.",
+     "If a name needs explaining, it’s the wrong name."
+    ]
+   ],
+   [
+    "q",
+    "A design system is a shared language. The names are its vocabulary."
+   ],
+   [
+    "p",
+    "After one afternoon of renaming, the questions almost stopped. Even better, my developer started suggesting names in the comments. That’s when you know you’re speaking the same language."
+   ]
+  ]
+ },
+ {
+  "slug": "design-for-states",
+  "title": "My app had five screens in Figma and twenty on a real phone",
+  "excerpt": "The first time I shipped something myself, the internet in Abuja taught me more about design than any tutorial.",
+  "category": "code",
+  "publishedAt": "2026-09-16",
+  "readMinutes": 5,
+  "cover": "/assets/portal-13.webp",
+  "coverAlt": "Student portal dashboard screen",
+  "tags": [
+   "pwa",
+   "design engineering",
+   "handoff"
+  ],
+  "featured": false,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "In Figma, my little web app had five screens. All of them looked perfect."
+   ],
+   [
+    "p",
+    "Then I opened it on my phone, on a normal Abuja network, and watched it struggle."
+   ],
+   [
+    "p",
+    "Half-loaded images. A blank white screen for four seconds. A button I tapped twice because nothing seemed to happen."
+   ],
+   [
+    "h",
+    "The screens nobody designs"
+   ],
+   [
+    "l",
+    [
+     "Offline: what still works, and how do you say so without scaring anyone?",
+     "Slow: a grey outline of the page feels faster than a spinning circle.",
+     "Half-loaded: the text arrived, but one image didn’t.",
+     "First visit vs. returning: the same screen with two very different jobs."
+    ]
+   ],
+   [
+    "q",
+    "A design isn’t finished when it looks right. It’s finished when it still feels right on a bad connection."
+   ],
+   [
+    "p",
+    "Now I draw the empty, loading and error screens beside every main screen, before I call anything done."
+   ],
+   [
+    "p",
+    "That’s the real reason I want to become a design engineer. Not to replace developers, but to hand them designs that already know how they’ll be used."
+   ]
+  ]
+ }
+]
