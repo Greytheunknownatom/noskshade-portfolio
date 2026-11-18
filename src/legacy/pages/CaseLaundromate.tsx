@@ -2,6 +2,6 @@
 import LegacyShell from '../LegacyShell';
 import Section from '../sections/CaseLaundromate';
 
-export default function CaseLaundromatePage() {
-  return <LegacyShell page="case-laundromate">{(v) => <Section v={v} />}</LegacyShell>;
+export default function CaseLaundromatePage({ ov }: { ov?: any }) {
+  return <LegacyShell page="case-laundromate" ov={ov}>{(v) => <Section v={v} />}</LegacyShell>;
 }

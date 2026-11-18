@@ -3,6 +3,8 @@ import { requireSessionForPage } from '@/lib/admin/page';
 import { listEnquiries } from '@/lib/admin/data';
 import { enquiryStatusAction } from '../../actions';
 import StatusSelect from './StatusSelect';
+import CopyButton from './CopyButton';
+import Icon from '../Icon';
 import s from '../../admin.module.css';
 
 const LABEL: Record<string, string> = { type: 'Project type', size: 'Size', extras: 'Extras', process: 'Process', team: 'Team' };
@@ -29,8 +31,9 @@ export default async function Enquiries() {
                   </div>
                 </div>
                 <div className={s.row}>
-                  <a className={`${s.btn} ${s.small}`} href={`mailto:${d.email}?subject=${encodeURIComponent('Your brief for Noskshade Studio')}`}>Reply by email</a>
-                  {wa && <a className={`${s.btn} ${s.ghost} ${s.small}`} href={`https://wa.me/${wa}`} target="_blank">WhatsApp</a>}
+                  <a className={`${s.btn} ${s.small}`} target="_blank" rel="noopener" href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(d.email)}&su=${encodeURIComponent('Re: your brief for Noskshade Studio')}&body=${encodeURIComponent(`Hi ${String(d.name || '').split(' ')[0]},\n\nThanks for your brief. `)}`}><Icon name="reply" size={15} />Reply in Gmail</a>
+                  {wa && <a className={`${s.btn} ${s.ghost} ${s.small}`} href={`https://wa.me/${wa}`} target="_blank" rel="noopener"><Icon name="chat" size={15} />WhatsApp</a>}
+                  <CopyButton text={d.email} />
                   <form action={enquiryStatusAction}><input type="hidden" name="id" value={String(e.id)} /><StatusSelect value={e.status} /></form>
                 </div>
               </div>

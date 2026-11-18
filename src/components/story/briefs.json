@@ -1,0 +1,67 @@
+{
+ "koynx": {
+  "result": "Three surfaces (mobile, web and admin) designed end to end on one design system. Every money-moving flow passed compliance review with zero redesign cycles, and new screens now start 70% done.",
+  "did": "I led the design. I took Hillcross Pay through its rebrand to KOYNX, set up the design system, and designed the member app, the web app and the admin portal.",
+  "problem": "South Africans save through banking apps, Esusu pots and stokvels kept in notebooks and on WhatsApp, and nothing shows them every rand in one place."
+ },
+ "koynx-admin": {
+  "result": "One portal for every operations job: KYC in three tiers, risk ranked by severity, and role-based access, with every action logged by IP and timestamp.",
+  "did": "I designed the portal end to end on the KOYNX design system: sign-in, overview, users, savings, groups, transactions, KYC, support and risk, and sub-admins.",
+  "problem": "Staff had to verify members, watch every money flow and resolve risk without ever approving someone by accident.",
+  "trade": "Accept stays disabled until every KYC document is verified. Each review takes an extra step, but nobody gets approved by mistake.",
+  "next": "The portal launches with KOYNX in South Africa. Feedback from reviewers and risk staff goes back into the shared components."
+ },
+ "hillcross": {
+  "result": "The intake year is now visible as soon as the page loads. Admissions entry points above the fold went from 2 to 4, and hero copy dropped from 63 words to 8.",
+  "did": "I redesigned the homepage hero: the intake announcement bar, an intake-led headline, two calls to action, real campus photography and a slider visitors can control.",
+  "problem": "The homepage welcomed visitors but never said that admissions were open, or for which year.",
+  "trade": "A slider lets the hero carry more than one story, but sliders can move content away from someone still reading. I added pause, a counter and controls, so the visitor stays in control."
+ },
+ "hcstudent": {
+  "result": "One dashboard that always shows a student their next step, from Start Registration to their first module, with support on every view.",
+  "did": "I redesigned the legacy student platform: the registration card and its three states, the e-portal assessment flow, and the components shared with the teacher and admin portals.",
+  "problem": "New students saw every tool at once and didn't know what to do first.",
+  "trade": "One primary action per state means fewer shortcuts on screen. In return, a new student never has to guess what comes next."
+ },
+ "hcteacher": {
+  "result": "Signing in now answers three questions on one screen: how the class is doing, what needs grading and what has changed.",
+  "did": "I redesigned the legacy teacher portal: the overview, the engagement panel, the grading queue, lesson completion rows and empty states.",
+  "problem": "The old portal stored records but gave lecturers no sense of what mattered today.",
+  "trade": "Showing zeros and empty states instead of hiding cards makes a new account look sparse. In return the layout never changes, so a teacher learns it once."
+ },
+ "hcportal": {
+  "result": "13 student flows designed end to end, from first application to exam day, on one design system that the lecturer and admin portals will share.",
+  "did": "I designed the student portal and the system behind all three portals: applications with a live APS score and ID checks, an adaptive dashboard, AI study planning, proctored exams and finance.",
+  "problem": "Students needed one place to apply, register, study and pay, instead of paperwork and queues.",
+  "trade": "AI Assist suggests a task order instead of setting the plan for the student. It's less automatic, but the student stays in charge of their day."
+ },
+ "wemove": {
+  "result": "A seven-step onboarding that ends in the first reward, and a collectible mint system that testers said gave them a reason not to skip a day.",
+  "did": "As UI/UX designer, I designed onboarding, home and profile, workouts, Quick Burst and rewards, plus the visual language and style guide.",
+  "problem": "People needed a reason to come back tomorrow, not just a log of what they did today.",
+  "trade": "Giving a mint before the first workout spends a reward early. It also teaches the reward system on day one, which mattered more."
+ },
+ "lucenture": {
+  "result": "A live four-page site with a booking flow, where Book a call is always within reach and every service says who it's for.",
+  "did": "I designed the brand and wordmark, the visual language and the website: home, services, case studies, about, booking and contact.",
+  "problem": "Small business owners couldn't tell which consulting service fit them without calling first.",
+  "trade": "Dark team photography in the hero sets a premium tone but competes with the text. I darkened the photos so the message leads."
+ },
+ "heatbud": {
+  "result": "Live and installable: feels-like temperature, a seven-day heat forecast, a personal water plan and three ways to be reminded.",
+  "did": "I designed, built and shipped it myself, from the research and UI to the PWA, push alerts and deployment.",
+  "problem": "Weather apps show a number, not what it means for your day: when to go out and how much to drink."
+ },
+ "blissbill": {
+  "result": "Seven flows designed end to end in light and dark mode, from sign-up and identity checks to bill payments and a virtual card.",
+  "did": "I took the flat first concept and redesigned it: home, sign-up, NIN, BVN and selfie checks, bill flows, the virtual card, and a full dark mode built on the same tokens.",
+  "problem": "Paying small, frequent bills meant juggling apps, USSD codes and agents.",
+  "trade": "A full dark mode doubled the states to design and maintain. Most sessions happen at night, so it was in scope from day one."
+ },
+ "laundromate": {
+  "result": "A complete booking app with 8 flows. Prices show in local currency before sign-up, and the receipt matches the review screen line for line.",
+  "did": "I designed the app end to end: onboarding, location-based prices, services that stack in one order, scheduled pickup and delivery, checkout and receipt.",
+  "problem": "Laundry services hide prices until you call, and pickup times are hard to pin down.",
+  "trade": "Showing prices before an account means some visitors leave without signing up. Testers said it was the reason they stayed."
+ }
+}

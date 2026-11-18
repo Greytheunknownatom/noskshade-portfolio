@@ -48,3 +48,13 @@ export async function addEnquiry(e: unknown): Promise<void> {
   });
   if (!res.ok) throw new Error(`Supabase enquiry: ${res.status}`);
 }
+
+export async function listCases(): Promise<import('./types').CaseStudy[]> {
+  const res = await fetch(`${url}/rest/v1/case_studies?select=*&status=eq.published&order=sort_order.asc`, { headers: { apikey: key! } });
+  if (!res.ok) throw new Error(`Supabase case studies: ${res.status}`);
+  return res.json();
+}
+
+export async function readSettingsOr<T>(k: string, fallback: T): Promise<T> {
+  try { return await readSettings<T>(k); } catch { return fallback; }
+}

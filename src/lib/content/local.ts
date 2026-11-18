@@ -29,3 +29,11 @@ export async function addEnquiry(e: unknown): Promise<void> {
   list.unshift(e);
   await fs.writeFile(file, JSON.stringify(list, null, 1) + '\n');
 }
+
+export async function listCases(): Promise<import('./types').CaseStudy[]> {
+  return readJson<import('./types').CaseStudy[]>('cases.json').catch(() => []);
+}
+
+export async function readSettingsOr<T>(key: string, fallback: T): Promise<T> {
+  return readJson<T>(`${key}.json`).catch(() => fallback);
+}

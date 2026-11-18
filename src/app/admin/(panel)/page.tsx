@@ -1,21 +1,22 @@
 import Link from 'next/link';
 import { requireSessionForPage } from '@/lib/admin/page';
-import { listAllPosts, listEnquiries } from '@/lib/admin/data';
+import { listAllPosts, listEnquiries, getVisitStats } from '@/lib/admin/data';
+import Icon from './Icon';
 import s from '../admin.module.css';
 
 export default async function Overview() {
   const session = await requireSessionForPage();
-  const [posts, enquiries] = await Promise.all([listAllPosts(session), listEnquiries(session)]);
+  const [posts, enquiries, visits] = await Promise.all([listAllPosts(session), listEnquiries(session), getVisitStats(session)]);
   const fresh = enquiries.filter((e) => e.status === 'new');
   return (
     <>
       <div className={s.head}><div><h1 className={s.h1}>Welcome back</h1><p className={s.muted}>Here’s what’s happening on your site.</p></div>
-        <Link href="/admin/posts/new" className={s.btn}>+ New post</Link></div>
+        <div className={s.row}><Link href="/admin/cases/new" className={`${s.btn} ${s.ghost}`}><Icon name="layers" size={15} />New case study</Link><Link href="/admin/posts/new" className={s.btn}><Icon name="plus" size={15} />New post</Link></div></div>
       <div className={s.stats}>
-        <div className={`${s.card} ${s.pad} ${s.stat}`}><b>{fresh.length}</b><span>New enquiries</span></div>
-        <div className={`${s.card} ${s.pad} ${s.stat}`}><b>{enquiries.length}</b><span>All enquiries</span></div>
-        <div className={`${s.card} ${s.pad} ${s.stat}`}><b>{posts.filter((p) => p.status === 'published').length}</b><span>Published posts</span></div>
-        <div className={`${s.card} ${s.pad} ${s.stat}`}><b>{posts.filter((p) => p.status === 'draft').length}</b><span>Drafts</span></div>
+        <Link href="/admin/visits" className={`${s.card} ${s.pad} ${s.stat}`} style={{ textDecoration: 'none', color: 'inherit' }}><span className={`${s.statIcon} ${s.c1}`}><Icon name="eye" /></span><b>{visits ? visits.week : '—'}</b><span>Visits this week</span></Link>
+        <Link href="/admin/enquiries" className={`${s.card} ${s.pad} ${s.stat}`} style={{ textDecoration: 'none', color: 'inherit' }}><span className={`${s.statIcon} ${s.c2}`}><Icon name="mail" /></span><b>{fresh.length}</b><span>New enquiries</span></Link>
+        <Link href="/admin/posts" className={`${s.card} ${s.pad} ${s.stat}`} style={{ textDecoration: 'none', color: 'inherit' }}><span className={`${s.statIcon} ${s.c3}`}><Icon name="pen" /></span><b>{posts.filter((p) => p.status === 'published').length}</b><span>Published posts</span></Link>
+        <Link href="/admin/enquiries" className={`${s.card} ${s.pad} ${s.stat}`} style={{ textDecoration: 'none', color: 'inherit' }}><span className={`${s.statIcon} ${s.c4}`}><Icon name="users" /></span><b>{enquiries.length}</b><span>All enquiries</span></Link>
       </div>
       <div className={`${s.card} ${s.pad}`}>
         <div className={s.head} style={{ marginBottom: 8 }}><h2 className={s.h2} style={{ margin: 0 }}>Latest enquiries</h2><Link href="/admin/enquiries" className={`${s.btn} ${s.ghost} ${s.small}`}>See all</Link></div>

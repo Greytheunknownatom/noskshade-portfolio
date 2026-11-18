@@ -50,15 +50,30 @@ export async function submitEnquiry(_prev: EnquiryResult | null, form: FormData)
   return { ok: true, summary };
 }
 
-// Email via Resend's free plan, only when RESEND_API_KEY is set (step-by-step setup in LEARN.md).
-async function notify(e: Record<string, unknown>, summary: string) {
+// Email via Resend's free plan, only when RESEND_API_KEY and ENQUIRY_EMAIL_TO are set in Netlify.
+// The email has one-tap buttons to reply in Gmail or on WhatsApp.
+const esc = (v: unknown) => String(v ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
+async function notify(e: Record<string, any>, summary: string) {
   const key = process.env.RESEND_API_KEY;
   const to = process.env.ENQUIRY_EMAIL_TO;
   if (!key || !to) return;
-  const lines = Object.entries(e).map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`).join('\n');
+  const first = String(e.name || '').split(' ')[0];
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(e.email)}&su=${encodeURIComponent('Re: your brief for Noskshade Studio')}&body=${encodeURIComponent(`Hi ${first},\n\nThanks for your brief (${summary}). `)}`;
+  const phone = String(e.phone || '').replace(/[^\d+]/g, '').replace(/^0/, '234').replace(/^\+/, '');
+  const skip = new Set(['receivedAt', 'company_site']);
+  const rows = Object.entries(e).filter(([k, v]) => !skip.has(k) && v !== '' && v != null && !(Array.isArray(v) && !v.length))
+    .map(([k, v]) => `<tr><td style="padding:6px 12px 6px 0;color:#64748b;font-size:13px;vertical-align:top">${esc(k)}</td><td style="padding:6px 0;font-size:14px;color:#0c1d3d">${esc(typeof v === 'object' ? JSON.stringify(v) : v)}</td></tr>`).join('');
+  const btn = (href: string, label: string, bg: string) => `<a href="${href}" style="display:inline-block;margin:0 8px 8px 0;padding:12px 20px;border-radius:50px;background:${bg};color:#fff;font-weight:700;font-size:14px;text-decoration:none">${label}</a>`;
+  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;margin:auto;padding:24px;background:#f5f8fb;border-radius:20px">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0369a1">New brief · Noskshade Studio</div>
+    <h1 style="margin:8px 0 4px;font-size:22px;color:#0c1d3d">${esc(e.name)} sent a brief</h1>
+    <p style="margin:0 0 18px;color:#334155">${esc(summary)}</p>
+    ${btn(gmail, 'Reply in Gmail', '#0284c7')}${phone ? btn(`https://wa.me/${phone}`, 'Reply on WhatsApp', '#16a34a') : ''}
+    <table style="margin-top:12px;width:100%;border-collapse:collapse;background:#fff;border-radius:14px;padding:12px">${rows}</table>
+    <p style="margin-top:16px;font-size:12px;color:#64748b">Also saved in your admin under Enquiries.</p></div>`;
   await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: 'Noskshade site <onboarding@resend.dev>', to: [to], reply_to: e.email, subject: `New enquiry: ${summary}`, text: lines }),
+    body: JSON.stringify({ from: 'Noskshade site <onboarding@resend.dev>', to: [to], reply_to: e.email, subject: `New brief from ${e.name}: ${summary}`, html }),
   });
 }

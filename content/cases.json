@@ -1,0 +1,97 @@
+[
+ {
+  "slug": "portfolio-rebuild",
+  "title": "Rebuilding my portfolio into a studio",
+  "kind": "Design engineering · Next.js, Supabase",
+  "sort_order": 0,
+  "status": "published",
+  "card": {
+   "custom": true,
+   "cover": "/assets/rebuild/cover.webp",
+   "intro": "My portfolio was one 766 KB HTML file. I rebuilt it into a fast Next.js site with its own admin, instant price estimates for clients, private visit stats and a 3D gallery, while keeping the design exactly as it was.",
+   "desc": "How a product designer rebuilt his portfolio into a studio site: Next.js, Supabase, a custom admin, a pricing estimator and a 3D story mode.",
+   "flow": [
+    {
+     "img": "/assets/rebuild/new-home.webp",
+     "t": "Homepage",
+     "b": "Same design as before, now built once and cached so it opens fast."
+    },
+    {
+     "img": "/assets/rebuild/estimate.webp",
+     "t": "Get an estimate",
+     "b": "Pick the project, size and team. Timeline and price update live."
+    },
+    {
+     "img": "/assets/rebuild/hall-walk.webp",
+     "t": "Story mode",
+     "b": "A first-person 3D hall with one exhibit per case study."
+    },
+    {
+     "img": "/assets/rebuild/story-chapter.webp",
+     "t": "Play story",
+     "b": "Each case study told in short cinematic chapters."
+    },
+    {
+     "img": "/assets/rebuild/admin-overview.webp",
+     "t": "Admin overview",
+     "b": "Visits, new briefs and posts at a glance."
+    },
+    {
+     "img": "/assets/rebuild/admin-case-edit.webp",
+     "t": "Case study editor",
+     "b": "Edit text, cover and the design flow without code."
+    },
+    {
+     "img": "/assets/rebuild/admin-links.webp",
+     "t": "Homepage & links",
+     "b": "Change the intro and every contact link across the site."
+    }
+   ]
+  },
+  "brief": {
+   "problem": "Every change to my portfolio meant editing one huge file, and the site couldn’t answer the first things a client asks: what will it cost, how long, and how do you work.",
+   "did": "I designed and built the whole thing: ported eleven case studies with migration scripts, set up Supabase, designed and coded the admin, the Services estimator, brief emails, visit stats and Story mode.",
+   "result": "The same design, now fully editable from my own admin. Clients get a timeline and price range in two minutes, every brief reaches my inbox and WhatsApp, and each case study can be walked through in 3D.",
+   "trade": "The 3D gallery is the most impressive part and the heaviest. It only downloads when someone switches Story mode on, and weak phones get a lighter version, so the rest of the site stays fast.",
+   "next": "Move more of the homepage into the admin, connect my content tool so new case studies become social posts, and keep measuring which stories bring in briefs."
+  },
+  "sections": [
+   {
+    "h": "The problem",
+    "p": "The old site looked finished, but it was one 766 KB file. Fixing a typo or changing a price meant editing code and hoping nothing else broke.\n\nI’m starting a studio, and a studio site has a different job. It has to answer what a project costs, how long it takes and how I work, before anyone messages me.",
+    "img": "/assets/rebuild/arch.webp",
+    "cap": "The design stayed. Everything behind it changed."
+   },
+   {
+    "h": "How it went",
+    "p": "Five months, nineteen commits. The rebuild itself took a few intense days in November, mostly spent on things that went wrong at launch.",
+    "img": "/assets/rebuild/timeline.webp"
+   },
+   {
+    "h": "Choices I made",
+    "p": "Next.js so pages are built once and served instantly. Supabase on the free plan for everything that changes, with a small scheduled check-in so it never sleeps. My own admin, because I design admin systems for clients and wanted to use one daily.\n\nI didn’t rewrite the case studies by hand. Small scripts converted the old file section by section, so the layout and behaviour stayed identical."
+   },
+   {
+    "h": "What broke",
+    "p": "Every page returned 404 on launch: one missing setting. The brief form crashed: the live site didn’t have its database keys. Git kept asking the same question forever, and I locked myself out of my own admin.\n\nEach one took minutes to fix once I understood it. Now the form fails politely, every fix is written down, and changes go out in one batch so hosting credits aren’t wasted.",
+    "img": "/assets/rebuild/struggles.webp"
+   },
+   {
+    "h": "The studio funnel",
+    "p": "Visitors pick what they need and see a timeline and a price range in naira or dollars. Sending a brief saves it in my admin, emails me with one-tap replies, and opens WhatsApp to keep talking.",
+    "img": "/assets/rebuild/estimate.webp",
+    "cap": "The estimate updates with every choice."
+   },
+   {
+    "h": "Story mode",
+    "p": "Six versions in two days: a scrolling story, tap-through, cinematic, a flat gallery, a curved room and finally a first-person 3D hall. I tested each one privately before choosing, so none of the experiments cost anything live.",
+    "img": "/assets/rebuild/story-evolution.webp"
+   },
+   {
+    "h": "How I work",
+    "p": "Ask instead of assuming. Prototype where nothing is at risk. Test on a real phone on a normal network. Ship once and check the live site myself.",
+    "img": "/assets/rebuild/lessons.webp"
+   }
+  ]
+ }
+]

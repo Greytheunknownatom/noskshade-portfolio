@@ -103,3 +103,58 @@ export async function enquiryStatusAction(f: FormData) {
   revalidatePath('/admin/enquiries');
   revalidatePath('/admin');
 }
+
+// ---------- Case studies ----------
+import type { CaseStudy } from '@/lib/content/types';
+
+function refreshCases(slugs: string[]) {
+  updateTag('cases');
+  revalidatePath('/work');
+  slugs.filter(Boolean).forEach((s) => revalidatePath(`/work/${s}`));
+  revalidatePath('/sitemap.xml');
+}
+
+export async function saveCaseAction(_: ActionResult | null, f: FormData): Promise<ActionResult> {
+  try {
+    const s = await requireSession();
+    const c = JSON.parse(String(f.get('case') || '{}')) as CaseStudy;
+    const custom = !!c.card?.custom;
+    if (!c.title?.trim() && custom) return { ok: false, message: 'Add a title.' };
+    const originalSlug = String(f.get('originalSlug') || '') || undefined;
+    c.slug = custom ? slugify(c.slug || c.title) : String(originalSlug || c.slug);
+    if (!c.slug) return { ok: false, message: 'Add a title so the case study gets an address.' };
+    if (!custom) c.status = 'published'; // built-in case studies are always live; their edits apply straight away
+    c.card.flow = (c.card.flow || []).filter((x) => x.img);
+    c.sections = (c.sections || []).filter((x) => x.h || x.p || x.img);
+    await data.saveCase(s, c, custom ? originalSlug : undefined);
+    refreshCases([c.slug, originalSlug ?? '']);
+    if (custom && originalSlug !== c.slug) redirect(`/admin/cases/${c.slug}?saved=1`);
+    return { ok: true, message: custom && c.status === 'draft' ? 'Saved as draft.' : 'Saved. The live page is updated.' };
+  } catch (e) {
+    unstable_rethrow(e);
+    return { ok: false, message: (e as Error).message };
+  }
+}
+
+export async function deleteCaseAction(f: FormData) {
+  const s = await requireSession();
+  const slug = String(f.get('slug') || '');
+  if (!slug) return;
+  await data.deleteCase(s, slug);
+  refreshCases([slug]);
+  redirect('/admin/cases?deleted=1');
+}
+
+// ---------- Homepage & links ----------
+export async function saveSiteAction(_: ActionResult | null, f: FormData): Promise<ActionResult> {
+  try {
+    const s = await requireSession();
+    const clean = (keys: string[]) => Object.fromEntries(keys.map((k) => [k, String(f.get(k) || '').trim()]).filter(([, v]) => v));
+    await data.saveSetting(s, 'links', clean(['email', 'whatsapp', 'linkedin', 'instagram', 'tiktok', 'behance', 'dribbble', 'x', 'cv']));
+    await data.saveSetting(s, 'home', clean(['title', 'intro']));
+    updateTag('settings');
+    ['/', '/work', '/about', '/contact'].forEach((p) => revalidatePath(p));
+    revalidatePath('/work/[slug]', 'page');
+    return { ok: true, message: 'Saved. Your homepage and links are updated.' };
+  } catch (e) { return { ok: false, message: (e as Error).message }; }
+}

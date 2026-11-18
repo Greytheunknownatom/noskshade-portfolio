@@ -1,6 +1,6 @@
 import 'server-only';
 import { unstable_cache } from 'next/cache';
-import type { Post } from './types';
+import type { Post, CaseStudy, SiteLinks, SiteHome } from './types';
 import type { ServicesData } from '../services';
 import * as local from './local';
 import * as supabase from './supabase';
@@ -39,6 +39,23 @@ export const getServices = cached(
   { tags: ['settings'], revalidate: 86400 },
 );
 
+// Case studies and homepage settings, cached under their own tags so an admin save refreshes only them.
+export const getCases = cached(
+  async (): Promise<CaseStudy[]> => source.listCases().catch(() => []),
+  ['cases'],
+  { tags: ['cases'], revalidate: 86400 },
+);
+export async function getCase(slug: string) { return (await getCases()).find((c) => c.slug === slug); }
+
+export const getSite = cached(
+  async (): Promise<{ links: SiteLinks; home: SiteHome }> => ({
+    links: await source.readSettingsOr<SiteLinks>('links', {}),
+    home: await source.readSettingsOr<SiteHome>('home', {}),
+  }),
+  ['site'],
+  { tags: ['settings'], revalidate: 86400 },
+);
+
 export const saveEnquiry = (e: unknown) => source.addEnquiry(e);
 
-export type { Post } from './types';
+export type { Post, CaseStudy, SiteLinks, SiteHome } from './types';

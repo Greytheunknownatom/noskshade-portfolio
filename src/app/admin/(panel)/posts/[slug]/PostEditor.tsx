@@ -4,7 +4,8 @@
 // in a hidden form field, and the Server Action stores it exactly as the public page reads it.
 import { useActionState, useState, useRef } from 'react';
 import Link from 'next/link';
-import { savePostAction, deletePostAction, uploadImageAction, type ActionResult } from '../../../actions';
+import { savePostAction, deletePostAction, type ActionResult } from '../../../actions';
+import { ImageField } from '../../ImageField';
 import { CATS } from '@/lib/blog';
 import type { Block, Post } from '@/lib/content/types';
 import s from '../../../admin.module.css';
@@ -12,36 +13,6 @@ import s from '../../../admin.module.css';
 type Kind = 'p' | 'h' | 'q' | 'l' | 'img' | 'c' | 'cta';
 const LABELS: Record<Kind, string> = { p: 'Paragraph', h: 'Heading', q: 'Quote', l: 'List', img: 'Image', c: 'Code', cta: 'Call to action' };
 const blank = (k: Kind): Block => (k === 'l' ? ['l', ['']] : k === 'img' ? ['img', '', '', ''] : k === 'cta' ? ['cta', '', '', 'Learn more →', '', ''] : [k, ''] as Block);
-
-function useUpload() {
-  const [busy, setBusy] = useState(false);
-  const upload = async (file: File | undefined): Promise<string | null> => {
-    if (!file) return null;
-    setBusy(true);
-    const fd = new FormData(); fd.append('file', file);
-    const r = await uploadImageAction(fd);
-    setBusy(false);
-    if (r.error) { alert(r.error); return null; }
-    return r.url ?? null;
-  };
-  return { busy, upload };
-}
-
-function ImageField({ value, onChange, label }: { value: string; onChange: (v: string) => void; label: string }) {
-  const { busy, upload } = useUpload();
-  const ref = useRef<HTMLInputElement>(null);
-  return (
-    <div className={s.stack} style={{ gap: 8 }}>
-      {value ? <img src={value} alt="" className={s.cover} /> : <div className={s.cover} />}
-      <div className={s.row}>
-        <button type="button" className={`${s.btn} ${s.ghost} ${s.small}`} onClick={() => ref.current?.click()} disabled={busy}>{busy ? 'Uploading…' : value ? 'Replace image' : `Upload ${label}`}</button>
-        {value && <button type="button" className={`${s.btn} ${s.ghost} ${s.small}`} onClick={() => onChange('')}>Remove</button>}
-      </div>
-      <input ref={ref} type="file" accept="image/*" hidden onChange={async (e) => { const u = await upload(e.target.files?.[0]); if (u) onChange(u); e.target.value = ''; }} />
-      <input className={s.input} value={value} onChange={(e) => onChange(e.target.value)} placeholder="…or paste an image URL / path" />
-    </div>
-  );
-}
 
 export default function PostEditor({ post, isNew = false }: { post: Post; isNew?: boolean }) {
   const [state, action, pending] = useActionState<ActionResult | null, FormData>(savePostAction, null);

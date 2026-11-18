@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getSite } from '@/lib/content';
 import AboutPage from '@/legacy/pages/About';
 
 export const metadata: Metadata = {
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about' },
 };
 
-export default function Page() {
-  return <AboutPage />;
+export default async function Page() {
+  const { links } = await getSite();
+  return <AboutPage ov={{ links }} />;
 }

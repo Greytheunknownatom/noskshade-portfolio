@@ -29,3 +29,17 @@ export interface Post {
   status: PostStatus;
   blocks: Block[];
 }
+
+/** A case study row. Built-in case studies (custom: false) use it as overrides on top of their designed page;
+ *  new ones (custom: true) are rendered from it with the standard case study template. */
+export interface CaseFlowItem { img: string; t: string; b?: string }
+export interface CaseSection { h: string; p: string; img?: string; cap?: string }
+export interface CaseStudy {
+  slug: string; title: string; kind: string; sort_order: number; status: 'draft' | 'published';
+  card: { custom?: boolean; hidden?: boolean; intro?: string; desc?: string; cover?: string; flow?: CaseFlowItem[] };
+  brief: { problem?: string; did?: string; result?: string; trade?: string; next?: string };
+  sections: CaseSection[];
+}
+/** Homepage text and contact links, editable in the admin. Empty values keep the designed defaults. */
+export interface SiteLinks { email?: string; whatsapp?: string; linkedin?: string; instagram?: string; tiktok?: string; behance?: string; dribbble?: string; x?: string; cv?: string }
+export interface SiteHome { title?: string; intro?: string }

@@ -146,3 +146,7 @@ textarea.input { height: auto; min-height: 120px; padding: 14px 16px; line-heigh
 
 /* The global mobile rule pads every <section>; this page already pads its wrapper. */
 @media (max-width: 960px) { .page section.section { padding-left: 0 !important; padding-right: 0 !important; padding-top: 0; padding-bottom: 0; } }
+/* Dropdowns: hide the browser's arrow (it sat off-centre) and draw our own, so text and arrow line up. */
+select.input { appearance: none; -webkit-appearance: none; padding-right: 42px; line-height: 1.2; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230369a1' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center; }

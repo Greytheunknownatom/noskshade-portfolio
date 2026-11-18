@@ -1,5 +1,180 @@
 [
  {
+  "slug": "how-i-rebuilt-my-portfolio",
+  "title": "I rebuilt my portfolio into a studio. Here’s everything that broke.",
+  "excerpt": "From one 766 KB HTML file to a Next.js site with its own admin, price estimates and a 3D gallery. The decisions, the bugs and what I learned.",
+  "category": "code",
+  "publishedAt": "2026-11-18",
+  "readMinutes": 7,
+  "cover": "/assets/rebuild/cover.webp",
+  "coverAlt": "The 3D gallery hall on my portfolio",
+  "tags": [
+   "design engineering",
+   "next.js",
+   "supabase",
+   "portfolio",
+   "process"
+  ],
+  "featured": true,
+  "status": "published",
+  "blocks": [
+   [
+    "p",
+    "For most of this year my portfolio was one file. A single index.html, 766 KB, holding eleven case studies, a journal and every animation. It looked finished. Under the surface it was fragile: changing one price or fixing one typo meant opening that file and hoping I didn't break something else."
+   ],
+   [
+    "p",
+    "In November I decided to turn it into something closer to a product: a site I could edit from an admin, that clients could get a price estimate from, and that still loaded fast on a slow phone in Abuja. This is the honest version of how that went."
+   ],
+   [
+    "img",
+    "/assets/rebuild/timeline.webp",
+    "Timeline of the portfolio from July to November 2026",
+    "Five months and nineteen commits, from one HTML file to launch day."
+   ],
+   [
+    "h",
+    "Why rebuild something that already worked"
+   ],
+   [
+    "p",
+    "I'm starting a studio. A studio portfolio has a different job from a personal one. It has to answer the questions a founder asks before they message you: what would this cost, how long would it take, and how do you work?"
+   ],
+   [
+    "p",
+    "My old site couldn't answer any of that without me editing code. So the goal wasn't a new look. I kept the design exactly as it was. The goal was everything behind it."
+   ],
+   [
+    "img",
+    "/assets/rebuild/arch.webp",
+    "Diagram: one HTML file on the left, Next.js, Supabase, an admin and a studio funnel on the right",
+    "The design stayed the same. What changed is everything you don’t see."
+   ],
+   [
+    "h",
+    "The decisions, and why I made them"
+   ],
+   [
+    "l",
+    [
+     "Next.js, so pages are built once and served instantly instead of being assembled on every visit.",
+     "Supabase on its free plan, for posts, case studies, prices, briefs and visit counts, with a small check-in so the free project never goes to sleep.",
+     "My own admin with email and password, because I design admin systems for clients and wanted to live inside one myself.",
+     "No heavy extras on the public pages. If something is big, like the 3D gallery, it only downloads when someone asks for it."
+    ]
+   ],
+   [
+    "p",
+    "I didn't rewrite eleven case studies by hand. I wrote small scripts that read the old file and turned each section into a component, so the markup and the behaviour stayed identical. Migration scripts are boring, and boring is exactly what you want when you're moving something that already works."
+   ],
+   [
+    "h",
+    "What broke (the part nobody posts)"
+   ],
+   [
+    "img",
+    "/assets/rebuild/struggles.webp",
+    "Four problems: every page 404, the brief form crashing, a Git question loop, and a password that couldn’t be shown",
+    "Four things that broke on the way to launch."
+   ],
+   [
+    "p",
+    "Launch day went wrong straight away. Every page returned 404. The cause was one missing line telling Netlify how to run Next.js. I rolled back to the old site in a minute, added the line, and pushed again."
+   ],
+   [
+    "p",
+    "Then the first person to send a brief got “This page couldn’t load”. The live site didn't have the database keys yet, so it tried to save the brief to a file on a server that doesn't allow writing files. Now the keys are in place, and if saving ever fails the visitor gets a friendly message with my email and WhatsApp instead of a crash."
+   ],
+   [
+    "p",
+    "Some problems were just unfamiliar. Git on Windows kept asking “Should I try again? (y/n)” forever. I couldn't log in to my own admin because Supabase never shows passwords, by design. Each one felt like a wall for ten minutes and a lesson afterwards."
+   ],
+   [
+    "q",
+    "Most bugs weren't hard. They were invisible until the moment a real person used the thing."
+   ],
+   [
+    "h",
+    "The studio part: an estimate in two minutes"
+   ],
+   [
+    "p",
+    "The new Services page lets someone pick what they need, how big it is and how their team works. A timeline and a price range update as they go, in naira or dollars. When they send the brief, it's saved in my admin, emailed to me and they can carry on the conversation on WhatsApp."
+   ],
+   [
+    "img",
+    "/assets/rebuild/estimate.webp",
+    "The Services page estimate changing as options are picked",
+    "Every choice updates the timeline and price range."
+   ],
+   [
+    "h",
+    "Story mode: six tries to get it right"
+   ],
+   [
+    "p",
+    "I wanted visitors to feel my case studies, not just scroll past them. The first version was a scrolling story. Then a tap-through one. Then a cinematic one. Then a curved gallery room, inspired by an art site I loved. It still felt flat, so I built a full 3D hall you walk through in first person, one exhibit per case study, each with a short write-up and a Play story button."
+   ],
+   [
+    "img",
+    "/assets/rebuild/story-evolution.webp",
+    "Four versions of story mode side by side",
+    "From a flat gallery to a 3D hall. Every version taught me what the next one needed."
+   ],
+   [
+    "img",
+    "/assets/rebuild/hall-walk.webp",
+    "Walking through the 3D hall from one case study to the next",
+    "Walking the hall. It only downloads when someone switches Story mode on, and weak phones get a lighter version."
+   ],
+   [
+    "h",
+    "An admin I'd hand to a client"
+   ],
+   [
+    "p",
+    "Everything is editable now: journal posts, case study text and covers, prices, homepage text and links. Briefs arrive with one-tap replies in Gmail or WhatsApp. There's a Visits page showing where people come from and which case studies they open, without cookies or storing anyone's IP address."
+   ],
+   [
+    "img",
+    "/assets/rebuild/admin-case-edit.webp",
+    "The case study editor in the admin",
+    "Editing a case study. Empty fields keep the designed text."
+   ],
+   [
+    "h",
+    "What I'd tell a founder (or a recruiter)"
+   ],
+   [
+    "img",
+    "/assets/rebuild/lessons.webp",
+    "Four steps: ask, prototype, test on a phone, ship once",
+    "The loop I followed every day."
+   ],
+   [
+    "l",
+    [
+     "I ask before I assume. One question with three options saves a day of rework.",
+     "I prototype where nothing is at risk. Every Story mode version was tested on a private page before it touched the live site.",
+     "I test on a phone, on a normal network. If it's slow there, it isn't done.",
+     "I ship in one batch and check the live result myself. Hosting credits are real money, so I don't push every small change."
+    ]
+   ],
+   [
+    "p",
+    "I'm a product designer learning to build what I design. This rebuild was the biggest step so far, and I documented every lesson in the code so I understand why each line is there."
+   ],
+   [
+    "cta",
+    "Want something built like this, or want me on your team?",
+    "/services",
+    "Get an estimate →",
+    "",
+    "blue"
+   ]
+  ]
+ },
+ {
   "slug": "heatbud-el-nino",
   "title": "I kept forgetting to drink water in the heat, so I designed and built HeatBud",
   "excerpt": "With El Niño in the news and my days packed with work, I kept noticing the heat only after it had already got to me. So I made a small app to warn me first, and it’s live today.",
@@ -14,7 +189,7 @@
    "design engineering",
    "nigeria"
   ],
-  "featured": true,
+  "featured": false,
   "status": "published",
   "blocks": [
    [

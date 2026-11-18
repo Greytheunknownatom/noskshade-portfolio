@@ -1,7 +1,7 @@
 import 'server-only';
 import { promises as fs } from 'fs';
 import path from 'path';
-import type { Post } from '../content/types';
+import type { Post, CaseStudy, SiteLinks, SiteHome } from '../content/types';
 import type { ServicesData } from '../services';
 import { supabaseOn, type Session } from './auth';
 
@@ -100,4 +100,58 @@ export async function uploadImage(s: Session, file: File): Promise<string> {
   await fs.mkdir(out, { recursive: true });
   await fs.writeFile(path.join(out, name), bytes);
   return `/uploads/${name}`;
+}
+
+// ---------- Case studies ----------
+export async function listCasesAdmin(s: Session): Promise<CaseStudy[]> {
+  if (supabaseOn) return sb<CaseStudy[]>(s, '/rest/v1/case_studies?select=*&order=sort_order.asc');
+  return readLocal<CaseStudy[]>('cases.json', []);
+}
+
+export async function saveCase(s: Session, c: CaseStudy, originalSlug?: string) {
+  if (supabaseOn) {
+    if (originalSlug && originalSlug !== c.slug) await sb(s, `/rest/v1/case_studies?slug=eq.${encodeURIComponent(originalSlug)}`, { method: 'DELETE' });
+    await sb(s, '/rest/v1/case_studies?on_conflict=slug', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify({ ...c, updated_at: new Date().toISOString() }) });
+    return;
+  }
+  const list = await readLocal<CaseStudy[]>('cases.json', []);
+  await writeLocal('cases.json', [c, ...list.filter((x) => x.slug !== c.slug && x.slug !== originalSlug)]);
+}
+
+export async function deleteCase(s: Session, slug: string) {
+  if (supabaseOn) return void (await sb(s, `/rest/v1/case_studies?slug=eq.${encodeURIComponent(slug)}`, { method: 'DELETE' }));
+  await writeLocal('cases.json', (await readLocal<CaseStudy[]>('cases.json', [])).filter((x) => x.slug !== slug));
+}
+
+// ---------- Homepage & links ----------
+export async function getSiteAdmin(s: Session): Promise<{ links: SiteLinks; home: SiteHome }> {
+  if (supabaseOn) {
+    const rows = await sb<{ key: string; value: any }[]>(s, '/rest/v1/settings?key=in.(links,home)&select=key,value');
+    const get = (k: string) => rows.find((r) => r.key === k)?.value ?? {};
+    return { links: get('links'), home: get('home') };
+  }
+  return { links: await readLocal('links.json', {}), home: await readLocal('home.json', {}) };
+}
+
+export async function saveSetting(s: Session, k: 'links' | 'home', value: unknown) {
+  if (supabaseOn) {
+    await sb(s, '/rest/v1/settings?on_conflict=key', { method: 'POST', headers: { Prefer: 'resolution=merge-duplicates,return=minimal' },
+      body: JSON.stringify({ key: k, value, updated_at: new Date().toISOString() }) });
+    return;
+  }
+  await writeLocal(`${k}.json`, value);
+}
+
+// ---------- Visits ----------
+export interface VisitStats {
+  today: number; week: number; month: number; visitors: number;
+  daily: { day: string; n: number }[]; pages: { path: string; n: number }[]; refs: { ref: string; n: number }[];
+  devices: { device: string; n: number }[]; countries: { country: string; n: number }[];
+}
+/** Totals worked out inside the database (visit_stats in supabase/update-2.sql), so the admin never downloads every visit. */
+export async function getVisitStats(s: Session): Promise<VisitStats | null> {
+  if (!supabaseOn) return null;
+  try { return await sb<VisitStats>(s, '/rest/v1/rpc/visit_stats', { method: 'POST', body: JSON.stringify({ days: 30 }) }); }
+  catch { return null; }
 }

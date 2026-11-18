@@ -60,3 +60,20 @@ npm run build      # the production build Netlify runs
 | `src/lib/admin/data.ts` | Reads/writes: Supabase, or local JSON when not connected |
 
 Local admin without Supabase: put `ADMIN_DEV_PASSWORD=something` in `.env.development.local`, run `npm run dev`, open `/admin`.
+
+## Lesson 8: editing case studies from the admin
+Designed case studies keep their hand-made layout. The admin saves *overrides* in the `case_studies` table:
+title, intro, the "at a glance" text, cover, sharing description and a design-flow gallery. Empty fields keep the
+designed text. `LegacyShell` merges the overrides into the page values (`v.cb`, `v.ov`), and the case page adds
+`<CaseFlow>` under it. New case studies (`card.custom = true`) use the standard template in `CaseExtras.tsx`, and
+`/work/[slug]` builds them on their first visit (`dynamicParams = true`).
+
+## Lesson 9: counting visits without slowing anything down
+`components/Track.tsx` sends one small row per page view straight to Supabase (page, source, device, rough country
+from the time zone). No cookies, no IP addresses. The admin's Visits page calls `visit_stats()` in the database,
+so the sums happen there and the admin never downloads every row. Setup: run `supabase/update-2.sql` once.
+
+## Lesson 10: brief emails with Resend
+When `RESEND_API_KEY` and `ENQUIRY_EMAIL_TO` are set in Netlify, every brief is emailed to you with
+"Reply in Gmail" and "Reply on WhatsApp" buttons. Resend's test sender (onboarding@resend.dev) can only send to
+the email you signed up with, which is exactly what we need.

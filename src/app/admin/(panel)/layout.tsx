@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getSession, canRefresh, supabaseOn } from '@/lib/admin/auth';
 import { logoutAction } from '../actions';
 import AdminNav from './AdminNav';
+import Icon from './Icon';
 import s from '../admin.module.css';
 
 export const metadata: Metadata = { title: 'Admin', robots: { index: false, follow: false } };
@@ -19,9 +20,9 @@ export default async function PanelLayout({ children }: { children: React.ReactN
         <AdminNav />
         <div className={s.sideFoot}>
           <span>{session.email}</span>
-          <span>{supabaseOn ? 'Connected to Supabase' : 'Local mode (files in /content)'}</span>
-          <a href="/" target="_blank" style={{ color: '#0369a1', fontWeight: 700 }}>View site ↗</a>
-          <form action={logoutAction}><button className={`${s.btn} ${s.ghost} ${s.small}`}>Sign out</button></form>
+          <span className={s.conn}><i />{supabaseOn ? 'Connected to Supabase' : 'Local mode (files in /content)'}</span>
+          <a href="/" target="_blank" className={s.sideLink}><Icon name="external" size={15} />View site</a>
+          <form action={logoutAction}><button className={`${s.btn} ${s.ghost} ${s.small}`}><Icon name="logout" size={15} />Sign out</button></form>
         </div>
       </aside>
       <main className={s.main}>{children}</main>
