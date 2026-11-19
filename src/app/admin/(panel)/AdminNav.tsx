@@ -10,6 +10,7 @@ const LINKS = [
   { href: '/admin/enquiries', label: 'Enquiries', icon: 'mail' },
   { href: '/admin/cases', label: 'Case studies', icon: 'layers' },
   { href: '/admin/posts', label: 'Journal posts', icon: 'pen' },
+  { href: '/admin/autopilot', label: 'Autopilot', icon: 'spark' },
   { href: '/admin/home', label: 'Homepage & links', icon: 'home' },
   { href: '/admin/services', label: 'Services & prices', icon: 'tag' },
 ];
