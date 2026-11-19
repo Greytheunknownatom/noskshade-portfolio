@@ -1,0 +1,15 @@
+# LEARN (Autopilot): GitHub wakes Autopilot 3 times a day for free, so it does not use Netlify credits.
+# Times are UTC; Abuja is UTC+1, so these are 06:00, 12:00 and 18:00 your time.
+name: Autopilot
+on:
+  schedule:
+    - cron: '0 5,11,17 * * *'
+  workflow_dispatch: {}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake Autopilot
+        run: |
+          curl -fsS -X POST "${{ secrets.AUTOPILOT_URL }}/api/autopilot/run" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" --max-time 60
