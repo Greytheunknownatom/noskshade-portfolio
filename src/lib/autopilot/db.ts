@@ -21,7 +21,8 @@ async function rest<T = Row[]>(a: Auth, p: string, init: RequestInit = {}): Prom
   } else bearer = a.token;
   const res = await fetch(`${url}/rest/v1/${p}`, {
     ...init, cache: 'no-store',
-    headers: { apikey: key, Authorization: `Bearer ${bearer}`, 'Content-Type': 'application/json', Prefer: 'return=representation', ...(init.headers || {}) },
+    // New-style secret keys (sb_secret_...) are not JWTs: send them as the apikey only.
+    headers: { apikey: key, ...(bearer.startsWith('sb_secret_') ? {} : { Authorization: `Bearer ${bearer}` }), 'Content-Type': 'application/json', Prefer: 'return=representation', ...(init.headers || {}) },
   });
   const text = await res.text();
   if (!res.ok) throw new Error(`Database error ${res.status}: ${text.slice(0, 200)}`);

@@ -10,7 +10,7 @@ Add these on your host (Netlify → Site configuration → Environment variables
 
 | Name | What | Needed for |
 |---|---|---|
-| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API → service_role. Never share it. | scheduled runs |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase → Project Settings → API Keys → Secret keys → default (starts with `sb_secret_`; older projects: the `service_role` key). Never share it. | scheduled runs |
 | `CRON_SECRET` | Any long random text (20+ characters) you make up | scheduled runs |
 | `AI_PROVIDER` | `anthropic` or `openai` (leave out for simple templates) | better writing |
 | `AI_API_KEY`, `AI_MODEL` | from that provider | better writing |
